@@ -3,19 +3,19 @@ package object_orienters;
 import java.util.List;
 
 public class Schedule {
-    private List<Courses> courses;
+    private List<Course> courses;
     private int creditLooad;
 
-    public Schedule(List<Courses> courses, int creditLooad) {
+    public Schedule(List<Course> courses, int creditLooad) {
         this.courses = courses;
         this.creditLooad = creditLooad;
     }
 
-    public List<Courses> getCourses() {
+    public List<Course> getCourse() {
         return courses;
     }
 
-    public void setCourses(List<Courses> courses) {
+    public void setCourse(List<Course> courses) {
         this.courses = courses;
     }
 
