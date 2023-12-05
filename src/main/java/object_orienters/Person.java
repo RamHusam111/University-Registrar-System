@@ -6,8 +6,9 @@ public abstract class Person {
     private int id;
     private String name;
     private String email;
-     List<Course> registeredCourses;
-
+    List<Course> registeredCourses;
+    Schedule schedule;
+    
     public Person(int id, String name, String email) {
         this.id = id;
         this.name = name;
