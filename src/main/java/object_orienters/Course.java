@@ -3,20 +3,20 @@ package object_orienters;
 import java.time.Duration;
 import java.util.List;
 
-public class Courses {
+public class Course {
     // **REMOVE ALL COMMENTS AFTER CREATING NEEDED CLASSES (Teacher && Department)**
     // private Teacher teacher;
     private String courseType;
     // private Department courseDepartment;
     private String courseName;
     private int creditHours;
-    private List<Courses> prerequisites;
+    private List<Course> prerequisites;
     private List<WeeklyMeetings> weeklyMeetings;
 
     /*
-     * public Courses(Teacher teacher, String courseType, Department
+     * public Course(Teacher teacher, String courseType, Department
      * courseDepartment, String courseName, int creditHours,
-     * List<Courses> prerequisites, List<WeeklyMeetings> weeklyMeetings) {
+     * List<Course> prerequisites, List<WeeklyMeetings> weeklyMeetings) {
      * this.teacher = teacher;
      * this.courseType = courseType;
      * this.courseDepartment = courseDepartment;
@@ -108,11 +108,11 @@ public class Courses {
         this.creditHours = creditHours;
     }
 
-    public List<Courses> getPrerequisites() {
+    public List<Course> getPrerequisites() {
         return prerequisites;
     }
 
-    public void setPrerequisites(List<Courses> prerequisites) {
+    public void setPrerequisites(List<Course> prerequisites) {
         this.prerequisites = prerequisites;
     }
 

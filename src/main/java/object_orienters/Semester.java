@@ -11,11 +11,11 @@ public class Semester {
     private LocalDate semesterEndDate;
     //private List<Student> students;
     //private List<Teacher> teachers;
-    private List<Courses> courses;
+    private List<Course> courses;
 
     private long weeksNumber;
 
-//    public Semester(String semesterName, LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students, List<Teacher> teachers, List<Courses> courses) {
+//    public Semester(String semesterName, LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students, List<Teacher> teachers, List<Course> courses) {
 //        weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
 //        this.semesterName = semesterName;
 //        this.semesterStartDate = semesterStartDate;
@@ -56,7 +56,7 @@ public class Semester {
 //    }
 
 
-    public List<Courses> getCourses() {
+    public List<Course> getCourse() {
         return courses;
     }
 

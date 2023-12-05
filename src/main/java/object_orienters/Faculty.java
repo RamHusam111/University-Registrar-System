@@ -9,7 +9,7 @@ import java.util.Map;
 public class Faculty {
     private String name;
     private List<String> rooms;
-    private List<Departments> departments;
+    private List<Department> departments;
     private Map<DayOfWeek, FreeHours> freehouers = new HashMap<>();
     //private List<Students> students;
     //private List<Teachers> teachers;
@@ -31,7 +31,7 @@ public class Faculty {
         return rooms;
     }
 
-    public List<Departments> getDepartments() {
+    public List<Department> getDepartments() {
         return departments;
     }
     //    public List<Student> getStudents() {
@@ -46,7 +46,7 @@ public class Faculty {
         this.rooms.add(room);
     }
 
-    public void setNewDepartment(Departments department) {
+    public void setNewDepartment(Department department) {
         this.departments.add(department);
     }
     public void addFreeHour(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {

@@ -2,7 +2,7 @@ package object_orienters;
 
 import java.util.List;
 
-public class Departments {
+public class Department {
     private String name;
     private List<String> majors;
     private List<String> minors;
