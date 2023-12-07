@@ -5,27 +5,27 @@ import java.util.List;
 
 public class Course {
     // **REMOVE ALL COMMENTS AFTER CREATING NEEDED CLASSES (Teacher && Department)**
-    // private Teacher teacher;
+     private Teacher teacher;
     private String courseType;
-    // private Department courseDepartment;
+     private Department courseDepartment;
     private String courseName;
     private int creditHours;
     private List<Course> prerequisites;
     private List<WeeklyMeetings> weeklyMeetings;
 
-    /*
-     * public Course(Teacher teacher, String courseType, Department
-     * courseDepartment, String courseName, int creditHours,
-     * List<Course> prerequisites, List<WeeklyMeetings> weeklyMeetings) {
-     * this.teacher = teacher;
-     * this.courseType = courseType;
-     * this.courseDepartment = courseDepartment;
-     * this.courseName = courseName;
-     * this.creditHours = creditHours;
-     * this.prerequisites = prerequisites;
-     * this.weeklyMeetings = weeklyMeetings;
-     * }
-     */
+
+      public Course(Teacher teacher, String courseType, Department
+      courseDepartment, String courseName, int creditHours,
+      List<Course> prerequisites, List<WeeklyMeetings> weeklyMeetings) {
+      this.teacher = teacher;
+      this.courseType = courseType;
+      this.courseDepartment = courseDepartment;
+      this.courseName = courseName;
+      this.creditHours = creditHours;
+      this.prerequisites = prerequisites;
+      this.weeklyMeetings = weeklyMeetings;
+      }
+
 
     private class WeeklyMeetings {
         private List<String> day; // CHANGED THIS TO A LIST 

@@ -6,14 +6,14 @@ public class Department {
     private String name;
     private List<String> majors;
     private List<String> minors;
-//    private List<Teachers> teachers;
+    private List<Teacher> teachers;
 
-//    public Department(String name, List<String> majors, List<String> minors, List<Teachers> teachers) {
-//        this.name = name;
-//        this.majors = majors;
-//        this.minors = minors;
-//        this.teachers = teachers;
-//    }
+    public Department(String name, List<String> majors, List<String> minors, List<Teacher> teachers) {
+        this.name = name;
+        this.majors = majors;
+        this.minors = minors;
+        this.teachers = teachers;
+    }
 
     public String getName() {
         return name;
@@ -27,9 +27,9 @@ public class Department {
         return minors;
     }
 
-//    public List<Teachers> getTeachers() {
-//        return teachers;
-//    }
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
 
     public void addMajor(String major) {
         this.majors.add(major);
