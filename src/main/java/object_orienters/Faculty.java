@@ -11,17 +11,17 @@ public class Faculty {
     private List<String> rooms;
     private List<Department> departments;
     private Map<DayOfWeek, FreeHours> freehouers = new HashMap<>();
-    //private List<Students> students;
-    //private List<Teachers> teachers;
+    private List<Student> students;
+    private List<Teacher> teachers;
 
-//    public Faculty(String name, List<String> rooms, List<Departments> departments, Map<DayOfWeek, FreeHours> freehouers, List<Students> students, List<Teachers> teachers) {
-//        this.name = name;
-//        this.rooms = rooms;
-//        this.departments = departments;
-//        this.freehouers = freehouers;
-//        this.students = students;
-//        this.teachers = teachers;
-//    }
+    public Faculty(String name, List<String> rooms, List<Department> departments, Map<DayOfWeek, FreeHours> freehouers, List<Student> students, List<Teacher> teachers) {
+        this.name = name;
+        this.rooms = rooms;
+        this.departments = departments;
+        this.freehouers = freehouers;
+        this.students = students;
+        this.teachers = teachers;
+    }
 
     public String getName() {
         return name;
@@ -34,13 +34,13 @@ public class Faculty {
     public List<Department> getDepartments() {
         return departments;
     }
-    //    public List<Student> getStudents() {
-//        return students;
-//    }
-//
-//    public List<Teacher> getTeachers() {
-//        return teachers;
-//    }
+        public List<Student> getStudents() {
+        return students;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
 
     public void setNewRoom(String room) {
         this.rooms.add(room);
