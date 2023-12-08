@@ -62,8 +62,8 @@ public class Student extends Person {
         this.creditLooad = creditLooad;
     }
 
-    public boolean preRequisitesCheck(Course preRequisite) {
-        return this.registeredCourses.contains(preRequisite);
+    public boolean preRequisitesCheck(List<Course> preRequisites) {
+        return this.registeredCourses.stream().allMatch(course -> preRequisites.contains(course));
     }
 
     @Override
