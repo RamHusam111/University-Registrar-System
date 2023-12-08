@@ -62,6 +62,10 @@ public class Student extends Person {
         this.creditLooad = creditLooad;
     }
 
+    public boolean preRequisitesCheck(Course preRequisite) {
+        return this.registeredCourses.contains(preRequisite);
+    }
+
     @Override
     public String toString() {
         return "Student{" +
