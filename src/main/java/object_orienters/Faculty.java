@@ -10,15 +10,16 @@ public class Faculty {
     private String name;
     private List<String> rooms;
     private List<Department> departments;
-    private Map<DayOfWeek, FreeHours> freehouers = new HashMap<>();
+    private WeeklyMeetings freeHour;
     private List<Student> students;
     private List<Teacher> teachers;
 
-    public Faculty(String name, List<String> rooms, List<Department> departments, Map<DayOfWeek, FreeHours> freehouers, List<Student> students, List<Teacher> teachers) {
+    public Faculty(String name, List<String> rooms, List<Department> departments, WeeklyMeetings freeHour,
+            List<Student> students, List<Teacher> teachers) {
         this.name = name;
         this.rooms = rooms;
         this.departments = departments;
-        this.freehouers = freehouers;
+        this.freeHour = freeHour;
         this.students = students;
         this.teachers = teachers;
     }
@@ -34,12 +35,22 @@ public class Faculty {
     public List<Department> getDepartments() {
         return departments;
     }
-        public List<Student> getStudents() {
+
+    public List<Student> getStudents() {
         return students;
     }
 
     public List<Teacher> getTeachers() {
         return teachers;
+    }
+
+    public WeeklyMeetings getFreeHour() {
+        return freeHour;
+    }
+
+    public void setFreeHour(WeeklyMeetings freeHour) {
+        this.freeHour = freeHour;
+
     }
 
     public void setNewRoom(String room) {
@@ -49,17 +60,5 @@ public class Faculty {
     public void setNewDepartment(Department department) {
         this.departments.add(department);
     }
-    public void addFreeHour(DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime) {
-        freehouers.put(dayOfWeek, new FreeHours(startTime, endTime));
-    }
 
-    private static class FreeHours {
-        private LocalTime startTime;
-        private LocalTime endTime;
-
-        public FreeHours(LocalTime startTime, LocalTime endTime) {
-            this.startTime = startTime;
-            this.endTime = endTime;
-        }
-    }
 }
