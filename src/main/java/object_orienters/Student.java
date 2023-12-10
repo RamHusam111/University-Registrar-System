@@ -6,19 +6,19 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Student extends Person {
-    private int creditLooad;
+    private int creditLoad;
     private String major;
     private Optional<String> minor;
     private Year yearEnrolled;
     private boolean isCurrentlyRegisterd;
-    private int load;
     private Map<Course, Double> completedCoursesGrades;
     private double gpa;
 
-    public Student(int id, String name, String email, Schedule schedule, int creditLooad) {
-        super(id, name, email);
+    public Student(int id, String name, String email, Schedule schedule, int creditLoad,
+            List<Course> registeredCourses) {
+        super(id, name, email, registeredCourses);
         this.schedule = schedule;
-        this.creditLooad = creditLooad;
+        this.creditLoad = creditLoad;
         isCurrentlyRegisterd = true;
     }
 
@@ -42,35 +42,34 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    public int getLoad() {
-        return load;
-    }
-
     public Schedule getSchedule() {
         return schedule;
     }
 
-    public int getCreditLooad() {
-        return creditLooad;
+    public int getCreditLoad() {
+        return creditLoad;
     }
 
     public void setSchedule(Schedule schedule) {
         this.schedule = schedule;
     }
 
-    public void setCreditLooad(int creditLooad) {
-        this.creditLooad = creditLooad;
+    public void setCreditLoad(int creditLoad) {
+        this.creditLoad = creditLoad;
     }
 
-    public boolean preRequisitesCheck(List<Course> preRequisites) {
-        return this.registeredCourses.stream().allMatch(course -> preRequisites.contains(course));
+    public boolean preRequisitesCheck(Course course) {
+        List<Course> preRequisites = course.getpreRequisites();
+        return preRequisites.stream().allMatch(e -> registeredCourses.contains(e)); // MUST BE COMPLETED COURSES (CREATE
+                                                                                    // LIST OF COMPLETED COURSES IN STUDENT CLASS) NOT
+                                                                                    // REGISTERED
     }
 
     @Override
     public String toString() {
         return "Student{" +
                 "schedule=" + schedule +
-                ", creditLooad=" + creditLooad +
+                ", creditLooad=" + creditLoad +
                 '}';
     }
 }

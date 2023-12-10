@@ -1,6 +1,7 @@
 package object_orienters;
 
 import java.time.Duration;
+import java.time.LocalTime;
 import java.util.List;
 
 public class Course {
@@ -9,55 +10,18 @@ public class Course {
     private Department courseDepartment;
     private String courseName;
     private int creditHours;
-    private List<Course> prerequisites;
+    private List<Course> preRequisites;
     private List<WeeklyMeetings> weeklyMeetings;
 
     public Course(Teacher teacher, String courseType, Department courseDepartment, String courseName, int creditHours,
-            List<Course> prerequisites, List<WeeklyMeetings> weeklyMeetings) {
+            List<Course> preRequisites, List<WeeklyMeetings> weeklyMeetings) {
         this.teacher = teacher;
         this.courseType = courseType;
         this.courseDepartment = courseDepartment;
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.prerequisites = prerequisites;
+        this.preRequisites = preRequisites;
         this.weeklyMeetings = weeklyMeetings;
-    }
-
-    private class WeeklyMeetings {
-        private List<String> day;
-        private Duration duration;
-        private String room;
-
-        public WeeklyMeetings(List<String> day, Duration duration, String room) {
-            this.day = day;
-            this.duration = duration;
-            this.room = room;
-        }
-
-        public List<String> getDay() {
-            return day;
-        }
-
-        public void setDay(List<String> day) {
-            this.day = day;
-        }
-
-        public Duration getDuration() {
-            return duration;
-        }
-
-        public void setDuration(Duration duration) {
-            this.duration = duration;
-        }
-
-        public String getRoom() {
-            return room;
-        }
-
-        public void setRoom(String room) {
-            this.room = room;
-        }
-
     }
 
     public Teacher getTeacher() {
@@ -100,12 +64,12 @@ public class Course {
         this.creditHours = creditHours;
     }
 
-    public List<Course> getPrerequisites() {
-        return prerequisites;
+    public List<Course> getpreRequisites() {
+        return preRequisites;
     }
 
-    public void setPrerequisites(List<Course> prerequisites) {
-        this.prerequisites = prerequisites;
+    public void setPrerequisites(List<Course> preRequisites) {
+        this.preRequisites = preRequisites;
     }
 
     public List<WeeklyMeetings> getWeeklyMeetings() {
