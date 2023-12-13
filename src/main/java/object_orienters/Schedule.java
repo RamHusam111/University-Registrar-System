@@ -27,4 +27,7 @@ public class Schedule {
         this.creditLooad = creditLooad;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
 }

@@ -5,30 +5,34 @@ import java.util.List;
 
 public class Course {
     // **REMOVE ALL COMMENTS AFTER CREATING NEEDED CLASSES (Teacher && Department)**
-    // private Teacher teacher;
+    private Teacher teacher;
     private String courseType;
-    // private Department courseDepartment;
+    private Department courseDepartment;
     private String courseName;
     private int creditHours;
     private List<Course> prerequisites;
-    private List<WeeklyMeetings> weeklyMeetings;
+    private List<WeeklyMeeting> weeklyMeetings;
 
-    /*
-     * public Course(Teacher teacher, String courseType, Department
-     * courseDepartment, String courseName, int creditHours,
-     * List<Course> prerequisites, List<WeeklyMeetings> weeklyMeetings) {
-     * this.teacher = teacher;
-     * this.courseType = courseType;
-     * this.courseDepartment = courseDepartment;
-     * this.courseName = courseName;
-     * this.creditHours = creditHours;
-     * this.prerequisites = prerequisites;
-     * this.weeklyMeetings = weeklyMeetings;
-     * }
-     */
+    public Course(Teacher teacher, String courseType, Department courseDepartment, String courseName, int creditHours,
+            List<Course> prerequisites, List<WeeklyMeeting> weeklyMeetings) {
+        this.teacher = teacher;
+        this.courseType = courseType;
+        this.courseDepartment = courseDepartment;
+        this.courseName = courseName;
+        this.creditHours = creditHours;
+        this.prerequisites = prerequisites;
+        this.weeklyMeetings = weeklyMeetings;
+    }
+
+    public Course(String courseName,Teacher teacher, int creditHours, List<WeeklyMeeting> weeklyMeetings) {
+        this.teacher = teacher;
+        this.courseName = courseName;
+        this.creditHours = creditHours;
+        this.weeklyMeetings = weeklyMeetings;
+    }
 
     private class WeeklyMeetings {
-        private List<String> day; // CHANGED THIS TO A LIST 
+        private List<String> day; // CHANGED THIS TO A LIST
         private Duration duration; // CHANGED THIS FROM PERIOD INTO DURATION
         private String room;
 
@@ -64,15 +68,13 @@ public class Course {
 
     }
 
-    /*
-     * public Teacher getTeacher() {
-     * return teacher;
-     * }
-     * 
-     * public void setTeacher(Teacher teacher) {
-     * this.teacher = teacher;
-     * }
-     */
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public String getCourseType() {
         return courseType;
@@ -82,15 +84,13 @@ public class Course {
         this.courseType = courseType;
     }
 
-    /*
-     * public Department getCourseDepartment() {
-     * return courseDepartment;
-     * }
-     * 
-     * public void setCourseDepartment(Department courseDepartment) {
-     * this.courseDepartment = courseDepartment;
-     * }
-     */
+    public Department getCourseDepartment() {
+        return courseDepartment;
+    }
+
+    public void setCourseDepartment(Department courseDepartment) {
+        this.courseDepartment = courseDepartment;
+    }
 
     public String getCourseName() {
         return courseName;
@@ -116,11 +116,11 @@ public class Course {
         this.prerequisites = prerequisites;
     }
 
-    public List<WeeklyMeetings> getWeeklyMeetings() {
+    public List<WeeklyMeeting> getWeeklyMeetings() {
         return weeklyMeetings;
     }
 
-    public void setWeeklyMeetings(List<WeeklyMeetings> weeklyMeetings) {
+    public void setWeeklyMeetings(List<WeeklyMeeting> weeklyMeetings) {
         this.weeklyMeetings = weeklyMeetings;
     }
 }
