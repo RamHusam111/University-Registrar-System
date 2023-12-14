@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class Student extends Person {
-    private int creditLoad;
     private String major;
     private Optional<String> minor;
     private Year yearEnrolled;
@@ -14,11 +13,8 @@ public class Student extends Person {
     private Map<Course, Double> completedCoursesGrades;
     private double gpa;
 
-    public Student(int id, String name, String email, Schedule schedule, int creditLoad,
-            List<Course> registeredCourses) {
-        super(id, name, email, registeredCourses);
-        this.schedule = schedule;
-        this.creditLoad = creditLoad;
+    public Student(int id, String name, String email) {
+        super(id, name, email);
         isCurrentlyRegisterd = true;
     }
 
@@ -42,34 +38,10 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    public Schedule getSchedule() {
-        return schedule;
-    }
-
-    public int getCreditLoad() {
-        return creditLoad;
-    }
-
-    public void setSchedule(Schedule schedule) {
-        this.schedule = schedule;
-    }
-
-    public void setCreditLoad(int creditLoad) {
-        this.creditLoad = creditLoad;
-    }
-
-    public boolean preRequisitesCheck(Course course) {
-        List<Course> preRequisites = course.getpreRequisites();
-        return preRequisites.stream().allMatch(e -> registeredCourses.contains(e)); // MUST BE COMPLETED COURSES (CREATE
-                                                                                    // LIST OF COMPLETED COURSES IN STUDENT CLASS) NOT
-                                                                                    // REGISTERED
-    }
-
     @Override
     public String toString() {
-        return "Student{" +
-                "schedule=" + schedule +
-                ", creditLooad=" + creditLoad +
-                '}';
+        return super.toString() + " major=" + major + ", minor=" + minor + ", yearEnrolled=" + yearEnrolled
+                + ", isCurrentlyRegisterd=" + isCurrentlyRegisterd + ", completedCoursesGrades="
+                + completedCoursesGrades + ", gpa=" + gpa + "]";
     }
 }
