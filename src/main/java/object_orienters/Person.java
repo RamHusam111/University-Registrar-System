@@ -20,6 +20,10 @@ public abstract class Person {
         registeredCourses = new ArrayList<>();
     }
 
+    public void setRegisteredCourses(List<Course> registeredCourses) {
+        this.registeredCourses = registeredCourses;
+    }
+
     public int getId() {
         return id;
     }

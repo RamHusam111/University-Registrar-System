@@ -21,7 +21,7 @@ public class Course {
         this.courseDepartment = courseDepartment;
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.prerequisites = prerequisites;
+        this.preRequisites = prerequisites;
         this.weeklyMeetings = weeklyMeetings;
     }
 
@@ -85,13 +85,7 @@ public class Course {
         this.courseType = courseType;
     }
 
-    public Department getCourseDepartment() {
-        return courseDepartment;
-    }
 
-    public void setCourseDepartment(Department courseDepartment) {
-        this.courseDepartment = courseDepartment;
-    }
     public Department getCourseDepartment() {
         return courseDepartment;
     }
