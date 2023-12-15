@@ -9,7 +9,7 @@ public class Student extends Person {
     private String major;
     private Optional<String> minor;
     private Year yearEnrolled;
-    private boolean isCurrentlyRegisterd;
+    private final boolean isCurrentlyRegisterd;
     private Map<Course, Double> completedCoursesGrades;
     private double gpa;
 

@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Department {
     private String name;
-    private List<String> majors;
-    private List<String> minors;
+    private List<Course> majors;
+    private List<Course> minors;
     private List<Teacher> teachers;
 
-    public Department(String name, List<String> majors, List<String> minors, List<Teacher> teachers) {
+    public Department(String name, List<Course> majors, List<Course> minors, List<Teacher> teachers) {
         this.name = name;
         this.majors = majors;
         this.minors = minors;
@@ -19,11 +19,11 @@ public class Department {
         return name;
     }
 
-    public List<String> getMajors() {
+    public List<Course> getMajors() {
         return majors;
     }
 
-    public List<String> getMinors() {
+    public List<Course> getMinors() {
         return minors;
     }
 
@@ -31,11 +31,11 @@ public class Department {
         return teachers;
     }
 
-    public void addMajor(String major) {
+    public void addMajor(Course major) {
         this.majors.add(major);
     }
 
-    public void addMinor(String minor) {
+    public void addMinor(Course minor) {
         this.minors.add(minor);
     }
 
