@@ -9,7 +9,8 @@ public class Teacher extends Person {
 
   public Teacher(int id, String name, Department department, List<Course> teachingCourses, String email,
       List<Course> registeredCourses) {
-    super(id, name, email, registeredCourses);
+    super(id, name, email);
+    super.setRegisteredCourses(registeredCourses);
     this.teachingCourses = teachingCourses;
     this.department = department;
   }
