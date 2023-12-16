@@ -4,3 +4,8 @@
 target/
 *.class
 *.log
+# PhpStorm
+.idea
+
+# VSCode
+.vscode

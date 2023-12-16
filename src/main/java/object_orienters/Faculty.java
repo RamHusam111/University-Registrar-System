@@ -10,11 +10,11 @@ public class Faculty {
     private String name;
     private List<String> rooms;
     private List<Department> departments;
-    private WeeklyMeetings freeHour;
+    private WeeklyMeeting freeHour;
     private List<Student> students;
     private List<Teacher> teachers;
 
-    public Faculty(String name, List<String> rooms, List<Department> departments, WeeklyMeetings freeHour,
+    public Faculty(String name, List<String> rooms, List<Department> departments, WeeklyMeeting freeHour,
             List<Student> students, List<Teacher> teachers) {
         this.name = name;
         this.rooms = rooms;
@@ -44,11 +44,11 @@ public class Faculty {
         return teachers;
     }
 
-    public WeeklyMeetings getFreeHour() {
+    public WeeklyMeeting getFreeHour() {
         return freeHour;
     }
 
-    public void setFreeHour(WeeklyMeetings freeHour) {
+    public void setFreeHour(WeeklyMeeting freeHour) {
         this.freeHour = freeHour;
 
     }
