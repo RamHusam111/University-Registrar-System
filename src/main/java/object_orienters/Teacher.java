@@ -31,4 +31,9 @@ public class Teacher extends Person {
     this.department = department;
   }
 
+  @Override
+  public String toString() {
+    return super.toString() + "\nTeaching Courses: " + this.getTeachingCourses() + "\nDepartment: "
+        + this.getDepartment();
+  }
 }
