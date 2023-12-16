@@ -9,7 +9,8 @@ public class Teacher extends Person {
 
   public Teacher(int id, String name, Department department, List<Course> teachingCourses, String email,
       List<Course> registeredCourses) {
-    super(id, name, email, registeredCourses);
+    super(id, name, email);
+    super.setRegisteredCourses(registeredCourses);
     this.teachingCourses = teachingCourses;
     this.department = department;
   }
@@ -30,4 +31,9 @@ public class Teacher extends Person {
     this.department = department;
   }
 
+  @Override
+  public String toString() {
+    return super.toString() + "\nTeaching Courses: " + this.getTeachingCourses() + "\nDepartment: "
+        + this.getDepartment();
+  }
 }

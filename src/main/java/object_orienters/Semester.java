@@ -26,6 +26,26 @@ public class Semester {
         this.courses = courses;
     }
 
+    public void registerInACourse(Course course, List<Student> students) {
+
+        // TODO: check for prequisites after implemtning the method
+        // students.stream().filter(e -> ).forEach(student ->{
+        // System.out.println("Prequisites need to be completed for "+student.getId() +"
+        // " + student.getName() + " to registered in " + course.getCourseName());
+        // });
+
+        students.stream().filter(e -> !e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
+            System.out.println("Error registering " + student.getId() + " " + student.getName() + " in "
+                    + course.getCourseName() + " because of conflict");
+        });
+
+        students.stream().filter(e -> e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
+            student.getRegisteredCourses().add(course);
+            System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
+        });
+
+    }
+
     public void setSemesterStartDate(LocalDate semesterStartDate) {
         this.semesterStartDate = semesterStartDate;
     }
