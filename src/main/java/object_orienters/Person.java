@@ -3,12 +3,15 @@ package object_orienters;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public abstract class Person {
     private int id;
     private String name;
     private String email;
     private List<Course> registeredCourses;
     protected Schedule schedule;
+
+   
 
     public Person(int id, String name, String email) {
         this.id = id;
@@ -37,7 +40,8 @@ public abstract class Person {
         return registeredCourses;
     }
 
-    public Schedule getSchedule() {
+   
+     public Schedule getSchedule() {
         return schedule;
     }
 

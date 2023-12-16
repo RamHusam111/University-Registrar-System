@@ -44,7 +44,7 @@ public class Student extends Person {
     public GPAstatus getStatusGPA() {
         return statusGPA;
     }
-    
+
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getpreRequisites();
         return preRequisites.stream().allMatch(e -> this.getRegisteredCourses().contains(e)); // MUST BE COMPLETED
