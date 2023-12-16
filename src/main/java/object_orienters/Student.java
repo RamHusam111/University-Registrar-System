@@ -10,7 +10,7 @@ public class Student extends Person {
     private String major;
     private Optional<String> minor;
     private Year yearEnrolled;
-    private boolean isCurrentlyRegisterd;
+    private final boolean isCurrentlyRegisterd;
     private Map<Course, Double> completedCoursesGrades;
     private double gpa;
     private GPAstatus statusGPA;
@@ -30,7 +30,7 @@ public class Student extends Person {
     }
 
     public String getMinor() {
-        return minor.orElse("No Minor");
+        return minor.orElse("No minor");
     }
 
     public Year getYearEnrolled() {
@@ -44,10 +44,13 @@ public class Student extends Person {
     public GPAstatus getStatusGPA() {
         return statusGPA;
     }
-
-    public double getGpa() {
-        return gpa;
-    }
+    
+    public boolean preRequisitesCheck(Course course) {
+        List<Course> preRequisites = course.getpreRequisites();
+        return preRequisites.stream().allMatch(e -> this.getRegisteredCourses().contains(e)); // MUST BE COMPLETED
+                                                                                              // COURSES (CREATE
+        // LIST OF COMPLETED COURSES IN STUDENT CLASS) NOT
+    } // REGISTERED
 
     public String getStuLevel() {
         int level = LocalDate.now().getYear() - this.getYearEnrolled().getValue();
@@ -86,6 +89,14 @@ public class Student extends Person {
             statusGPA = GPAstatus.PROBATION;
         }
         return gpa;
+    }
+
+    public String getReport() {
+        return super.toString() + "\nMajor:" + this.getMajor() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
+                + this.getYearEnrolled().getValue() + "\nStudent level: " + this.getStuLevel()
+                + "\nRegistered this semester: "
+                + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
+                + this.calculateGPA() + "\nGPA Status: " + this.getStatusGPA();
     }
 
     private enum GPAstatus {
