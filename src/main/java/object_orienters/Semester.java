@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Semester {
 
-    private String name;
-    private String semesterName;
+    private String name; //name of the semester
+    private String semesterName; //name + year
     private LocalDate semesterStartDate;
     private LocalDate semesterEndDate;
     private List<Student> students;
@@ -64,15 +64,15 @@ public class Semester {
     public String giveName() {
         int startMonth = semesterStartDate.getMonthValue();
         int endMonth = semesterEndDate.getMonthValue();
-        if ((startMonth >= 9 && startMonth <= 12) || (endMonth >= 9 && endMonth <= 12)) {
+        if ((startMonth >= 9 && startMonth <= 12)) {
             // Fall semester (September to December)
             this.setName("Fall");
         }
-        else if ((startMonth >= 1 && startMonth <= 5) || (endMonth >= 1 && endMonth <= 5)) {
+        else if ((startMonth >= 1 && startMonth <= 6)) {
             // Spring semester (January to May)
             this.setName("Spring");
         }
-        else if ((startMonth >= 6 && startMonth <= 8) || (endMonth >= 6 && endMonth <= 8)) {
+        else if ((startMonth >= 6 && startMonth <= 8)) {
             // Summer semester (June to August)
             this.setName("Summer");
         }
@@ -112,6 +112,7 @@ public class Semester {
         // Calculate the number of weeks in the semester
         return ChronoUnit.WEEKS.between(startDate, endDate);
     }
+    
     public boolean isFall = giveName().equals("Fall");
 
     public boolean isSpring = giveName().equals("Spring");

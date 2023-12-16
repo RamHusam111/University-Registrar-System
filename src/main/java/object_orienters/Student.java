@@ -13,7 +13,7 @@ public class Student extends Person {
     private final boolean isCurrentlyRegisterd;
     private Map<Course, Double> completedCoursesGrades;
     private double gpa;
-    private GPAstatus statusGPA;
+    private GPAstatus gpaStatus;
     private String stuLevel;
 
     public Student(int id, String name, String email) {
@@ -41,8 +41,8 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    public GPAstatus getStatusGPA() {
-        return statusGPA;
+    public GPAstatus getGpaStatus() {
+        return gpaStatus;
     }
 
     public boolean preRequisitesCheck(Course course) {
@@ -68,6 +68,9 @@ public class Student extends Person {
             case 4:
                 stuLevel = "Fourth Year";
                 break;
+            default:
+                stuLevel = "Graduate";
+                break;
         }
         return stuLevel;
     }
@@ -78,15 +81,15 @@ public class Student extends Person {
         int creditHours = completedCoursesGrades.keySet().stream().mapToInt(course -> course.getCreditHours()).sum();
         double gpa = totalPts / creditHours;
         if (gpa >= 3.90) {
-            statusGPA = GPAstatus.HIGHESTHONORS;
+            gpaStatus = GPAstatus.HIGHESTHONORS;
         } else if (gpa >= 3.50) {
-            statusGPA = GPAstatus.DEANSLIST;
+            gpaStatus = GPAstatus.DEANSLIST;
         } else if (gpa >= 3.00) {
-            statusGPA = GPAstatus.HONORS;
+            gpaStatus = GPAstatus.HONORS;
         } else if (gpa < 3.00) {
-            statusGPA = GPAstatus.NORMAL;
+            gpaStatus = GPAstatus.NORMAL;
         } else if (gpa < 1.75) {
-            statusGPA = GPAstatus.PROBATION;
+            gpaStatus = GPAstatus.PROBATION;
         }
         return gpa;
     }
@@ -96,7 +99,7 @@ public class Student extends Person {
                 + this.getYearEnrolled().getValue() + "\nStudent level: " + this.getStuLevel()
                 + "\nRegistered this semester: "
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
-                + this.calculateGPA() + "\nGPA Status: " + this.getStatusGPA();
+                + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
 
     private enum GPAstatus {
