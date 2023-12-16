@@ -48,4 +48,9 @@ public abstract class Person {
     public boolean isFreeOn(List<WeeklyMeeting> list) {
         return schedule.getCourses().stream().filter(e -> e.getWeeklyMeetings().contains(list)).count() == 0;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
+    }
 }
