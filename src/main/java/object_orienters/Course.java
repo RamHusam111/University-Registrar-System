@@ -32,6 +32,17 @@ public class Course {
         this.weeklyMeetings = weeklyMeetings;
     }
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "teacher=" + teacher +
+                ", courseType='" + courseType + '\'' +
+                ", courseDepartment=" + courseDepartment +
+                ", courseName='" + courseName + '\'' +
+                ", creditHours=" + creditHours +
+                '}';
+    }
+
     private class WeeklyMeetings {
         private List<String> day; // CHANGED THIS TO A LIST
         private Duration duration; // CHANGED THIS FROM PERIOD INTO DURATION

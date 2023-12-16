@@ -6,6 +6,7 @@ import java.util.List;
 
 public class Semester {
 
+    private String name;
     private String semesterName;
     private LocalDate semesterStartDate;
     private LocalDate semesterEndDate;
@@ -13,18 +14,22 @@ public class Semester {
     private List<Teacher> teachers;
     private List<Course> courses;
 
-    private long weeksNumber;
+    private final long weeksNumber;
 
-    public Semester(String semesterName, LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students,
+    public Semester( LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students,
             List<Teacher> teachers, List<Course> courses) {
         weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
-        this.semesterName = semesterName;
+        // give the semester name based on specific date then concat it with start year
+        this.semesterName = this.giveName() + " - " + semesterStartDate.getYear();
         this.semesterStartDate = semesterStartDate;
         this.semesterEndDate = semesterEndDate;
         this.students = students;
         this.teachers = teachers;
         this.courses = courses;
     }
+
+
+
 
     public void registerInACourse(Course course, List<Student> students) {
 
@@ -53,13 +58,30 @@ public class Semester {
     public void setSemesterEndDate(LocalDate semesterEndDate) {
         this.semesterEndDate = semesterEndDate;
     }
+    private void setName(String name) {
+        this.name = name;
+    }
+    public String giveName() {
+        int startMonth = semesterStartDate.getMonthValue();
+        int endMonth = semesterEndDate.getMonthValue();
+        if ((startMonth >= 9 && startMonth <= 12) || (endMonth >= 9 && endMonth <= 12)) {
+            // Fall semester (September to December)
+            this.setName("Fall");
+        }
+        else if ((startMonth >= 1 && startMonth <= 5) || (endMonth >= 1 && endMonth <= 5)) {
+            // Spring semester (January to May)
+            this.setName("Spring");
+        }
+        else if ((startMonth >= 6 && startMonth <= 8) || (endMonth >= 6 && endMonth <= 8)) {
+            // Summer semester (June to August)
+            this.setName("Summer");
+        }
 
-    public void setWeeksNumber(long weeksNumber) {
-        this.weeksNumber = weeksNumber;
+        return name;
     }
 
     public String getSemesterName() {
-        return semesterName + " - " + semesterStartDate.getYear();
+        return semesterName;
     }
 
     public long getWeeksNumber() {
@@ -90,5 +112,14 @@ public class Semester {
         // Calculate the number of weeks in the semester
         return ChronoUnit.WEEKS.between(startDate, endDate);
     }
+    public boolean isFall = giveName().equals("Fall");
+
+    public boolean isSpring = giveName().equals("Spring");
+
+    public boolean isSummer = giveName().equals("Summer");
+
+
+
+
 
 }
