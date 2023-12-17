@@ -12,13 +12,15 @@ public class Student extends Person {
     private Year yearEnrolled;
     private final boolean isCurrentlyRegisterd;
     private Map<Course, Double> completedCoursesGrades;
-    private double gpa;
     private GPAstatus gpaStatus;
     private String stuLevel;
+    private Department department;
 
-    public Student(int id, String name, String email) {
+    public Student(int id, String name, String email, Department department) {
         super(id, name, email);
         isCurrentlyRegisterd = true;
+        department.getStudents().add(this);
+        department.getFaculty().getStudents().add(this);
     }
 
     public void enterGrades(List<Character> grades) {
@@ -37,21 +39,26 @@ public class Student extends Person {
         return yearEnrolled;
     }
 
+    public Department getDepartment() {
+        return department;
+    }
+
     public boolean isCurrentlyRegisterd() {
         return isCurrentlyRegisterd;
     }
 
+    //TODO: Note: shouldn't we call the gpa status calculate instead? 
     public GPAstatus getGpaStatus() {
         return gpaStatus;
     }
 
+    //TODO: Test this method
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getpreRequisites();
-        return preRequisites.stream().allMatch(e -> this.getRegisteredCourses().contains(e)); // MUST BE COMPLETED
-                                                                                              // COURSES (CREATE
-        // LIST OF COMPLETED COURSES IN STUDENT CLASS) NOT
-    } // REGISTERED
-
+        return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e)); 
+        // Angela changed the method from registerCourse to completed courses ^(in the allMatch method)
+    }
+    //TODO: Test this method
     public String getStuLevel() {
         int level = LocalDate.now().getYear() - this.getYearEnrolled().getValue();
         switch (level) {
@@ -74,7 +81,8 @@ public class Student extends Person {
         }
         return stuLevel;
     }
-
+    
+    //TODO: Test this method
     public double calculateGPA() {
         double totalPts = completedCoursesGrades.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getCreditHours() * entry.getValue()).sum();
@@ -101,8 +109,9 @@ public class Student extends Person {
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
-
+    
     private enum GPAstatus {
         HIGHESTHONORS, DEANSLIST, HONORS, NORMAL, PROBATION;
     }
+
 }

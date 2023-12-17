@@ -13,6 +13,8 @@ public class Teacher extends Person {
     super.setRegisteredCourses(registeredCourses);
     this.teachingCourses = teachingCourses;
     this.department = department;
+    department.getTeachers().add(this);
+    department.getFaculty().getTeachers().add(this);
   }
 
   public List<Course> getTeachingCourses() {
@@ -27,6 +29,7 @@ public class Teacher extends Person {
     return department;
   }
 
+  //does it need a setter?
   public void setDepartment(Department department) {
     this.department = department;
   }

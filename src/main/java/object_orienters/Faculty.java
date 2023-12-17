@@ -1,10 +1,7 @@
 package object_orienters;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Faculty {
     private String name;
@@ -14,14 +11,24 @@ public class Faculty {
     private List<Student> students;
     private List<Teacher> teachers;
 
-    public Faculty(String name, List<String> rooms, List<Department> departments, WeeklyMeeting freeHour,
-            List<Student> students, List<Teacher> teachers) {
+    public Faculty(String name, WeeklyMeeting freeHour) {
+        this.name = name;
+        this.rooms = new ArrayList<>();
+        this.departments = new ArrayList<>();
+        this.freeHour = freeHour;
+        this.students = new ArrayList<>();
+        this.teachers = new ArrayList<>();
+    }
+
+    // NOTE: Angela removed students and teachers from the constructor, they are
+    // updated now once a student or teacher has been created
+    public Faculty(String name, List<String> rooms, List<Department> departments, WeeklyMeeting freeHour) {
         this.name = name;
         this.rooms = rooms;
         this.departments = departments;
         this.freeHour = freeHour;
-        this.students = students;
-        this.teachers = teachers;
+        this.students = new ArrayList<>();
+        this.teachers = new ArrayList<>();
     }
 
     public String getName() {

@@ -24,6 +24,10 @@ public abstract class Person {
         this.registeredCourses = registeredCourses;
     }
 
+    public void addRegisteredCourse(Course course) {
+        this.registeredCourses.add(course);
+    }
+
     public int getId() {
         return id;
     }
@@ -45,9 +49,16 @@ public abstract class Person {
         return schedule;
     }
 
+    //TODO: test this method
     public boolean isFreeOn(List<WeeklyMeeting> list) {
-        return schedule.getCourses().stream().filter(e -> e.getWeeklyMeetings().contains(list)).count() == 0;
+        return schedule.getCourses().stream().flatMap(e -> e.getWeeklyMeetings().stream()).noneMatch(list::contains);
     }
+
+     //TODO: test this method
+     public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
+        return schedule.getCourses().stream().noneMatch(e -> e.getWeeklyMeetings().contains(weeklyMeeting));
+    }
+
 
     @Override
     public String toString() {

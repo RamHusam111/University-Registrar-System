@@ -30,7 +30,7 @@ public class Semester {
 
 
 
-
+    
     public void registerInACourse(Course course, List<Student> students) {
 
         // TODO: check for prequisites after implemtning the method
@@ -61,9 +61,10 @@ public class Semester {
     private void setName(String name) {
         this.name = name;
     }
+    
+    //TODO: Test this method
     public String giveName() {
         int startMonth = semesterStartDate.getMonthValue();
-        int endMonth = semesterEndDate.getMonthValue();
         if ((startMonth >= 9 && startMonth <= 12)) {
             // Fall semester (September to December)
             this.setName("Fall");
@@ -108,6 +109,7 @@ public class Semester {
         return semesterEndDate;
     }
 
+    //TODO: Test this method
     private static long calculateWeeksBetween(LocalDate startDate, LocalDate endDate) {
         // Calculate the number of weeks in the semester
         return ChronoUnit.WEEKS.between(startDate, endDate);

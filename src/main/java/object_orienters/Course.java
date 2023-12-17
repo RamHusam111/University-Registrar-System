@@ -1,7 +1,6 @@
 package object_orienters;
 
-import java.time.Duration;
-import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Course {
@@ -14,11 +13,12 @@ public class Course {
     private List<Course> preRequisites;
     private List<WeeklyMeeting> weeklyMeetings;
 
-    public Course(Teacher teacher, String courseType, Department courseDepartment, String courseName, int creditHours,
+    public Course(String courseName, Teacher teacher, String courseType, Department courseDepartment,  int creditHours,
             List<Course> prerequisites, List<WeeklyMeeting> weeklyMeetings) {
         this.teacher = teacher;
         this.courseType = courseType;
         this.courseDepartment = courseDepartment;
+        courseDepartment.getMajors().add(this);
         this.courseName = courseName;
         this.creditHours = creditHours;
         this.preRequisites = prerequisites;
@@ -30,6 +30,8 @@ public class Course {
         this.courseName = courseName;
         this.creditHours = creditHours;
         this.weeklyMeetings = weeklyMeetings;
+        this.preRequisites = new ArrayList<>();
+
     }
 
     @Override
@@ -42,43 +44,7 @@ public class Course {
                 ", creditHours=" + creditHours +
                 '}';
     }
-
-    private class WeeklyMeetings {
-        private List<String> day; // CHANGED THIS TO A LIST
-        private Duration duration; // CHANGED THIS FROM PERIOD INTO DURATION
-        private String room;
-
-        public WeeklyMeetings(List<String> day, Duration duration, String room) {
-            this.day = day;
-            this.duration = duration;
-            this.room = room;
-        }
-
-        public List<String> getDay() {
-            return day;
-        }
-
-        public void setDay(List<String> day) {
-            this.day = day;
-        }
-
-        public Duration getDuration() {
-            return duration;
-        }
-
-        public void setDuration(Duration duration) {
-            this.duration = duration;
-        }
-
-        public String getRoom() {
-            return room;
-        }
-
-        public void setRoom(String room) {
-            this.room = room;
-        }
-
-    }
+    
 
     public Teacher getTeacher() {
         return teacher;
@@ -103,6 +69,7 @@ public class Course {
 
     public void setCourseDepartment(Department courseDepartment) {
         this.courseDepartment = courseDepartment;
+        courseDepartment.getMajors().add(this);
     }
 
     public String getCourseName() {
@@ -127,6 +94,10 @@ public class Course {
 
     public void setPrerequisites(List<Course> preRequisites) {
         this.preRequisites = preRequisites;
+    }
+
+     public void addPrerequisites(Course preRequisite) {
+        this.preRequisites.add(preRequisite);
     }
 
     public List<WeeklyMeeting> getWeeklyMeetings() {
