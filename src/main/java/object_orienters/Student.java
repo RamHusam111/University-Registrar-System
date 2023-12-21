@@ -24,7 +24,6 @@ public class Student extends Person {
         department.getFaculty().getStudents().add(this);
     }
 
-    // TODO: Test this method
     public void enterGrades(Map<Course, String> grades) {
         completedCoursesGrades.putAll(grades.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey(),
                 entry -> convertGrade(entry.getValue()))));
@@ -80,6 +79,10 @@ public class Student extends Person {
         return gpaStatus;
     }
 
+    public Map<Course, Double> getCompletedCoursesGrades() {
+        return completedCoursesGrades;
+    }
+
     // TODO: Test this method
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getpreRequisites();
@@ -114,9 +117,10 @@ public class Student extends Person {
 
     // TODO: Test this method
     public double calculateGPA() {
-        double totalPts = completedCoursesGrades.entrySet().stream()
+        double totalPts = completedCoursesGrades.entrySet().parallelStream()
                 .mapToDouble(entry -> entry.getKey().getCreditHours() * entry.getValue()).sum();
-        int creditHours = completedCoursesGrades.keySet().stream().mapToInt(course -> course.getCreditHours()).sum();
+        int creditHours = completedCoursesGrades.keySet().parallelStream().mapToInt(course -> course.getCreditHours())
+                .sum();
         double gpa = totalPts / creditHours;
         if (gpa >= 3.90) {
             gpaStatus = GPAstatus.HIGHESTHONORS;
