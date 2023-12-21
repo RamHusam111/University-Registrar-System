@@ -5,6 +5,8 @@ import java.time.Year;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Student extends Person {
     private String major;
@@ -23,8 +25,35 @@ public class Student extends Person {
         department.getFaculty().getStudents().add(this);
     }
 
-    public void enterGrades(List<Character> grades) {
-        // TODO: implement this method
+    // TODO: Test this method
+    public void enterGrades(Map<Course, String> grades) {
+        completedCoursesGrades.putAll(grades.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey(),
+                entry -> convertGrade(entry.getValue()))));
+        this.getRegisteredCourses().clear();
+    }
+
+    // HELPER METHOD FOR enterGrades METHOD
+    private Double convertGrade(String letterGrade) {
+        switch (letterGrade) {
+            case "A":
+                return 4.0;
+            case "B+":
+                return 3.5;
+            case "B":
+                return 3.0;
+            case "C+":
+                return 2.5;
+            case "C":
+                return 2.0;
+            case "D+":
+                return 1.5;
+            case "D":
+                return 1.0;
+            case "F":
+                return 0.0;
+            default:
+                return null;
+        }
     }
 
     public String getMajor() {
@@ -47,18 +76,20 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    //TODO: Note: shouldn't we call the gpa status calculate instead? 
+    // TODO: Note: shouldn't we call the gpa status calculate instead?
     public GPAstatus getGpaStatus() {
         return gpaStatus;
     }
 
-    //TODO: Test this method
+    // TODO: Test this method
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getpreRequisites();
-        return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e)); 
-        // Angela changed the method from registerCourse to completed courses ^(in the allMatch method)
+        return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e));
+        // Angela changed the method from registerCourse to completed courses ^(in the
+        // allMatch method)
     }
-    //TODO: Test this method
+
+    // TODO: Test this method
     public String getStuLevel() {
         int level = LocalDate.now().getYear() - this.getYearEnrolled().getValue();
         switch (level) {
@@ -81,8 +112,8 @@ public class Student extends Person {
         }
         return stuLevel;
     }
-    
-    //TODO: Test this method
+
+    // TODO: Test this method
     public double calculateGPA() {
         double totalPts = completedCoursesGrades.entrySet().stream()
                 .mapToDouble(entry -> entry.getKey().getCreditHours() * entry.getValue()).sum();
@@ -109,7 +140,7 @@ public class Student extends Person {
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
-    
+
     private enum GPAstatus {
         HIGHESTHONORS, DEANSLIST, HONORS, NORMAL, PROBATION;
     }
