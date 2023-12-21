@@ -51,8 +51,8 @@ public class Schedule {
         // Check if two courses have time conflicts
         return course1.getWeeklyMeetings().stream()
                 .anyMatch(weeklyMeeting1 -> course2.getWeeklyMeetings().stream()
-                        .anyMatch(weeklyMeeting2 -> weeklyMeeting1.getDay().stream()
-                                .anyMatch(day1 -> weeklyMeeting2.getDay().contains(day1))
+                        .anyMatch(weeklyMeeting2 -> weeklyMeeting1.getDay()
+                                .anyMatch(day1 -> weeklyMeeting2.getDay().equals(day1))
                                 && !weeklyMeeting1.getHour().plus(weeklyMeeting1.getDuration())
                                         .isBefore(weeklyMeeting2.getHour())
                                 && !weeklyMeeting2.getHour().plus(weeklyMeeting2.getDuration())

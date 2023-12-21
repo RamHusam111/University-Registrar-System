@@ -1,0 +1,5 @@
+Physics 101,Alice,Core,Mathematics,3,,"Wednesday, 60 mins, Room 102B, at 09:00; Monday, 90 mins, Room 202B, at 08:00"
+Physics 101,Eva,Core,Computer Science,3,Physics 101,"Thursday, 90 mins, Room 103C, at 15:00; Monday, 60 mins, Room 201A, at 11:00"
+Intro to Programming,Bob,Elective,Physics,3,"Physics 101, Physics 101","Thursday, 90 mins, Room 103C, at 15:00; Wednesday, 90 mins, Room 102B, at 10:00"
+Art History,Bob,Core,Mathematics,3,"Intro to Programming, Physics 101","Monday, 90 mins, Room 202B, at 08:00; Monday, 60 mins, Room 201A, at 11:00"
+Physics 101,Alice,Core,Computer Science,3,"Intro to Programming, Physics 101","Wednesday, 60 mins, Room 102B, at 09:00; Wednesday, 90 mins, Room 102B, at 10:00"

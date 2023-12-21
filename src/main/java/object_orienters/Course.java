@@ -16,12 +16,13 @@ public class Course {
     public Course(String courseName, Teacher teacher, String courseType, Department courseDepartment,  int creditHours,
             List<Course> prerequisites, List<WeeklyMeeting> weeklyMeetings) {
         this.teacher = teacher;
+        teacher.getTeachingCourses().add(this);
         this.courseType = courseType;
         this.courseDepartment = courseDepartment;
         courseDepartment.getMajors().add(this);
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.preRequisites = prerequisites;
+        this.preRequisites = prerequisites; //optional of nullable
         this.weeklyMeetings = weeklyMeetings;
     }
 
