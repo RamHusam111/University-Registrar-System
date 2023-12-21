@@ -5,7 +5,6 @@ import java.time.Year;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class Student extends Person {
@@ -76,8 +75,8 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    // TODO: Note: shouldn't we call the gpa status calculate instead?
     public GPAstatus getGpaStatus() {
+        calculateGPA();
         return gpaStatus;
     }
 

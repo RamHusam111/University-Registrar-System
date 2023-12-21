@@ -1,27 +1,34 @@
 package object_orienters;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
-import java.util.List;
 
 public class WeeklyMeeting {
-    private List<String> day;
+    private DayOfWeek day;
     private Duration duration;
     private String room;
     private LocalTime hour;
+    private String id;
+    private String timeId;
 
-    public WeeklyMeeting(List<String> day, Duration duration, String room, LocalTime hour) {
+    public WeeklyMeeting(DayOfWeek day, Duration duration, String room, LocalTime hour) {
         this.day = day;
         this.duration = duration;
         this.room = room;
         this.hour = hour;
+        this.timeId = day.name() +
+                " " + duration.toMinutes() +
+                " " + hour.toString();
+
+        this.id = timeId + " " + room;
     }
 
-    public List<String> getDay() {
+    public DayOfWeek getDay() {
         return day;
     }
 
-    public void setDay(List<String> day) {
+    public void setDay(DayOfWeek day) {
         this.day = day;
     }
 
@@ -49,4 +56,24 @@ public class WeeklyMeeting {
         this.room = room;
     }
 
+    @Override
+    public String toString() {
+
+        return "Weekly Meeting:>" + day.name() +
+                " " + duration.toMinutes() +
+                " " + hour.toString() + " " + room;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof WeeklyMeeting)) 
+            return false;
+        return this.id.equals(((WeeklyMeeting) o).id);
+    }
+
+    public boolean equalsTime(WeeklyMeeting wm) {
+        if (!(wm instanceof WeeklyMeeting)) 
+            return false;
+        return this.timeId.equals(((WeeklyMeeting) wm).timeId);
+    }
 }

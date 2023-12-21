@@ -1,5 +1,6 @@
 package object_orienters;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Teacher extends Person {
@@ -12,6 +13,15 @@ public class Teacher extends Person {
     super(id, name, email);
     super.setRegisteredCourses(registeredCourses);
     this.teachingCourses = teachingCourses;
+    this.department = department;
+    department.getTeachers().add(this);
+    department.getFaculty().getTeachers().add(this);
+  }
+
+   public Teacher(int id, String name, Department department, String email) {
+    super(id, name, email);
+    super.setRegisteredCourses(new ArrayList<>());
+    this.teachingCourses = new ArrayList<>();
     this.department = department;
     department.getTeachers().add(this);
     department.getFaculty().getTeachers().add(this);
