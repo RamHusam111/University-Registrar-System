@@ -55,7 +55,7 @@ public abstract class Person {
     }
 
      //TODO: test this method
-     public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
+    public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
         return schedule.getCourses().stream().noneMatch(e -> e.getWeeklyMeetings().contains(weeklyMeeting));
     }
 

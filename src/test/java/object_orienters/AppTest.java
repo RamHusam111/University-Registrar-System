@@ -8,11 +8,8 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.stream.Collectors;
-
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
 

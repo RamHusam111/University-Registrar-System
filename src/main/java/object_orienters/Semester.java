@@ -19,6 +19,7 @@ public class Semester {
 
     public Semester( LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students,
             List<Teacher> teachers, List<Course> courses) {
+
         weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
         // give the semester name based on specific date then concat it with start year
         this.semesterName = this.giveName() + " - " + semesterStartDate.getYear();
