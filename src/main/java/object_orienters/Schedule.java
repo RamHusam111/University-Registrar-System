@@ -43,7 +43,7 @@ public class Schedule {
     private boolean hasConflict(Course newCourse) {
         // Check for time conflicts with existing courses in the schedule
         return courses.stream()
-                .anyMatch(existingCourse -> hasTimeConflict(existingCourse, newCourse));
+                .(existingCourse -> hasTimeConflict(existingCourse, newCourse));
     }
 
     // TODO: test this method

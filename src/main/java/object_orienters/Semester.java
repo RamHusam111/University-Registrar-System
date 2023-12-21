@@ -14,6 +14,7 @@ public class Semester {
     private List<Teacher> teachers;
     private List<Course> courses;
 
+
     private final long weeksNumber;
 
     public Semester( LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students,
@@ -33,11 +34,20 @@ public class Semester {
     
     public void registerInACourse(Course course, List<Student> students) {
 
+        boolean y = courses.stream().flatMap(e -> e.getWeeklyMeetings().stream()).anyMatch( wm -> course.getWeeklyMeetings().stream().anyMatch( wm2 -> wm2.hasRoomConflict(wm)));
+        if(y){
+            System.out.println("Error registering " + course.getCourseName() + " because of conflict");
+            return;
+        }
+       
+
+        //check if prerequisits are met
         students.stream().filter(e -> !e.preRequisitesCheck(course)).forEach(student ->{
         System.out.println("Prequisites need to be completed for "+student.getId() +": "
          + student.getName() + "> to registered in " + course.getCourseName());
         });
 
+        //check if student is free on weekly meetings
         students.stream().filter(e -> !e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
             System.out.println("Error registering " + student.getId() + " " + student.getName() + " in "
                     + course.getCourseName() + " because of conflict");
@@ -47,6 +57,10 @@ public class Semester {
             student.getRegisteredCourses().add(course);
             System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
         });
+        courses.add(course);
+        course.getTeacher().getRegisteredCourses().add(course);
+        
+
 
     }
 

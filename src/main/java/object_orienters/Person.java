@@ -20,9 +20,9 @@ public abstract class Person {
         registeredCourses = new ArrayList<>();
     }
 
-    public void setRegisteredCourses(List<Course> registeredCourses) {
-        this.registeredCourses = registeredCourses;
-    }
+    // public void setRegisteredCourses(List<Course> registeredCourses) {
+    //     this.registeredCourses = registeredCourses;
+    // }
 
     public void addRegisteredCourse(Course course) {
         this.registeredCourses.add(course);

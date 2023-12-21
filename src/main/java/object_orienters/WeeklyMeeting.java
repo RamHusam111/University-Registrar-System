@@ -66,14 +66,21 @@ public class WeeklyMeeting {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof WeeklyMeeting)) 
+        if (!(o instanceof WeeklyMeeting))
             return false;
         return this.id.equals(((WeeklyMeeting) o).id);
     }
 
     public boolean equalsTime(WeeklyMeeting wm) {
-        if (!(wm instanceof WeeklyMeeting)) 
+        if (!(wm instanceof WeeklyMeeting))
             return false;
         return this.timeId.equals(((WeeklyMeeting) wm).timeId);
+    }
+
+    public boolean hasRoomConflict(WeeklyMeeting weeklyMeeting) {
+        return this.getDay().equals(weeklyMeeting.getDay())
+                && !this.getHour().plus(this.getDuration()).isBefore(weeklyMeeting.getHour())
+                && !weeklyMeeting.getHour().plus(weeklyMeeting.getDuration()).isBefore(this.getHour())
+                && this.getRoom().equals(weeklyMeeting.getRoom());
     }
 }

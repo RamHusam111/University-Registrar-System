@@ -11,7 +11,6 @@ public class Teacher extends Person {
   public Teacher(int id, String name, Department department, List<Course> teachingCourses, String email,
       List<Course> registeredCourses) {
     super(id, name, email);
-    super.setRegisteredCourses(registeredCourses);
     this.teachingCourses = teachingCourses;
     this.department = department;
     department.getTeachers().add(this);
@@ -20,7 +19,6 @@ public class Teacher extends Person {
 
    public Teacher(int id, String name, Department department, String email) {
     super(id, name, email);
-    super.setRegisteredCourses(new ArrayList<>());
     this.teachingCourses = new ArrayList<>();
     this.department = department;
     department.getTeachers().add(this);
