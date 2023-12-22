@@ -28,7 +28,7 @@ public class Schedule {
         return courses;
     }
 
-    // TODO: test this method
+    
     // public void buildSchedule(List<Course> newCourses) {
     // // Check for conflicts and add new courses to the schedule if there are no
     // // conflicts
