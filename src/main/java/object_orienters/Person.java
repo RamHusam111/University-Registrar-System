@@ -3,15 +3,12 @@ package object_orienters;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public abstract class Person {
     private int id;
     private String name;
     private String email;
     private List<Course> registeredCourses;
     protected Schedule schedule;
-
-   
 
     public Person(int id, String name, String email) {
         this.id = id;
@@ -21,7 +18,7 @@ public abstract class Person {
     }
 
     // public void setRegisteredCourses(List<Course> registeredCourses) {
-    //     this.registeredCourses = registeredCourses;
+    // this.registeredCourses = registeredCourses;
     // }
 
     public void addRegisteredCourse(Course course) {
@@ -44,21 +41,34 @@ public abstract class Person {
         return registeredCourses;
     }
 
-   
-     public Schedule getSchedule() {
+    public Schedule getSchedule() {
         return schedule;
     }
 
-    //TODO: test this method
+    // TODO: test this method
     public boolean isFreeOn(List<WeeklyMeeting> list) {
-        return schedule.getCourses().stream().flatMap(e -> e.getWeeklyMeetings().stream()).noneMatch(list::contains);
+        return list.stream().allMatch(e -> isFreeOn(e));
     }
 
-     //TODO: test this method
+    // TODO: test this method
     public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
-        return schedule.getCourses().stream().noneMatch(e -> e.getWeeklyMeetings().contains(weeklyMeeting));
-    }
 
+        // return registeredCourses.stream().flatMap(course ->
+        // course.getWeeklyMeetings().stream()).noneMatch(wm -> {
+        // return wm.getDay().equals(weeklyMeeting.getDay())
+        // && (wm.getHour().plus(wm.getDuration()).isBefore(weeklyMeeting.getHour())
+        // || wm.getHour().isAfter(weeklyMeeting.getHour().plus(wm.getDuration())));
+        // });
+
+        // public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
+        return registeredCourses.stream()
+                .flatMap(course -> course.getWeeklyMeetings().stream())
+                .noneMatch(wm -> {
+                    return wm.getDay().equals(weeklyMeeting.getDay())
+                            && !(wm.getHour().plus(wm.getDuration()).isBefore(weeklyMeeting.getHour())
+                                    || wm.getHour().isAfter(weeklyMeeting.getHour().plus(weeklyMeeting.getDuration())));
+                });
+    }
 
     @Override
     public String toString() {

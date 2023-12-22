@@ -1,9 +1,11 @@
 package object_orienters;
 
 import java.util.List;
+import java.util.Map;
 
 public class Schedule {
     private List<Course> courses;
+    private Map<WeeklyMeeting, Course> scheduleMap;
 
     public Schedule(List<Course> courses) {
         this.courses = courses;
@@ -17,10 +19,9 @@ public class Schedule {
         this.courses = courses;
     }
 
-    // TODO: implement a method to calculate the credit load of a schedule by
-    // streaming through the courses list
+    // TODO: test this method
     public int getCreditLoad() {
-        return 0;
+        return courses.stream().mapToInt(e -> e.getCreditHours()).sum();
     }
 
     public List<Course> getCourses() {
@@ -39,27 +40,6 @@ public class Schedule {
     // });
     // }
 
-    // TODO: test this method
-    private boolean hasConflict(Course newCourse) {
-        // Check for time conflicts with existing courses in the schedule
-        // return courses.stream().(existingCourse -> hasTimeConflict(existingCourse,
-        // newCourse));
-        return false;
-    }
-
-    // // TODO: test this method
-    // private boolean hasTimeConflict(Course course1, Course course2) {
-    // // Check if two courses have time conflicts
-    // return course1.getWeeklyMeetings().stream()
-    // .anyMatch(weeklyMeeting1 -> course2.getWeeklyMeetings().stream()
-    // .anyMatch(weeklyMeeting2 -> weeklyMeeting1.getDay()
-    // .anyMatch(day1 -> weeklyMeeting2.getDay().equals(day1))
-    // && !weeklyMeeting1.getHour().plus(weeklyMeeting1.getDuration())
-    // .isBefore(weeklyMeeting2.getHour())
-    // && !weeklyMeeting2.getHour().plus(weeklyMeeting2.getDuration())
-    // .isBefore(weeklyMeeting1.getHour())));
-    // }
-
     // TODO: implement this method to print sth like below
     public void printSchedule() {
         // needs to string to show sched as table
@@ -68,22 +48,5 @@ public class Schedule {
         // 9-10| | | |
     }
 
-    // TODO: check this
-
-    // public void buildSchedule(List<Course> newCourses) {
-    // newCourses.stream()
-    // .filter(course -> !hasConflict(course))
-    // .forEach(course -> {
-    // course.getWeeklyMeetings().forEach(weeklyMeeting -> {
-    // scheduleMap.put(weeklyMeeting, course);
-    // System.out.println("Added " + course.getCourseName() + " to the schedule.");
-    // });
-    // });
-    // }
-
-    // private boolean hasConflict(Course newCourse) {
-    // return newCourse.getWeeklyMeetings().stream()
-    // .anyMatch(weeklyMeeting -> scheduleMap.containsKey(weeklyMeeting));
-    // }
 
 }

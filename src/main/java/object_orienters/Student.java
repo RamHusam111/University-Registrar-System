@@ -2,6 +2,7 @@ package object_orienters;
 
 import java.time.LocalDate;
 import java.time.Year;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -12,7 +13,7 @@ public class Student extends Person {
     private Optional<String> minor;
     private Year yearEnrolled;
     private final boolean isCurrentlyRegisterd;
-    private Map<Course, Double> completedCoursesGrades;
+    private Map<Course, Double> completedCoursesGrades = new HashMap<>();
     private GPAstatus gpaStatus;
     private String stuLevel;
     private Department department;
@@ -20,8 +21,9 @@ public class Student extends Person {
     public Student(int id, String name, String email, Department department) {
         super(id, name, email);
         isCurrentlyRegisterd = true;
-        department.getStudents().add(this);
-        department.getFaculty().getStudents().add(this);
+        // department.getStudents().add(this);
+        // department.getFaculty().getStudents().add(this);
+        
     }
 
     public void enterGrades(Map<Course, String> grades) {
@@ -50,7 +52,7 @@ public class Student extends Person {
             case "F":
                 return 0.0;
             default:
-                return null;
+                return 0.0;
         }
     }
 

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 
 public class StudentTest {
     Student stu1;
@@ -18,18 +19,24 @@ public class StudentTest {
     Course c2;
     Course c3;
 
-    @BeforeAll
+    @BeforeEach
     public void setUp() {
+        
+    }
+
+    @Test
+    public void testEnterGradesMethod() {
+
+
+
         stu1 = new Student(1, "Abd", null, null);
         stu2 = new Student(1, "Ali", null, null);
         stu3 = new Student(1, "Omar", null, null);
         c1 = new Course("SWER141", null, 3, null);
         c2 = new Course("SWER241", null, 3, null);
         c3 = new Course("SWER348", null, 3, null);
-    }
 
-    @Test
-    public void testEnterGradesMethod() {
+
         Map<Course, String> map1 = new HashMap<>();
         map1.put(c1, "A");
         map1.put(c2, "B+");

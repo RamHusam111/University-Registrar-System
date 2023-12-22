@@ -21,8 +21,9 @@ public class Semester {
             List<Teacher> teachers, List<Course> courses) {
 
         weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
+        this.name = giveName();
         // give the semester name based on specific date then concat it with start year
-        this.semesterName = this.giveName() + " - " + semesterStartDate.getYear();
+        this.semesterName = this.name + " - " + semesterStartDate.getYear();
         this.semesterStartDate = semesterStartDate;
         this.semesterEndDate = semesterEndDate;
         this.students = students;
