@@ -13,7 +13,7 @@ public class Student extends Person {
     private Optional<String> minor;
     private Year yearEnrolled;
     private final boolean isCurrentlyRegisterd;
-    private Map<Course, Double> completedCoursesGrades = new HashMap<>();
+    private Map<Course, Double> completedCourses = new HashMap<>();
     private GPAstatus gpaStatus;
     private String stuLevel;
     private Department department;
@@ -27,7 +27,7 @@ public class Student extends Person {
     }
 
     public void enterGrades(Map<Course, String> grades) {
-        completedCoursesGrades.putAll(grades.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey(),
+        completedCourses.putAll(grades.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey(),
                 entry -> convertGrade(entry.getValue()))));
         this.getRegisteredCourses().clear();
     }
@@ -81,14 +81,14 @@ public class Student extends Person {
         return gpaStatus;
     }
 
-    public Map<Course, Double> getCompletedCoursesGrades() {
-        return completedCoursesGrades;
+    public Map<Course, Double> getCompletedCourses() {
+        return completedCourses;
     }
 
     // TODO: Test this method
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getpreRequisites();
-        return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e));
+        return preRequisites.stream().allMatch(e -> this.completedCourses.keySet().contains(e));
         // Angela changed the method from registerCourse to completed courses ^(in the
         // allMatch method)
     }
@@ -119,9 +119,9 @@ public class Student extends Person {
 
     // TODO: Test this method
     public double calculateGPA() {
-        double totalPts = completedCoursesGrades.entrySet().parallelStream()
+        double totalPts = completedCourses.entrySet().parallelStream()
                 .mapToDouble(entry -> entry.getKey().getCreditHours() * entry.getValue()).sum();
-        int creditHours = completedCoursesGrades.keySet().parallelStream().mapToInt(course -> course.getCreditHours())
+        int creditHours = completedCourses.keySet().parallelStream().mapToInt(course -> course.getCreditHours())
                 .sum();
         double gpa = totalPts / creditHours;
         if (gpa >= 3.90) {

@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class StudentTest {
@@ -54,17 +53,17 @@ public class StudentTest {
         stu2.enterGrades(map2);
         stu3.enterGrades(map3);
 
-        assertEquals(4.0, stu1.getCompletedCoursesGrades().get(c1));
-        assertEquals(3.5, stu1.getCompletedCoursesGrades().get(c2));
-        assertEquals(1.0, stu1.getCompletedCoursesGrades().get(c3));
+        assertEquals(4.0, stu1.getCompletedCourses().get(c1));
+        assertEquals(3.5, stu1.getCompletedCourses().get(c2));
+        assertEquals(1.0, stu1.getCompletedCourses().get(c3));
 
-        assertEquals(3.0, stu2.getCompletedCoursesGrades().get(c1));
-        assertEquals(3.5, stu2.getCompletedCoursesGrades().get(c2));
-        assertEquals(0.0, stu2.getCompletedCoursesGrades().get(c3));
+        assertEquals(3.0, stu2.getCompletedCourses().get(c1));
+        assertEquals(3.5, stu2.getCompletedCourses().get(c2));
+        assertEquals(0.0, stu2.getCompletedCourses().get(c3));
 
-        assertEquals(2.0, stu3.getCompletedCoursesGrades().get(c1));
-        assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c2));
-        assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c3));
+        assertEquals(2.0, stu3.getCompletedCourses().get(c1));
+        assertEquals(4.0, stu3.getCompletedCourses().get(c2));
+        assertEquals(4.0, stu3.getCompletedCourses().get(c3));
     }
 
 }

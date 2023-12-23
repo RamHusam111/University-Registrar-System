@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
@@ -39,4 +40,5 @@ public class PersonTest {
                 () -> assertEquals(true, stu1.isFreeOn(wm2)),
                 () -> assertEquals(false, stu1.isFreeOn(wm3)));
     }
+
 }

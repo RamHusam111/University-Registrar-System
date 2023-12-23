@@ -17,12 +17,13 @@ public abstract class Person {
         registeredCourses = new ArrayList<>();
     }
 
-    // public void setRegisteredCourses(List<Course> registeredCourses) {
-    // this.registeredCourses = registeredCourses;
-    // }
 
     public void addRegisteredCourse(Course course) {
         this.registeredCourses.add(course);
+    }
+
+    public void addListOfRegisteredCourses(List<Course> list) {
+        list.stream().forEach(course -> this.registeredCourses.add(course));
     }
 
     public int getId() {
@@ -75,3 +76,21 @@ public abstract class Person {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
 }
+
+
+
+
+// public void buildSchedule(List<Course> newCourses) {
+// // Check for conflicts and add new courses to the schedule if there are no
+// // conflicts
+// newCourses.stream()
+// .filter(course -> !hasConflict(course))
+// .forEach(course -> {
+// courses.add(course);
+// System.out.println("Added " + course.getCourseName() + " to the schedule.");
+// });
+// }
+
+
+
+
