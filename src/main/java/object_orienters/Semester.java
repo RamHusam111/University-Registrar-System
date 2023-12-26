@@ -61,8 +61,8 @@ public class Semester {
         });
         courses.add(course);
         course.getTeacher().getRegisteredCourses().add(course);
-        
-
+        this.students.addAll(students);
+        this.teachers.add(course.getTeacher());
 
     }
 
