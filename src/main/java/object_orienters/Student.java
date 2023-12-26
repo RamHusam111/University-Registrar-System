@@ -13,13 +13,14 @@ public class Student extends Person {
     private Optional<String> minor;
     private Year yearEnrolled;
     private final boolean isCurrentlyRegisterd;
-    private Map<Course, Double> completedCourses = new HashMap<>();
+    private Map<Course, Double> completedCourses ;
     private GPAstatus gpaStatus;
     private String stuLevel;
     private Department department;
 
     public Student(int id, String name, String email, Department department) {
         super(id, name, email);
+        completedCourses = new HashMap<>();
         isCurrentlyRegisterd = true;
         // department.getStudents().add(this);
         // department.getFaculty().getStudents().add(this);
