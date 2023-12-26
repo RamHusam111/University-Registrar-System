@@ -1,42 +1,33 @@
 package object_orienters;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
+import java.time.Year;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class StudentTest {
-    Student stu1;
-    Student stu2;
-    Student stu3;
-    Course c1;
-    Course c2;
-    Course c3;
-
-    @BeforeEach
-    public void setUp() {
-        
-    }
+    Student stu1 = new Student(1, "Abd", null, null);
+    Student stu2 = new Student(1, "Ali", null, null);
+    Student stu3 = new Student(1, "Omar", null, null);
+    Course c1 = new Course("SWER141", null, 3, null);
+    Course c2 = new Course("SWER241", null, 3, null);
+    Course c3 = new Course("SWER348", null, 3, null);
 
     @Test
     public void testEnterGradesMethod() {
-
-
-
-        stu1 = new Student(1, "Abd", null, null);
-        stu2 = new Student(1, "Ali", null, null);
-        stu3 = new Student(1, "Omar", null, null);
-        c1 = new Course("SWER141", null, 3, null);
-        c2 = new Course("SWER241", null, 3, null);
-        c3 = new Course("SWER348", null, 3, null);
-
-
         Map<Course, String> map1 = new HashMap<>();
         map1.put(c1, "A");
         map1.put(c2, "B+");
@@ -65,6 +56,36 @@ public class StudentTest {
         assertEquals(2.0, stu3.getCompletedCoursesGrades().get(c1));
         assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c2));
         assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c3));
+    }
+
+    @Test
+    public void testpreRequisitesCheckMethod() {
+        testEnterGradesMethod();
+        c2.setPrerequisites(new ArrayList<>(Arrays.asList(c1)));
+        c3.setPrerequisites(new ArrayList<>(Arrays.asList(c1, c2)));
+        assertTrue(stu1.preRequisitesCheck(c3));
+        assertTrue(stu2.preRequisitesCheck(c2));
+        assertTrue(stu2.preRequisitesCheck(c3));
+        assertTrue(stu3.preRequisitesCheck(c3));
+    }
+
+    @Test
+    public void testCalculateGpaMethod() {
+        testEnterGradesMethod();
+        assertEquals("0", 2.8333333333333335, stu1.calculateGPA(), 0);
+        assertEquals("0", 2.1666666666666665, stu2.calculateGPA(), 0);
+        assertEquals("0", 3.3333333333333335, stu3.calculateGPA(), 0);
+    }
+
+    @Test
+    public void testGetStudentLevel() {
+        stu1.setDateEnrolled(LocalDate.of(2021, 9, 26));
+        stu1.setDateEnrolled(LocalDate.of(2020, 8, 20));
+        stu1.setDateEnrolled(LocalDate.of(2022, 9, 24));
+
+        Assertions.assertEquals("Third Year", stu1.getStudentLevel());
+        Assertions.assertEquals("Second Year", stu2.getStudentLevel());
+        Assertions.assertEquals("Fourth Year", stu3.getStudentLevel());
     }
 
 }

@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public class Student extends Person {
     private String major;
     private Optional<String> minor;
-    private Year yearEnrolled;
+    private LocalDate dateEnrolled; // YOUSEF CHANGED IT FROM yearEnrolled to dateEnrolled
     private final boolean isCurrentlyRegisterd;
-    private Map<Course, Double> completedCoursesGrades = new HashMap<>();
+    private Map<Course, Double> completedCoursesGrades;
     private GPAstatus gpaStatus;
     private String stuLevel;
     private Department department;
@@ -21,11 +21,13 @@ public class Student extends Person {
     public Student(int id, String name, String email, Department department) {
         super(id, name, email);
         isCurrentlyRegisterd = true;
+        completedCoursesGrades = new HashMap<>();
         // department.getStudents().add(this);
         // department.getFaculty().getStudents().add(this);
-        
+
     }
 
+    // TESTED
     public void enterGrades(Map<Course, String> grades) {
         completedCoursesGrades.putAll(grades.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey(),
                 entry -> convertGrade(entry.getValue()))));
@@ -56,6 +58,10 @@ public class Student extends Person {
         }
     }
 
+    public void setDateEnrolled(LocalDate dateEnrolled) {
+        this.dateEnrolled = dateEnrolled;
+    }
+
     public String getMajor() {
         return major;
     }
@@ -64,8 +70,8 @@ public class Student extends Person {
         return minor.orElse("No minor");
     }
 
-    public Year getYearEnrolled() {
-        return yearEnrolled;
+    public LocalDate getDateEnrolled() {
+        return this.dateEnrolled;
     }
 
     public Department getDepartment() {
@@ -85,7 +91,7 @@ public class Student extends Person {
         return completedCoursesGrades;
     }
 
-    // TODO: Test this method
+    // TESTED
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getpreRequisites();
         return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e));
@@ -93,31 +99,31 @@ public class Student extends Person {
         // allMatch method)
     }
 
-    // TODO: Test this method
-    public String getStuLevel() {
-        int level = LocalDate.now().getYear() - this.getYearEnrolled().getValue();
-        switch (level) {
-            case 0:
-            case 1:
-                stuLevel = "First Year";
-                break;
-            case 2:
-                stuLevel = "Second Year";
-                break;
-            case 3:
-                stuLevel = "Third Year";
-                break;
-            case 4:
-                stuLevel = "Fourth Year";
-                break;
-            default:
-                stuLevel = "Graduate";
-                break;
-        }
+    // TODO: Fix code logic & Test this method
+    public String getStudentLevel() {
+        int year = LocalDate.now().getYear() - this.getDateEnrolled().getYear();
+        // switch (level) {
+        // case 0:
+        // case 1:
+        // stuLevel = "First Year";
+        // break;
+        // case 2:
+        // stuLevel = "Second Year";
+        // break;
+        // case 3:
+        // stuLevel = "Third Year";
+        // break;
+        // case 4:
+        // stuLevel = "Fourth Year";
+        // break;
+        // default:
+        // stuLevel = "Graduate";
+        // break;
+        // }
         return stuLevel;
     }
 
-    // TODO: Test this method
+    // TESTED
     public double calculateGPA() {
         double totalPts = completedCoursesGrades.entrySet().parallelStream()
                 .mapToDouble(entry -> entry.getKey().getCreditHours() * entry.getValue()).sum();
@@ -140,7 +146,7 @@ public class Student extends Person {
 
     public String getReport() {
         return super.toString() + "\nMajor:" + this.getMajor() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
-                + this.getYearEnrolled().getValue() + "\nStudent level: " + this.getStuLevel()
+                + this.getDateEnrolled().getYear() + "\nStudent level: " + this.getStudentLevel()
                 + "\nRegistered this semester: "
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
