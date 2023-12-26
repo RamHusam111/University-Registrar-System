@@ -71,16 +71,16 @@ public class WeeklyMeeting {
         return this.id.equals(((WeeklyMeeting) o).id);
     }
 
-    public boolean equalsTime(WeeklyMeeting wm) {
-        if (!(wm instanceof WeeklyMeeting))
+    public boolean equalsTime(WeeklyMeeting wM) {
+        if (!(wM instanceof WeeklyMeeting))
             return false;
-        return this.timeId.equals(((WeeklyMeeting) wm).timeId);
+        return this.timeId.equals(((WeeklyMeeting) wM).timeId);
     }
 
-    public boolean hasRoomConflict(WeeklyMeeting weeklyMeeting) {
-        return this.getDay().equals(weeklyMeeting.getDay())
-                && !this.getHour().plus(this.getDuration()).isBefore(weeklyMeeting.getHour())
-                && !weeklyMeeting.getHour().plus(weeklyMeeting.getDuration()).isBefore(this.getHour())
-                && this.getRoom().equals(weeklyMeeting.getRoom());
+    public boolean hasRoomConflict(WeeklyMeeting weeklyMeetings) {
+        return this.getDay().equals(weeklyMeetings.getDay())
+                && !this.getHour().plus(this.getDuration()).isBefore(weeklyMeetings.getHour())
+                && !weeklyMeetings.getHour().plus(weeklyMeetings.getDuration()).isBefore(this.getHour())
+                && this.getRoom().equals(weeklyMeetings.getRoom());
     }
 }

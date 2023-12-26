@@ -13,28 +13,32 @@ public class Semester {
     private List<Student> students;
     private List<Teacher> teachers;
     private List<Course> courses;
-
-
     private final long weeksNumber;
+    public boolean isFall;
+    public boolean isSpring;
+    public boolean isSummer;
 
-    public Semester( LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students,
-            List<Teacher> teachers, List<Course> courses) {
+    public Semester(LocalDate semesterStartDate, LocalDate semesterEndDate, List<Student> students,
+                    List<Teacher> teachers, List<Course> courses) {
 
-        weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
-        this.name = giveName();
-        // give the semester name based on specific date then concat it with start year
-        this.semesterName = this.name + " - " + semesterStartDate.getYear();
         this.semesterStartDate = semesterStartDate;
         this.semesterEndDate = semesterEndDate;
+        this.name = giveName();
+        this.semesterName = this.name + " - " + semesterStartDate.getYear();
         this.students = students;
         this.teachers = teachers;
         this.courses = courses;
+        this.weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
+        this.isFall = this.name.equals("Fall");
+        this.isSpring = this.name.equals("Spring");
+        this.isSummer = this.name.equals("Summer");
     }
 
 
 
-    
-    public void registerInACourse(Course course, List<Student> students) {
+
+    //TODO: Test this method
+    public void registerInACourse(Course course, List<Student> lStudents) {
 
         boolean y = courses.stream().flatMap(e -> e.getWeeklyMeetings().stream()).anyMatch( wm -> course.getWeeklyMeetings().stream().anyMatch( wm2 -> wm2.hasRoomConflict(wm)));
         if(y){
@@ -44,18 +48,18 @@ public class Semester {
        
 
         //check if prerequisits are met
-        students.stream().filter(e -> !e.preRequisitesCheck(course)).forEach(student ->{
+        lStudents.stream().filter(e -> !e.preRequisitesCheck(course)).forEach(student ->{
         System.out.println("Prequisites need to be completed for "+student.getId() +": "
          + student.getName() + "> to registered in " + course.getCourseName());
         });
 
         //check if student is free on weekly meetings
-        students.stream().filter(e -> !e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
+        lStudents.stream().filter(e -> !e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
             System.out.println("Error registering " + student.getId() + " " + student.getName() + " in "
                     + course.getCourseName() + " because of conflict");
         });
 
-        students.stream().filter(e -> e.isFreeOn(course.getWeeklyMeetings()) && e.preRequisitesCheck(course)).forEach(student -> {
+        lStudents.stream().filter(e -> e.isFreeOn(course.getWeeklyMeetings()) && e.preRequisitesCheck(course)).forEach(student -> {
             student.getRegisteredCourses().add(course);
             System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
         });
@@ -125,16 +129,11 @@ public class Semester {
     }
 
     //TODO: Test this method
-    private static long calculateWeeksBetween(LocalDate startDate, LocalDate endDate) {
-        // Calculate the number of weeks in the semester
+    static long calculateWeeksBetween(LocalDate startDate, LocalDate endDate) {
+        // Calculate the number of weeks in the Semester
         return ChronoUnit.WEEKS.between(startDate, endDate);
     }
     
-    public boolean isFall = giveName().equals("Fall");
-
-    public boolean isSpring = giveName().equals("Spring");
-
-    public boolean isSummer = giveName().equals("Summer");
 
 
 

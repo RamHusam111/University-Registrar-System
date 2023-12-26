@@ -19,6 +19,9 @@ public class Faculty {
         this.students = new ArrayList<>();
         this.teachers = new ArrayList<>();
     }
+    public Faculty() {
+        this.teachers = new ArrayList<>();
+    }
 
     // NOTE: Angela removed students and teachers from the constructor, they are
     // updated now once a student or teacher has been created

@@ -15,6 +15,7 @@ public class Teacher extends Person {
     this.department = department;
     department.getTeachers().add(this);
     department.getFaculty().getTeachers().add(this);
+
   }
 
    public Teacher(int id, String name, Department department, String email) {

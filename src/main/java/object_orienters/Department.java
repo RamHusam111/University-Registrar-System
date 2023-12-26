@@ -4,30 +4,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
-    private Faculty faculty;
     private String name;
-    private List<Course> majors;
-    private List<Course> minors;
     private List<Teacher> teachers;
     private List<Student> students;
+    private Faculty faculty;
+    private List<Course> majors;
+    private List<Course> minors;
+
     
     //NOTE: Angela removed students and teachers from the constructor, they are updated now once a student or teacher has been created
     public Department(String name, Faculty faculty, List<Course> majors, List<Course> minors) {
         this.name = name;
-        this.majors = majors;
-        this.minors = minors;
         this.teachers = new ArrayList<>();
         this.students = new ArrayList<>();
+        this.majors = majors;
+        this.minors = minors;
         this.faculty = faculty;
     }
 
     public Department(String name, Faculty faculty) {
         this.name = name;
-        this.majors = new ArrayList<>();
-        this.minors = new ArrayList<>();
         this.teachers = new ArrayList<>();
         this.students = new ArrayList<>();
+        this.majors = new ArrayList<>();
+        this.minors = new ArrayList<>();
+
         this.faculty = faculty;
+    }
+
+    public Department(String name) {
+        this.name = name;
+        this.teachers = new ArrayList<>();
+        this.students = new ArrayList<>();
+        this.faculty = new Faculty();
+
     }
 
     public String getName() {
