@@ -17,18 +17,21 @@ public class Student extends Person {
     private Faculty faculty;
 
     public Student(String name, String major) {
-        super(name);
+        super(Role.STUDENT, name);
         this.major = major;
         isCurrentlyRegisterd = true;
         completedCoursesGrades = new HashMap<>();
         faculty.getStudents().add(this);
     }
 
-    // TESTED
-    public void enterGrades(Map<Course, String> grades) {
-        completedCoursesGrades.putAll(grades.entrySet().stream().collect(Collectors.toMap(entry -> entry.getKey(),
-                entry -> convertGrade(entry.getValue()))));
-        this.getRegisteredCourses().clear();
+    // Changed
+    public void enterCourseGrade(Course course, String grade) {
+        if (getRegisteredCourses().contains(course)) {
+            completedCoursesGrades.put(course, convertGrade(grade));
+            getRegisteredCourses().remove(course);
+        }
+        else
+            System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());
     }
 
     // HELPER METHOD FOR enterGrades METHOD
@@ -71,6 +74,7 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
+    //TODO: test this method
     public GPAstatus getGpaStatus() {
         calculateGPA();
         return gpaStatus;

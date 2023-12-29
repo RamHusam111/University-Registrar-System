@@ -10,14 +10,14 @@ public class Teacher extends Person {
 
   public Teacher(String name, Faculty faculty, List<Course> teachingCourses,
       List<Course> registeredCourses) {
-    super(name);
+    super(Role.TEACHER, name);
     this.teachingCourses = teachingCourses;
     this.faculty = faculty;
     faculty.getTeachers().add(this);
   }
 
   public Teacher(String name, Faculty faculty) {
-    super(name);
+    super(Role.TEACHER, name);
     this.teachingCourses = new ArrayList<>();
     this.faculty = faculty;
     faculty.getTeachers().add(this);

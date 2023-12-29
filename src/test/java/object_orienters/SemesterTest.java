@@ -50,4 +50,5 @@ public class SemesterTest {
         assertEquals(end, semester.getSemesterEndDate());
     }
 
+    
 }

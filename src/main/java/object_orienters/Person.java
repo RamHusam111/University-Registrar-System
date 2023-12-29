@@ -15,6 +15,7 @@ public abstract class Person {
     private int id;
     private String name;
     private String email;
+    Role role = Role.STAFF;
     private List<Course> registeredCourses;
     protected Schedule schedule;
     private LocalDate dateEnrolled; // YOUSEF CHANGED IT FROM yearEnrolled to dateEnrolled
@@ -22,8 +23,9 @@ public abstract class Person {
     private static int teacherSequence = 5000;
     private static Year yearValue = Year.of(2023);
 
-    public Person(String name) {
+    public Person(Role role, String name) {
         this.name = name;
+        this.role = role;
         dateEnrolled = LocalDate.now();
         registeredCourses = new ArrayList<>();
         this.id = this.setID();
@@ -77,7 +79,7 @@ public abstract class Person {
         return registeredCourses;
     }
 
-    public Schedule getSchedule() {
+    private Schedule getSchedule() {
         return schedule;
     }
 
@@ -119,6 +121,9 @@ public abstract class Person {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
 
+    public enum Role{
+        STUDENT, TEACHER, STAFF;
+    }
 
     //SCHEDULE CLASS
     private class Schedule {

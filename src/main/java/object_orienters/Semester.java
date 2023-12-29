@@ -40,7 +40,12 @@ public class Semester {
         boolean y = courses.stream().flatMap(e -> e.getWeeklyMeetings().stream())
                 .anyMatch(wm -> course.getWeeklyMeetings().stream().anyMatch(wm2 -> wm2.hasRoomConflict(wm)));
         if (y) {
-            System.out.println("Error registering " + course.getCourseName() + " because of conflict");
+            System.out.println("Error registering " + course.getCourseName() + " because another course has conflict with room");
+            return;
+        }
+
+        if(!teacher.isFreeOn(course.getWeeklyMeetings())){
+            System.out.println("Error registering " + course.getCourseName() + " because teacher has conflict with course Weekly Meetings");
             return;
         }
 

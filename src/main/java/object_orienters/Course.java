@@ -68,9 +68,7 @@ public class Course {
         return creditHours;
     }
 
-    public void setCreditHours(int creditHours) {
-        this.creditHours = creditHours;
-    }
+   
 
     public List<Course> getpreRequisites() {
         return preRequisites;
