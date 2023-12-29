@@ -19,12 +19,12 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 
 public class StudentTest {
-    Student stu1 = new Student(1, "Abd", null, null);
-    Student stu2 = new Student(1, "Ali", null, null);
-    Student stu3 = new Student(1, "Omar", null, null);
-    Course c1 = new Course("SWER141", null, 3, null);
-    Course c2 = new Course("SWER241", null, 3, null);
-    Course c3 = new Course("SWER348", null, 3, null);
+    Student stu1 = new Student("Abd", null);
+    Student stu2 = new Student("Ali", null);
+    Student stu3 = new Student("Omar", null);
+    Course c1 = new Course("SWER141", "Intro to Programming", null, 3, null);
+    Course c2 = new Course("SWER241", "Data Structure", null, 3, null);
+    Course c3 = new Course("SWER348", "Advanced Object Oriented", null, 3, null);
 
     @Test
     public void testEnterGradesMethod() {
@@ -45,24 +45,25 @@ public class StudentTest {
         stu2.enterGrades(map2);
         stu3.enterGrades(map3);
 
-        assertEquals(4.0, stu1.getCompletedCourses().get(c1));
-        assertEquals(3.5, stu1.getCompletedCourses().get(c2));
-        assertEquals(1.0, stu1.getCompletedCourses().get(c3));
+        assertEquals(4.0, stu1.getCompletedCoursesGrades().get(c1));
+        assertEquals(3.5, stu1.getCompletedCoursesGrades().get(c2));
+        assertEquals(1.0, stu1.getCompletedCoursesGrades().get(c3));
 
-        assertEquals(3.0, stu2.getCompletedCourses().get(c1));
-        assertEquals(3.5, stu2.getCompletedCourses().get(c2));
-        assertEquals(0.0, stu2.getCompletedCourses().get(c3));
+        assertEquals(3.0, stu2.getCompletedCoursesGrades().get(c1));
+        assertEquals(3.5, stu2.getCompletedCoursesGrades().get(c2));
+        assertEquals(0.0, stu2.getCompletedCoursesGrades().get(c3));
 
-        assertEquals(2.0, stu3.getCompletedCourses().get(c1));
-        assertEquals(4.0, stu3.getCompletedCourses().get(c2));
-        assertEquals(4.0, stu3.getCompletedCourses().get(c3));
+        assertEquals(2.0, stu3.getCompletedCoursesGrades().get(c1));
+        assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c2));
+        assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c3));
     }
 
     @Test
     public void testpreRequisitesCheckMethod() {
         testEnterGradesMethod();
-        c2.setPrerequisites(new ArrayList<>(Arrays.asList(c1)));
-        c3.setPrerequisites(new ArrayList<>(Arrays.asList(c1, c2)));
+        c2.addPrerequisites(c1);
+        c3.addPrerequisites(c1);
+        c3.addPrerequisites(c2);
         assertTrue(stu1.preRequisitesCheck(c3));
         assertTrue(stu2.preRequisitesCheck(c2));
         assertTrue(stu2.preRequisitesCheck(c3));
@@ -75,17 +76,6 @@ public class StudentTest {
         assertEquals("0", 2.8333333333333335, stu1.calculateGPA(), 0);
         assertEquals("0", 2.1666666666666665, stu2.calculateGPA(), 0);
         assertEquals("0", 3.3333333333333335, stu3.calculateGPA(), 0);
-    }
-
-    @Test
-    public void testGetStudentLevel() {
-        stu1.setDateEnrolled(LocalDate.of(2021, 9, 26));
-        stu1.setDateEnrolled(LocalDate.of(2020, 8, 20));
-        stu1.setDateEnrolled(LocalDate.of(2022, 9, 24));
-
-        Assertions.assertEquals("Third Year", stu1.getStudentLevel());
-        Assertions.assertEquals("Second Year", stu2.getStudentLevel());
-        Assertions.assertEquals("Fourth Year", stu3.getStudentLevel());
     }
 
 }

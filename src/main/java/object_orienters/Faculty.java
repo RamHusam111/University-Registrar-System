@@ -5,70 +5,55 @@ import java.util.List;
 
 public class Faculty {
     private String name;
-    private List<String> rooms;
-    private List<Department> departments;
-    private WeeklyMeeting freeHour;
-    private List<Student> students;
     private List<Teacher> teachers;
+    private List<Student> students;
+    private List<Course> majorsCourses;
+    private List<Course> minorsCourses;
+    // private List<String> majors;
+    // private List<String> minors;
+    private static List<Faculty> faculties = new ArrayList<>();
 
-    public Faculty(String name, WeeklyMeeting freeHour) {
+    public Faculty(String name) {
         this.name = name;
-        this.rooms = new ArrayList<>();
-        this.departments = new ArrayList<>();
-        this.freeHour = freeHour;
+        this.teachers = new ArrayList<>();
         this.students = new ArrayList<>();
-        this.teachers = new ArrayList<>();
-    }
-    public Faculty() {
-        this.teachers = new ArrayList<>();
-    }
+        this.majorsCourses = new ArrayList<>();
+        this.minorsCourses = new ArrayList<>();
+        faculties.add(this);
 
-    // NOTE: Angela removed students and teachers from the constructor, they are
-    // updated now once a student or teacher has been created
-    public Faculty(String name, List<String> rooms, List<Department> departments, WeeklyMeeting freeHour) {
-        this.name = name;
-        this.rooms = rooms;
-        this.departments = departments;
-        this.freeHour = freeHour;
-        this.students = new ArrayList<>();
-        this.teachers = new ArrayList<>();
     }
 
     public String getName() {
         return name;
     }
 
-    public List<String> getRooms() {
-        return rooms;
+    public List<Course> getMajorsCourses() {
+        return majorsCourses;
     }
 
-    public List<Department> getDepartments() {
-        return departments;
-    }
-
-    public List<Student> getStudents() {
-        return students;
+    public List<Course> getMinorsCourses() {
+        return minorsCourses;
     }
 
     public List<Teacher> getTeachers() {
         return teachers;
     }
 
-    public WeeklyMeeting getFreeHour() {
-        return freeHour;
+    public List<Student> getStudents() {
+        return students;
     }
 
-    public void setFreeHour(WeeklyMeeting freeHour) {
-        this.freeHour = freeHour;
-
+    public void addMajorCourse(Course majorCourse) {
+        this.majorsCourses.add(majorCourse);
     }
 
-    public void setNewRoom(String room) {
-        this.rooms.add(room);
+    public void addMinor(Course minorCourse) {
+        this.minorsCourses.add(minorCourse);
     }
 
-    public void setNewDepartment(Department department) {
-        this.departments.add(department);
+    @Override
+    public String toString() {
+        return "Faculty{" + name + ", majors Courses = " + majorsCourses + ", minors = " + minorsCourses;
     }
 
 }
