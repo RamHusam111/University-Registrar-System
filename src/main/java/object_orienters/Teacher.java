@@ -6,24 +6,21 @@ import java.util.List;
 public class Teacher extends Person {
 
   private List<Course> teachingCourses;
-  private Department department;
+  private Faculty faculty;
 
-  public Teacher(int id, String name, Department department, List<Course> teachingCourses, String email,
+  public Teacher(String name, Faculty faculty, List<Course> teachingCourses,
       List<Course> registeredCourses) {
-    super(id, name, email);
+    super(name);
     this.teachingCourses = teachingCourses;
-    this.department = department;
-    department.getTeachers().add(this);
-    department.getFaculty().getTeachers().add(this);
-
+    this.faculty = faculty;
+    faculty.getTeachers().add(this);
   }
 
-   public Teacher(int id, String name, Department department, String email) {
-    super(id, name, email);
+  public Teacher(String name, Faculty faculty) {
+    super(name);
     this.teachingCourses = new ArrayList<>();
-    this.department = department;
-    department.getTeachers().add(this);
-    department.getFaculty().getTeachers().add(this);
+    this.faculty = faculty;
+    faculty.getTeachers().add(this);
   }
 
   public List<Course> getTeachingCourses() {
@@ -34,18 +31,18 @@ public class Teacher extends Person {
     this.teachingCourses = teachingCourses;
   }
 
-  public Department getDepartment() {
-    return department;
+  public Faculty getFaculty() {
+    return faculty;
   }
 
-  //does it need a setter?
-  public void setDepartment(Department department) {
-    this.department = department;
+  // does it need a setter?
+  public void setDepartment(Faculty faculty) {
+    this.faculty = faculty;
   }
 
   @Override
   public String toString() {
-    return super.toString() + "\nTeaching Courses: " + this.getTeachingCourses() + "\nDepartment: "
-        + this.getDepartment();
+    return super.toString() + "\nTeaching Courses: " + this.getTeachingCourses() + "\nFaculty: "
+        + this.getFaculty();
   }
 }

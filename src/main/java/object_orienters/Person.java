@@ -1,7 +1,15 @@
 package object_orienters;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public abstract class Person {
     private int id;
@@ -9,14 +17,41 @@ public abstract class Person {
     private String email;
     private List<Course> registeredCourses;
     protected Schedule schedule;
+    private LocalDate dateEnrolled; // YOUSEF CHANGED IT FROM yearEnrolled to dateEnrolled
+    private static int stuSequence = 1000;
+    private static int teacherSequence = 5000;
+    private static Year yearValue = Year.of(2023);
 
-    public Person(int id, String name, String email) {
-        this.id = id;
+    public Person(String name) {
         this.name = name;
-        this.email = email;
+        dateEnrolled = LocalDate.now();
         registeredCourses = new ArrayList<>();
+        this.id = this.setID();
+        this.email = this.id + "@objectOrienters.com";
     }
 
+    // TODO: test this method
+    private int setID() {
+        String id = "";
+        Year enrolledYear = Year.of(dateEnrolled.getYear());
+        if (this instanceof Student) {
+            if (enrolledYear.isAfter(yearValue)) {
+                yearValue = enrolledYear;
+                stuSequence = 1000;
+            }
+            id = yearValue.getValue() + "0" + stuSequence;
+            stuSequence++;
+
+        } else if (this instanceof Teacher) {
+            if (enrolledYear.isAfter(yearValue)) {
+                yearValue = enrolledYear;
+                teacherSequence = 1000;
+            }
+            id = yearValue.getValue() + "5" + teacherSequence;
+            teacherSequence++;
+        }
+        return Integer.parseInt(id);
+    }
 
     public void addRegisteredCourse(Course course) {
         this.registeredCourses.add(course);
@@ -44,6 +79,14 @@ public abstract class Person {
 
     public Schedule getSchedule() {
         return schedule;
+    }
+
+    public LocalDate getDateEnrolled() {
+        return dateEnrolled;
+    }
+
+    public void showSchedule() {
+        this.getSchedule().displaySchedule();
     }
 
     // TODO: test this method
@@ -75,22 +118,62 @@ public abstract class Person {
     public String toString() {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
+
+
+    //SCHEDULE CLASS
+    private class Schedule {
+        private List<Course> courses;
+        Map<WeeklyMeeting, Course> meetingCourseMap;
+
+        public Schedule(List<Course> courses) {
+            this.courses = courses;
+            this.meetingCourseMap = new HashMap<>();
+            this.courses.forEach(course -> course.getWeeklyMeetings()
+                    .forEach(weeklyMeeting -> meetingCourseMap.put(weeklyMeeting, course)));
+
+        }
+
+        // TODO: test this method
+        public int getCreditLoad() {
+            return courses.stream().mapToInt(e -> e.getCreditHours()).sum();
+        }
+
+        // Method to display the schedule
+        public String displaySchedule() {
+            StringBuilder scheduleBuilder = new StringBuilder();
+
+            // Grouping weekly meetings by day
+            Map<DayOfWeek, List<WeeklyMeeting>> meetingsByDay = courses.stream()
+                    .flatMap(course -> course.getWeeklyMeetings().stream())
+                    .collect(Collectors.groupingBy(WeeklyMeeting::getDay));
+
+            // Sorting and formatting schedule by day
+            meetingsByDay.entrySet().stream()
+                    .sorted(Map.Entry.comparingByKey())
+                    .forEach(entry -> {
+                        DayOfWeek day = entry.getKey();
+                        List<WeeklyMeeting> meetings = entry.getValue();
+                        scheduleBuilder.append(day).append(":\n");
+
+                        meetings.stream()
+                                .sorted(Comparator.comparing(WeeklyMeeting::getHour))
+                                .forEach(weeklyMeeting -> {
+                                    Course course = meetingCourseMap.get(weeklyMeeting);
+                                    scheduleBuilder.append(formatMeeting(course, weeklyMeeting)).append("\n");
+                                });
+                    });
+
+            return scheduleBuilder.toString();
+        }
+
+        // Helper method to format a single meeting entry
+        private String formatMeeting(Course course, WeeklyMeeting meeting) {
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            return String.format("  %s - %s | %s | Room: %s",
+                    meeting.getHour().format(timeFormatter),
+                    meeting.getHour().plus(meeting.getDuration()).format(timeFormatter),
+                    course.getCourseName(),
+                    meeting.getRoom());
+        }
+    }
 }
-
-
-
-
-// public void buildSchedule(List<Course> newCourses) {
-// // Check for conflicts and add new courses to the schedule if there are no
-// // conflicts
-// newCourses.stream()
-// .filter(course -> !hasConflict(course))
-// .forEach(course -> {
-// courses.add(course);
-// System.out.println("Added " + course.getCourseName() + " to the schedule.");
-// });
-// }
-
-
-
-
