@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Course {
-
+    private final int capacity;
     private Type courseType;
     private Faculty courseFaculty;
     private String courseID;
@@ -14,31 +14,55 @@ public class Course {
     private List<Course> preRequisites;
     private List<WeeklyMeeting> weeklyMeetings;
     private Teacher teacher;
+    private List<Student> enrolledStudents;
+
 
     //TODO: add equal method to check unique if in register method semester
+    // Constructor for university requirement courses
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
-            List<WeeklyMeeting> weeklyMeetings) {
+                  List<WeeklyMeeting> weeklyMeetings, int capacity) {
+        this.enrolledStudents = new ArrayList<>();
+
         this.courseID = courseID;
         this.courseFaculty = courseFaculty;
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.preRequisites = new ArrayList<>(); // optional of nullable
+        this.preRequisites = new ArrayList<>();
         this.weeklyMeetings = weeklyMeetings;
+        this.capacity = capacity;  // Initialize the capacity field
         courseType = Type.UNIVERSITY_REQUIREMENT;
     }
 
-     public Course(String courseID, String courseName, Specialization specialization, int creditHours,
-            List<WeeklyMeeting> weeklyMeetings) {
+    // Constructor for major/minor requirement courses
+    public Course(String courseID, String courseName, Specialization specialization, int creditHours,
+                  List<WeeklyMeeting> weeklyMeetings, int capacity) {
+        this.enrolledStudents = new ArrayList<>();
+
         this.courseID = courseID;
         this.courseFaculty = specialization.getFaculty();
         courseFaculty.addMajorCourse(this);
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.preRequisites = new ArrayList<>(); // optional of nullable
+        this.preRequisites = new ArrayList<>();
         this.weeklyMeetings = weeklyMeetings;
+        this.capacity = capacity;  // Initialize the capacity field
         courseType = specialization.getType() == Specialization.Type.MAJOR ? Type.MAJOR_REQUIREMENT : Type.MINOR_REQUIREMENT;
-
     }
+    // Method to enroll a student in the course
+    public void enrollStudent(Student student) {
+        if (!isFull()) {
+            enrolledStudents.add(student);
+        } else {
+            System.out.println("Course is full. Cannot enroll student: " + student.getName());
+        }
+    }
+
+    // Method to check if the course is full
+    public boolean isFull() {
+        return enrolledStudents.size() >= capacity;
+    }
+
+
 
     @Override
     public String toString() {
@@ -95,6 +119,10 @@ public class Course {
 
     public void setWeeklyMeetings(List<WeeklyMeeting> weeklyMeetings) {
         this.weeklyMeetings = weeklyMeetings;
+    }
+    // Getter for capacity
+    public int getCapacity() {
+        return capacity;
     }
 
     public enum Type {

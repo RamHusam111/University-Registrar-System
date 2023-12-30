@@ -10,6 +10,7 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import static org.junit.Assert.assertTrue;
@@ -44,7 +45,7 @@ public class PersonTest {
         stu1 = new Student("Alex", mathMajor);
         t1 = new Teacher("Dr. Smith", mathMajor);
         c1 = new Course("MATH101", "Calculus I", mathMajor, 1, List
-                .of(new WeeklyMeeting(DayOfWeek.TUESDAY, Duration.ofMinutes(60), "M-301", LocalTime.parse("09:00"))));
+                .of(new WeeklyMeeting(DayOfWeek.TUESDAY, Duration.ofMinutes(60), "M-301", LocalTime.parse("09:00"))),100);
         new Semester(LocalDate.of(2023, 9, 1), LocalDate.of(2023, 12, 31)).registerInACourse(c1, List.of(stu1), t1);
     }
 
@@ -53,7 +54,7 @@ public class PersonTest {
         int dayOffset = 37;
         int hourOffset = 4;
         int minsOffset = 0;
-        
+
         int index = (stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getDay().getValue() - 1) * dayOffset;
         index += stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getHour().getHour() % 8 * hourOffset;
         index += stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getHour().getMinute() % 15 * minsOffset;
@@ -70,6 +71,16 @@ public class PersonTest {
 
     @Test
     public void isFreeOnTest2() {
+        // stu1 = new Student(1, "Abd", "email", new Department("null", new
+        // Faculty("null", wm1)));
+
+        // c1 = new Course("SWER141", null, 1, List.of(wm1));// 9
+        // c2 = new Course("SWER241", null, 1, List.of(wm2));// 10:5
+        // c3 = new Course("SWER348", null, 1, List.of(wm3));// 9:30
+
+        // stu1.addRegisteredCourse(c1);
+
+        assertFalse(stu1.isFreeOn(List.of(wm1, wm3)));
 
     }
 
