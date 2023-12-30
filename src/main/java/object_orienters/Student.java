@@ -29,8 +29,7 @@ public class Student extends Person {
         if (getRegisteredCourses().contains(course)) {
             completedCoursesGrades.put(course, convertGrade(grade));
             getRegisteredCourses().remove(course);
-        }
-        else
+        } else
             System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());
     }
 
@@ -74,7 +73,7 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    //TODO: test this method
+    // TODO: test this method
     public GPAstatus getGpaStatus() {
         calculateGPA();
         return gpaStatus;
