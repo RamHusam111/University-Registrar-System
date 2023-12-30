@@ -22,6 +22,7 @@ public class WeeklyMeeting {
                 " " + hour.toString();
 
         this.id = timeId + " " + room;
+       
     }
 
     public DayOfWeek getDay() {

@@ -1,28 +1,38 @@
 package object_orienters;
 
-import java.time.LocalDate;
-import java.time.Year;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Student extends Person {
-    private String major;
-    private Optional<String> minor;
+    private Specialization major;
+    private Optional<Specialization> minor;
     private final boolean isCurrentlyRegisterd;
     private Map<Course, Double> completedCoursesGrades;
     private GPAstatus gpaStatus;
     private Faculty faculty;
 
-    public Student(String name, String major) {
+    public Student(String name, Specialization major) {
         super(Role.STUDENT, name);
         this.major = major;
         isCurrentlyRegisterd = true;
         completedCoursesGrades = new HashMap<>();
+        this.faculty = major.getFaculty();
         faculty.getStudents().add(this);
     }
+
+    public Student(String name, Specialization major, Specialization minor) {
+        super(Role.STUDENT, name);
+        this.major = major;
+        this.minor = Optional.of(minor);
+        isCurrentlyRegisterd = true;
+        completedCoursesGrades = new HashMap<>();
+        this.faculty = major.getFaculty();
+        faculty.getStudents().add(this);
+    }
+
 
     // Changed
     public void enterCourseGrade(Course course, String grade) {
@@ -62,12 +72,12 @@ public class Student extends Person {
         }
     }
 
-    public String getMajor() {
+    public Specialization getMajor() {
         return major;
     }
 
-    public String getMinor() {
-        return minor.orElse("No Minor");
+    public Optional<Specialization> getMinor() {
+        return this.minor;
     }
 
     public Faculty getFaculty() {
