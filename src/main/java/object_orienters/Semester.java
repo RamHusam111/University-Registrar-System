@@ -55,7 +55,7 @@ public class Semester {
         // Check if prerequisites are met
         lStudents.stream().filter(e -> !e.preRequisitesCheck(course)).forEach(student -> {
             System.out.println("Prerequisites need to be completed for " + student.getId() + ": "
-                    + student.getName() + "> to registered in " + course.getCourseName());
+                    + student.getName() + "> to register in " + course.getCourseName());
         });
 
         // Check if student is free on weekly meetings
@@ -64,30 +64,26 @@ public class Semester {
                     + course.getCourseName() + " because of conflict");
         });
 
-        // Check for course capacity
-        long currentEnrollment = lStudents.stream()
-                .filter(student -> student.getRegisteredCourses().contains(course))
-                .count();
-
-        if (currentEnrollment >= course.getCapacity()) {
-            System.out.println("Error registering students in " + course.getCourseName() + " as the course is already full.");
-            return;
-        }
-
         // Register students who meet all criteria
         lStudents.stream()
                 .filter(student -> student.isFreeOn(course.getWeeklyMeetings()) && student.preRequisitesCheck(course))
                 .forEach(student -> {
-                    student.getRegisteredCourses().add(course);
-                    System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
+                    // Use enrollStudent method of Course class to add student
+                    course.enrollStudent(student);
+                    if (!course.isFull()) {
+                        student.addRegisteredCourse(course);
+                        System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
+                    }
                 });
 
+        // Set up the course with the teacher and add to courses list
         courses.add(course);
         course.setTeacher(teacher);
         teacher.getRegisteredCourses().add(course);
-        this.students.addAll(students);
+        this.students.addAll(lStudents);
         this.teachers.add(teacher);
     }
+
 
 
     // TODO: Test this method
