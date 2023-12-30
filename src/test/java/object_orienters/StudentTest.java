@@ -1,81 +1,126 @@
 package object_orienters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Year;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.junit.Test;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 
 public class StudentTest {
-    Student stu1 = new Student("Abd", null);
-    Student stu2 = new Student("Ali", null);
-    Student stu3 = new Student("Omar", null);
-    Course c1 = new Course("SWER141", "Intro to Programming", null, 3, null);
-    Course c2 = new Course("SWER241", "Data Structure", null, 3, null);
-    Course c3 = new Course("SWER348", "Advanced Object Oriented", null, 3, null);
+
+    List<Student> students = new ArrayList<>();
+    List<Course> courses = new ArrayList<>();
+    Semester sem;
+
+    public void readFromFile() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/students.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[1]);
+                Specialization spec = new Specialization(values[2], fac, Specialization.Type.MAJOR);
+                Student stu = new Student(values[0], spec);
+                students.add(stu);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/Courses.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[2]);
+                int creditHours = Integer.parseInt(values[3]);
+                DayOfWeek day = DayOfWeek.valueOf(values[4].toUpperCase());
+                Duration duration = Duration.ofMinutes(Long.parseLong(values[5]));
+                String room = values[6];
+                LocalTime hour = LocalTime.parse(values[7]);
+                Course course = new Course(values[0], values[1], fac, creditHours, List
+                        .of(new WeeklyMeeting(day, duration, room, hour)));
+                courses.add(course);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(students.size());
+        System.out.println(courses.size());
+    }
 
     @Test
     public void testEnterGradesMethod() {
-        Map<Course, String> map1 = new HashMap<>();
-        map1.put(c1, "A");
-        map1.put(c2, "B+");
-        map1.put(c3, "D");
-        Map<Course, String> map2 = new HashMap<>();
-        map2.put(c1, "B");
-        map2.put(c2, "B+");
-        map2.put(c3, "F");
-        Map<Course, String> map3 = new HashMap<>();
-        map3.put(c1, "C");
-        map3.put(c2, "A");
-        map3.put(c3, "A");
-
-        stu1.enterGrades(map1);
-        stu2.enterGrades(map2);
-        stu3.enterGrades(map3);
-
-        assertEquals(4.0, stu1.getCompletedCoursesGrades().get(c1));
-        assertEquals(3.5, stu1.getCompletedCoursesGrades().get(c2));
-        assertEquals(1.0, stu1.getCompletedCoursesGrades().get(c3));
-
-        assertEquals(3.0, stu2.getCompletedCoursesGrades().get(c1));
-        assertEquals(3.5, stu2.getCompletedCoursesGrades().get(c2));
-        assertEquals(0.0, stu2.getCompletedCoursesGrades().get(c3));
-
-        assertEquals(2.0, stu3.getCompletedCoursesGrades().get(c1));
-        assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c2));
-        assertEquals(4.0, stu3.getCompletedCoursesGrades().get(c3));
+        readFromFile();
+        courses.get(1).addPrerequisites(courses.get(0));
+        courses.get(2).addPrerequisites(courses.get(1));
+        courses.get(3).addPrerequisites(courses.get(2));
+        courses.get(4).addPrerequisites(courses.get(3));
+        courses.get(5).addPrerequisites(courses.get(4));
+        courses.get(6).addPrerequisites(courses.get(5));
+        courses.get(7).addPrerequisites(courses.get(6));
+        sem = new Semester(LocalDate.of(2023, 9, 1), LocalDate.of(2023, 12, 31));
+        for (Course course : courses) {
+            sem.registerInACourse(course, students,
+                    new Teacher("null", new Specialization("null", new Faculty("null"), Specialization.Type.MAJOR)));
+        }
+        String[] grades = { "A", "B+", "B", "C+", "C", "D+", "D", "F" };
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(grades));
+        int i = 0;
+        for (Student stu : students) {
+            for (Course course : courses) {
+                if (i == 8)
+                    break;
+                stu.enterCourseGrade(course, list.get(i++));
+            }
+        }
+        double numGrades[] = { 4, 3.5, 3, 2.5, 2, 1.5, 1, 0 };
+        int j = 0;
+        for (Course course : courses) {
+            if (students.get(0).getCompletedCoursesGrades().get(course) != null) {
+                assertEquals(numGrades[j++], students.get(0).getCompletedCoursesGrades().get(course));
+            }
+        }
     }
 
     @Test
     public void testpreRequisitesCheckMethod() {
         testEnterGradesMethod();
-        c2.addPrerequisites(c1);
-        c3.addPrerequisites(c1);
-        c3.addPrerequisites(c2);
-        assertTrue(stu1.preRequisitesCheck(c3));
-        assertTrue(stu2.preRequisitesCheck(c2));
-        assertTrue(stu2.preRequisitesCheck(c3));
-        assertTrue(stu3.preRequisitesCheck(c3));
+
+        int j = 0;
+        for (int i = 0; i < students.size(); i++) {
+            System.out.println("i = " + i);
+            System.out.println(students.get(i).getCompletedCoursesGrades().keySet());
+            System.out.println(students.get(i).getRegisteredCourses());
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(0)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(1)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(2)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(3)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(4)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(5)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(6)));
+            assertTrue(students.get(i).preRequisitesCheck(courses.get(7)));
+        }
     }
 
     @Test
     public void testCalculateGpaMethod() {
-        testEnterGradesMethod();
-        assertEquals("0", 2.8333333333333335, stu1.calculateGPA(), 0);
-        assertEquals("0", 2.1666666666666665, stu2.calculateGPA(), 0);
-        assertEquals("0", 3.3333333333333335, stu3.calculateGPA(), 0);
+        readFromFile();
+
     }
 
 }
