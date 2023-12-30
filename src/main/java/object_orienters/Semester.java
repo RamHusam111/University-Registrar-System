@@ -36,44 +36,59 @@ public class Semester {
 
     // TODO: Test this method
     public void registerInACourse(Course course, List<Student> lStudents, Teacher teacher) {
-
-        boolean y = courses.stream().flatMap(e -> e.getWeeklyMeetings().stream())
+        // Check for room conflict
+        boolean roomConflict = courses.stream()
+                .flatMap(e -> e.getWeeklyMeetings().stream())
                 .anyMatch(wm -> course.getWeeklyMeetings().stream().anyMatch(wm2 -> wm2.hasRoomConflict(wm)));
-        if (y) {
+
+        if (roomConflict) {
             System.out.println("Error registering " + course.getCourseName() + " because another course has conflict with room");
             return;
         }
 
-        if(!teacher.isFreeOn(course.getWeeklyMeetings())){
+        // Check if teacher is free
+        if (!teacher.isFreeOn(course.getWeeklyMeetings())) {
             System.out.println("Error registering " + course.getCourseName() + " because teacher has conflict with course Weekly Meetings");
             return;
         }
 
-        // check if prerequisits are met
+        // Check if prerequisites are met
         lStudents.stream().filter(e -> !e.preRequisitesCheck(course)).forEach(student -> {
-            System.out.println("Prequisites need to be completed for " + student.getId() + ": "
+            System.out.println("Prerequisites need to be completed for " + student.getId() + ": "
                     + student.getName() + "> to registered in " + course.getCourseName());
         });
 
-        // check if student is free on weekly meetings
+        // Check if student is free on weekly meetings
         lStudents.stream().filter(e -> !e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
             System.out.println("Error registering " + student.getId() + " " + student.getName() + " in "
                     + course.getCourseName() + " because of conflict");
         });
 
-        lStudents.stream().filter(e -> e.isFreeOn(course.getWeeklyMeetings()) && e.preRequisitesCheck(course))
+        // Check for course capacity
+        long currentEnrollment = lStudents.stream()
+                .filter(student -> student.getRegisteredCourses().contains(course))
+                .count();
+
+        if (currentEnrollment >= course.getCapacity()) {
+            System.out.println("Error registering students in " + course.getCourseName() + " as the course is already full.");
+            return;
+        }
+
+        // Register students who meet all criteria
+        lStudents.stream()
+                .filter(student -> student.isFreeOn(course.getWeeklyMeetings()) && student.preRequisitesCheck(course))
                 .forEach(student -> {
                     student.getRegisteredCourses().add(course);
-                    System.out.println(
-                            student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
+                    System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
                 });
+
         courses.add(course);
         course.setTeacher(teacher);
         teacher.getRegisteredCourses().add(course);
         this.students.addAll(students);
         this.teachers.add(teacher);
-
     }
+
 
     // TODO: Test this method
     public String giveName() {
