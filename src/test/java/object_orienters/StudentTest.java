@@ -50,7 +50,7 @@ public class StudentTest {
                 String room = values[6];
                 LocalTime hour = LocalTime.parse(values[7]);
                 Course course = new Course(values[0], values[1], fac, creditHours, List
-                        .of(new WeeklyMeeting(day, duration, room, hour)));
+                        .of(new WeeklyMeeting(day, duration, room, hour)),100);
                 courses.add(course);
                 line = bufferedReader.readLine();
             }
