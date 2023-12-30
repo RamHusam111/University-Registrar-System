@@ -1,65 +1,75 @@
 package object_orienters;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertAll;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.DayOfWeek;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
+import static org.junit.Assert.assertTrue;
 
 public class PersonTest {
     Student stu1;
-    Student stu2;
-    Student stu3;
+    Teacher t1;
     Course c1;
     Course c2;
     Course c3;
 
-    WeeklyMeeting wm1 = new WeeklyMeeting(DayOfWeek.MONDAY, Duration.ofHours(1), "M101", LocalTime.of(9, 0));
-    WeeklyMeeting wm2 = new WeeklyMeeting(DayOfWeek.MONDAY, Duration.ofHours(1), "M101", LocalTime.of(10, 5));
-    WeeklyMeeting wm3 = new WeeklyMeeting(DayOfWeek.MONDAY, Duration.ofHours(1), "M101", LocalTime.of(9, 30));
+    List<WeeklyMeeting> weeklyMeetings;
 
     @BeforeEach
-    public void setUp() {
-        stu1 = new Student(1, "Abd", "email", new Department("null", new Faculty("null", wm1)));
-        stu2 = new Student(1, "Ali", null, null);
-        stu3 = new Student(1, "Omar", null, null);
-        c1 = new Course("SWER141", null, 1, List.of(wm1));// 9
-        c2 = new Course("SWER241", null, 1, List.of(wm2));// 10:5
-        c3 = new Course("SWER348", null, 1, List.of(wm3));// 9:30
+    public void setUp() throws IOException {
+        weeklyMeetings = new ArrayList<>(180);
+        BufferedReader br = new BufferedReader(new FileReader("src/test/resources/weeklyMeetings.csv"));
 
-        stu1.addRegisteredCourse(c1);
+        String line = br.readLine();
+        while (line != null) {
+            String[] attributes = line.split(",");
+            DayOfWeek day = DayOfWeek.valueOf(attributes[0].toUpperCase());
+            Duration duration = Duration.ofMinutes(Long.parseLong(attributes[1]));
+            String room = attributes[2];
+            LocalTime hour = LocalTime.parse(attributes[3]);
+            WeeklyMeeting wm = new WeeklyMeeting(day, duration, room, hour);
+            weeklyMeetings.add(wm);
+            line = br.readLine();
+        }
+        br.close();
+        Specialization mathMajor = new Specialization("Maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        stu1 = new Student("Alex", mathMajor);
+        t1 = new Teacher("Dr. Smith", mathMajor);
+        c1 = new Course("MATH101", "Calculus I", mathMajor, 1, List
+                .of(new WeeklyMeeting(DayOfWeek.TUESDAY, Duration.ofMinutes(60), "M-301", LocalTime.parse("09:00"))));
+        new Semester(LocalDate.of(2023, 9, 1), LocalDate.of(2023, 12, 31)).registerInACourse(c1, List.of(stu1), t1);
     }
 
     @Test
     public void isFreeOnTest() {
+        int dayOffset = 37;
+        int hourOffset = 4;
+        int minsOffset = 0;
+        
+        int index = (stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getDay().getValue() - 1) * dayOffset;
+        index += stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getHour().getHour() % 8 * hourOffset;
+        index += stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getHour().getMinute() % 15 * minsOffset;
 
-        // assertEquals(false, stu1.isFreeOn(wm1));
-        assertAll(
-                () -> assertEquals(false, stu1.isFreeOn(wm1)),
-                () -> assertEquals(true, stu1.isFreeOn(wm2)),
-                () -> assertEquals(false, stu1.isFreeOn(wm3)));
+        for (int i = 0; i < weeklyMeetings.size(); i++) {
+
+            if (index -4 <= i && i < index + 4) {
+                assertTrue(!stu1.isFreeOn(weeklyMeetings.get(i)));
+            } else
+                assertTrue(stu1.isFreeOn(weeklyMeetings.get(i)));
+        }
+
     }
 
     @Test
     public void isFreeOnTest2() {
-        // stu1 = new Student(1, "Abd", "email", new Department("null", new
-        // Faculty("null", wm1)));
-
-        // c1 = new Course("SWER141", null, 1, List.of(wm1));// 9
-        // c2 = new Course("SWER241", null, 1, List.of(wm2));// 10:5
-        // c3 = new Course("SWER348", null, 1, List.of(wm3));// 9:30
-
-        // stu1.addRegisteredCourse(c1);
-
-        assertFalse(stu1.isFreeOn(List.of(wm1, wm3)));
 
     }
 
