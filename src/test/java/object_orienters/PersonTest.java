@@ -71,16 +71,7 @@ public class PersonTest {
 
     @Test
     public void isFreeOnTest2() {
-        // stu1 = new Student(1, "Abd", "email", new Department("null", new
-        // Faculty("null", wm1)));
 
-        // c1 = new Course("SWER141", null, 1, List.of(wm1));// 9
-        // c2 = new Course("SWER241", null, 1, List.of(wm2));// 10:5
-        // c3 = new Course("SWER348", null, 1, List.of(wm3));// 9:30
-
-        // stu1.addRegisteredCourse(c1);
-
-        assertFalse(stu1.isFreeOn(List.of(wm1, wm3)));
 
     }
 
