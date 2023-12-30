@@ -29,6 +29,10 @@ public class Student extends Person {
         if (getRegisteredCourses().contains(course)) {
             completedCoursesGrades.put(course, convertGrade(grade));
             getRegisteredCourses().remove(course);
+
+            if( course.getTeacher().isPresent())
+                course.getTeacher().get().getRegisteredCourses().remove(course);
+            course.setTeacher(null);
         }
         else
             System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());

@@ -13,16 +13,31 @@ public class Course {
     private int creditHours;
     private List<Course> preRequisites;
     private List<WeeklyMeeting> weeklyMeetings;
+    private Teacher teacher;
 
+    //TODO: add equal method to check unique if in register method semester
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
             List<WeeklyMeeting> weeklyMeetings) {
         this.courseID = courseID;
         this.courseFaculty = courseFaculty;
-        // courseFaculty.getMajors().add(this);
         this.courseName = courseName;
         this.creditHours = creditHours;
         this.preRequisites = new ArrayList<>(); // optional of nullable
         this.weeklyMeetings = weeklyMeetings;
+        courseType = Type.UNIVERSITY_REQUIREMENT;
+    }
+
+     public Course(String courseID, String courseName, Specialization specialization, int creditHours,
+            List<WeeklyMeeting> weeklyMeetings) {
+        this.courseID = courseID;
+        this.courseFaculty = specialization.getFaculty();
+        courseFaculty.addMajorCourse(this);
+        this.courseName = courseName;
+        this.creditHours = creditHours;
+        this.preRequisites = new ArrayList<>(); // optional of nullable
+        this.weeklyMeetings = weeklyMeetings;
+        courseType = specialization.getType() == Specialization.Type.MAJOR ? Type.MAJOR_REQUIREMENT : Type.MINOR_REQUIREMENT;
+
     }
 
     @Override
@@ -43,17 +58,8 @@ public class Course {
         return courseType;
     }
 
-    public void setCourseType(Type courseType) {
-        this.courseType = courseType;
-    }
-
-    public Faculty getCourseDepartment() {
+    public Faculty getCourseFaculty() {
         return courseFaculty;
-    }
-
-    public void setCourseDepartment(Faculty courseFaculty) {
-        this.courseFaculty = courseFaculty;
-        // courseFaculty.getMajors().add(this);
     }
 
     public String getCourseName() {
@@ -67,8 +73,13 @@ public class Course {
     public int getCreditHours() {
         return creditHours;
     }
+    public Optional<Teacher> getTeacher() {
+        return Optional.ofNullable(teacher);
+    }
 
-   
+     public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
 
     public List<Course> getpreRequisites() {
         return preRequisites;

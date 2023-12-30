@@ -68,6 +68,7 @@ public class Semester {
                             student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
                 });
         courses.add(course);
+        course.setTeacher(teacher);
         teacher.getRegisteredCourses().add(course);
         this.students.addAll(students);
         this.teachers.add(teacher);
