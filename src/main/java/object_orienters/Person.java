@@ -23,6 +23,7 @@ public abstract class Person {
     private static int teacherSequence = 5000;
     private static Year yearValue = Year.of(2023);
 
+
     public Person(Role role, String name) {
         this.name = name;
         this.role = role;
@@ -54,14 +55,27 @@ public abstract class Person {
         }
         return Integer.parseInt(id);
     }
-
     public void addRegisteredCourse(Course course) {
-        this.registeredCourses.add(course);
+        // Check if the person is a student and the course is full
+        if (this.role == Role.STUDENT && course.isFull()) {
+            System.out.println("Cannot register in " + course.getCourseName() + " as the course is already full.");
+        } else {
+            this.registeredCourses.add(course);
+        }
     }
 
     public void addListOfRegisteredCourses(List<Course> list) {
-        list.stream().forEach(course -> this.registeredCourses.add(course));
+        list.stream().forEach(course -> {
+            if (this.role == Role.STUDENT && course.isFull()) {
+                System.out.println("Cannot register in " + course.getCourseName() + " as the course is already full.");
+            } else {
+                this.registeredCourses.add(course);
+            }
+        });
     }
+
+
+
 
     public int getId() {
         return id;
