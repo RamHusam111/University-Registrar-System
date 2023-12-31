@@ -134,7 +134,7 @@ public class Student extends Person {
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
 
-    private enum GPAstatus {
+    public enum GPAstatus {
         HIGHESTHONORS, DEANSLIST, HONORS, NORMAL, PROBATION;
     }
 
