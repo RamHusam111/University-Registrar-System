@@ -86,7 +86,7 @@ public class Semester {
 
 
 
-    // TODO: Test this method
+
     public String giveName() {
         int startMonth = semesterStartDate.getMonthValue();
         if ((startMonth >= 9 && startMonth <= 12)) {
@@ -148,7 +148,6 @@ public class Semester {
         return isSummer;
     }
 
-    // TODO: Test this method
     static long calculateWeeksBetween(LocalDate startDate, LocalDate endDate) {
         // Calculate the number of weeks in the Semester
         return ChronoUnit.WEEKS.between(startDate, endDate);
