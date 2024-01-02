@@ -82,6 +82,10 @@ public class Semester {
         teacher.getRegisteredCourses().add(course);
         this.students.addAll(lStudents);
         this.teachers.add(teacher);
+
+        System.out.println(students);
+        System.err.println(courses);
+        System.out.println(teachers);
     }
 
 
