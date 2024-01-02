@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -18,16 +17,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assume.assumeThat;
-import static org.junit.jupiter.api.Assumptions.assumeFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SemesterTest {
     private LocalDate start;
     private LocalDate end;
     private List<Semester> semesters;
     private Semester semester;
-
 
     @Before
     public void setUp() throws IOException {
@@ -37,8 +34,7 @@ public class SemesterTest {
                 .map(line -> line.split(","))
                 .map(parts -> new Semester(
                         LocalDate.parse(parts[0].trim()),
-                        LocalDate.parse(parts[1].trim())
-                ))
+                        LocalDate.parse(parts[1].trim())))
                 .collect(Collectors.toList());
         semester = semesters.get(0);
         start = LocalDate.of(2023, 9, 1);
@@ -54,9 +50,9 @@ public class SemesterTest {
     @Test
     public void testCalculateWeeksBetween() {
         long expectedWeeks = 17;
-        assertEquals(expectedWeeks, Semester.calculateWeeksBetween(semester.getSemesterStartDate(), semester.getSemesterEndDate()));
+        assertEquals(expectedWeeks,
+                Semester.calculateWeeksBetween(semester.getSemesterStartDate(), semester.getSemesterEndDate()));
     }
-
     @Test
     public void testSemesterInitialization() {
         assertEquals("Fall - 2023", semester.getSemesterName());
@@ -64,14 +60,13 @@ public class SemesterTest {
         assertEquals(start, semester.getSemesterStartDate());
         assertEquals(end, semester.getSemesterEndDate());
     }
-
     @Test
     public void testRegisterWithRoomConflict() throws IOException {
         List<WeeklyMeeting> weeklyMeetings = new ArrayList<>();
         List<Course> courses = new ArrayList<>();
 
         int offset = 8;
-        BufferedReader brwm = new BufferedReader(new FileReader("src\\test\\resources\\WeeklyMeetings.csv"));
+        BufferedReader brwm = new BufferedReader(new FileReader("src/test/resources/WeeklyMeetings.csv"));
         String line = brwm.readLine();
         while (line != null) {
             String[] attributes = line.split(",");
@@ -84,29 +79,28 @@ public class SemesterTest {
         }
         brwm.close();
 
-         BufferedReader br = new BufferedReader(new FileReader("src\\test\\resources\\Courses.csv"));
+        BufferedReader br = new BufferedReader(new FileReader("src/test/resources/Courses.csv"));
         line = br.readLine();
         int i = 0;
         while (line != null) {
-                        String[] attributes = line.split(",");
+            String[] attributes = line.split(",");
             String code = (attributes[0].toUpperCase());
             String name = attributes[1];
             Faculty faculty = new Faculty(attributes[2]);
-            Course c = new Course(code, name, faculty, 2 ,List.of(weeklyMeetings.get(offset * i++), weeklyMeetings.get(offset * i++)), 50);
+            Course c = new Course(code, name, faculty, 2,
+                    List.of(weeklyMeetings.get(offset * i++), weeklyMeetings.get(offset * i++)), 50);
             courses.add(c);
             line = br.readLine();
         }
         br.close();
 
         i = 0;
-       for (Course course : courses) {
-        assumeThat(null);
-        Specialization spec =   new Specialization("maths",new Faculty("Science"), Specialization.Type.MAJOR);
-        semester.registerInACourse(course, List.of(new Student("Jhon",spec)), new Teacher("AahmD", spec));
-            assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1 && semester.getCourse().size() == 1);
-       }
-            
-        
+        for (Course course : courses) {
+            Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+            semester.registerInACourse(course, List.of(new Student("Jhon", spec)), new Teacher("AahmD", spec));
+            assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1
+                    && semester.getCourse().size() == 1);
+        }
 
     }
 

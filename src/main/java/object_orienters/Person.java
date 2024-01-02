@@ -74,9 +74,6 @@ public abstract class Person {
         });
     }
 
-
-
-
     public int getId() {
         return id;
     }

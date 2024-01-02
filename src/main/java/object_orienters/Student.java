@@ -88,7 +88,7 @@ public class Student extends Person {
         return isCurrentlyRegisterd;
     }
 
-    //TODO: test this method
+    // TODO: test this method
     public GPAstatus getGpaStatus() {
         calculateGPA();
         return gpaStatus;
@@ -134,7 +134,7 @@ public class Student extends Person {
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
 
-    private enum GPAstatus {
+    public enum GPAstatus {
         HIGHESTHONORS, DEANSLIST, HONORS, NORMAL, PROBATION;
     }
 
