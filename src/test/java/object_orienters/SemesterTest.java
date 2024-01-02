@@ -17,11 +17,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeThat;
 import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assumptions.assumingThat;
+import static org.junit.jupiter.api.DynamicTest.stream;
 
 public class SemesterTest {
     private LocalDate start;
@@ -33,7 +35,7 @@ public class SemesterTest {
     public void setUp() throws IOException {
         String filePath = "src/test/resources/SemestersDates.csv";
         semesters = Files.lines(Paths.get(filePath))
-      //          .skip(1) // Skipping the header row
+                // .skip(1) // Skipping the header row
                 .map(line -> line.split(","))
                 .map(parts -> new Semester(
                         LocalDate.parse(parts[0].trim()),
@@ -43,7 +45,7 @@ public class SemesterTest {
         start = LocalDate.of(2023, 9, 1);
         end = LocalDate.of(2023, 12, 31);
 
-     }
+    }
 
     @Test
     public void testGiveName() {
@@ -56,7 +58,7 @@ public class SemesterTest {
         assertEquals(expectedWeeks,
                 Semester.calculateWeeksBetween(semester.getSemesterStartDate(), semester.getSemesterEndDate()));
     }
-    
+
     @Test
     public void testSemesterInitialization() {
         assertEquals("Fall - 2023", semester.getSemesterName());
@@ -97,7 +99,7 @@ public class SemesterTest {
         br.close();
 
         i = 0;
-         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
         semester.registerInACourse(courses.get(0), List.of(new Student("Jhon", spec)), new Teacher("AahmD", spec));
 
         for (Course course : courses) {
@@ -113,29 +115,181 @@ public class SemesterTest {
     public void testRegisterTeacherIsFree() throws IOException {
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
         Teacher t = new Teacher("AahmD", spec);
-        assumeTrue(t.isFreeOn(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))));
+        assumeTrue(
+                t.isFreeOn(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))));
         semester.registerInACourse(new Course("MATH101", "Calculus I", spec, 2,
                 List.of(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0)),
                         new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))),
                 50),
                 List.of(new Student("Jhon", spec)), t);
-        assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1 && semester.getCourse().size() == 1);
+        assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1
+                && semester.getCourse().size() == 1);
 
     }
 
     @Test
-    public void testRegisterTeacherIsNotFree() throws IOException {
+    public void testRegisterPreRequistuiteCoursesFail() {
+        Semester semester2 = semesters.get(1);
+        List<Course> courses = new ArrayList<>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/Courses.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[2]);
+                int creditHours = Integer.parseInt(values[3]);
+                DayOfWeek day = DayOfWeek.valueOf(values[4].toUpperCase());
+                Duration duration = Duration.ofMinutes(Long.parseLong(values[5]));
+                String room = values[6];
+                LocalTime hour = LocalTime.parse(values[7]);
+                Course course = new Course(values[0], values[1], fac, creditHours, List
+                        .of(new WeeklyMeeting(day, duration, room, hour)), 200);
+                courses.add(course);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
         Teacher t = new Teacher("AahmD", spec);
-        assumeFalse(t.isFreeOn(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))));
-        semester.registerInACourse(new Course("MATH101", "Calculus I", spec, 2,
-                List.of(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0)),
-                        new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))),
-                50),
-                List.of(new Student("Jhon", spec)), t);
-        assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1 && semester.getCourse().size() == 1);
+        for (int i = 0; i < courses.size(); i++) {
+            if (i != 0) {
+                courses.get(i).addPrerequisites(courses.get(i - 1));
+            }
+        }
+        for (int i = 1; i < courses.size(); i++) {
+            semester2.registerInACourse(courses.get(i), List.of(new Student("Angela", spec)), t);
+            System.out.println("here we start");
+            System.out.println(semester2.getStudents());
+            assertTrue(semester2.getStudents().isEmpty());
+        }
 
     }
 
+    @Test
+    public void testRegisterPreRequistuiteCoursesSuccess() {
+        Semester semester2 = semesters.get(1);
+        List<Course> courses = new ArrayList<>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/Courses.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[2]);
+                int creditHours = Integer.parseInt(values[3]);
+                DayOfWeek day = DayOfWeek.valueOf(values[4].toUpperCase());
+                Duration duration = Duration.ofMinutes(Long.parseLong(values[5]));
+                String room = values[6];
+                LocalTime hour = LocalTime.parse(values[7]);
+                Course course = new Course(values[0], values[1], fac, creditHours, List
+                        .of(new WeeklyMeeting(day, duration, room, hour)), 200);
+                courses.add(course);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("AahmD", spec);
+        Student stu = new Student("Angela", spec);
+        for (int i = 0; i < courses.size(); i++) {
+            if (i != 0) {
+                courses.get(i).addPrerequisites(courses.get(i - 1));
+            }
+            semester2.registerInACourse(courses.get(i), List.of(stu), t);
+            stu.enterCourseGrade(courses.get(i), "A");
+        }
+        assertFalse(semester2.getStudents().isEmpty());
+
+    }
+
+    @Test
+    public void testRegisterCourseCapacityFull() {
+        List<Student> students = new ArrayList<>();
+        WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0));
+        Course course = new Course("SWER348", "Advanced OOP", new Faculty("Applied Science and Technology"), 3,
+                List.of(wm), 1);
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/students.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[1]);
+                Specialization spec = new Specialization(values[2], fac, Specialization.Type.MAJOR);
+                Student stu = new Student(values[0], spec);
+                students.add(stu);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("AahmD", spec);
+        Semester semester3 = semesters.get(2);
+        semester3.registerInACourse(course, students, t);
+        assertTrue(course.getEnrolledStudents().size() == 1);
+    }
+
+    @Test
+    public void testRegisterCourseCapacityNotFull() {
+        List<Student> students = new ArrayList<>();
+        WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0));
+        Course course = new Course("SWER348", "Advanced OOP", new Faculty("Applied Science and Technology"), 3,
+                List.of(wm), 200);
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/students.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[1]);
+                Specialization spec = new Specialization(values[2], fac, Specialization.Type.MAJOR);
+                Student stu = new Student(values[0], spec);
+                students.add(stu);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("AahmD", spec);
+        Semester semester3 = semesters.get(2);
+        semester3.registerInACourse(course, students, t);
+        assertTrue(course.getEnrolledStudents().size() == 150);
+    }
+
+    @Test
+    public void testRegisterOptimalScenario() {
+        List<Student> students = new ArrayList<>();
+        WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0));
+        Course course = new Course("SWER348", "Advanced OOP", new Faculty("Applied Science and Technology"), 3,
+                List.of(wm), 35);
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/students.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[1]);
+                Specialization spec = new Specialization(values[2], fac, Specialization.Type.MAJOR);
+                Student stu = new Student(values[0], spec);
+                students.add(stu);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("Angela Salem", spec);
+        Semester semester3 = semesters.get(2);
+        semester3.registerInACourse(course, students, t);
+
+        assertTrue(course.getEnrolledStudents().size() == 35);
+        assertTrue(semester3.getTeachers().size() == 1);
+        assertTrue(semester3.getCourse().size() == 1);
+    }
 
 }
