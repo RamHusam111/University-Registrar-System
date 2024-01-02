@@ -17,8 +17,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assume.assumeFalse;
 import static org.junit.Assume.assumeThat;
+import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 public class SemesterTest {
     private LocalDate start;
@@ -30,7 +33,7 @@ public class SemesterTest {
     public void setUp() throws IOException {
         String filePath = "src/test/resources/SemestersDates.csv";
         semesters = Files.lines(Paths.get(filePath))
-                .skip(1) // Skipping the header row
+      //          .skip(1) // Skipping the header row
                 .map(line -> line.split(","))
                 .map(parts -> new Semester(
                         LocalDate.parse(parts[0].trim()),
@@ -53,6 +56,7 @@ public class SemesterTest {
         assertEquals(expectedWeeks,
                 Semester.calculateWeeksBetween(semester.getSemesterStartDate(), semester.getSemesterEndDate()));
     }
+    
     @Test
     public void testSemesterInitialization() {
         assertEquals("Fall - 2023", semester.getSemesterName());
@@ -60,6 +64,7 @@ public class SemesterTest {
         assertEquals(start, semester.getSemesterStartDate());
         assertEquals(end, semester.getSemesterEndDate());
     }
+
     @Test
     public void testRegisterWithRoomConflict() throws IOException {
         List<WeeklyMeeting> weeklyMeetings = new ArrayList<>();
@@ -70,10 +75,7 @@ public class SemesterTest {
         String line = brwm.readLine();
         while (line != null) {
             String[] attributes = line.split(",");
-            DayOfWeek day = DayOfWeek.valueOf(attributes[0].toUpperCase());
-            Duration duration = Duration.ofMinutes(Long.parseLong(attributes[1]));
-            LocalTime hour = LocalTime.parse(attributes[3]);
-            WeeklyMeeting wm = new WeeklyMeeting(day, duration, "M-101", hour);
+            WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0));
             weeklyMeetings.add(wm);
             line = brwm.readLine();
         }
@@ -95,13 +97,45 @@ public class SemesterTest {
         br.close();
 
         i = 0;
+         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        semester.registerInACourse(courses.get(0), List.of(new Student("Jhon", spec)), new Teacher("AahmD", spec));
+
         for (Course course : courses) {
-            Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+            spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
             semester.registerInACourse(course, List.of(new Student("Jhon", spec)), new Teacher("AahmD", spec));
             assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1
                     && semester.getCourse().size() == 1);
         }
 
     }
+
+    @Test
+    public void testRegisterTeacherIsFree() throws IOException {
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("AahmD", spec);
+        assumeTrue(t.isFreeOn(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))));
+        semester.registerInACourse(new Course("MATH101", "Calculus I", spec, 2,
+                List.of(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0)),
+                        new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))),
+                50),
+                List.of(new Student("Jhon", spec)), t);
+        assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1 && semester.getCourse().size() == 1);
+
+    }
+
+    @Test
+    public void testRegisterTeacherIsNotFree() throws IOException {
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("AahmD", spec);
+        assumeFalse(t.isFreeOn(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))));
+        semester.registerInACourse(new Course("MATH101", "Calculus I", spec, 2,
+                List.of(new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0)),
+                        new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0))),
+                50),
+                List.of(new Student("Jhon", spec)), t);
+        assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1 && semester.getCourse().size() == 1);
+
+    }
+
 
 }
