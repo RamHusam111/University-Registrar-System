@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Course {
-    private final int capacity;
+    private final int CAPACITY;
     private Type courseType;
     private Faculty courseFaculty;
     private String courseID;
@@ -16,11 +16,10 @@ public class Course {
     private Teacher teacher;
     private List<Student> enrolledStudents;
 
-
-    //TODO: add equal method to check unique if in register method semester
+    // TODO: add equal method to check unique if in register method semester
     // Constructor for university requirement courses
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
-                  List<WeeklyMeeting> weeklyMeetings, int capacity) {
+            List<WeeklyMeeting> weeklyMeetings, int CAPACITY) {
         this.enrolledStudents = new ArrayList<>();
 
         this.courseID = courseID;
@@ -29,13 +28,13 @@ public class Course {
         this.creditHours = creditHours;
         this.preRequisites = new ArrayList<>();
         this.weeklyMeetings = weeklyMeetings;
-        this.capacity = capacity;  // Initialize the capacity field
+        this.CAPACITY = CAPACITY; // Initialize the capacity field
         courseType = Type.UNIVERSITY_REQUIREMENT;
     }
 
     // Constructor for major/minor requirement courses
     public Course(String courseID, String courseName, Specialization specialization, int creditHours,
-                  List<WeeklyMeeting> weeklyMeetings, int capacity) {
+            List<WeeklyMeeting> weeklyMeetings, int CAPACITY) {
         this.enrolledStudents = new ArrayList<>();
 
         this.courseID = courseID;
@@ -45,9 +44,11 @@ public class Course {
         this.creditHours = creditHours;
         this.preRequisites = new ArrayList<>();
         this.weeklyMeetings = weeklyMeetings;
-        this.capacity = capacity;  // Initialize the capacity field
-        courseType = specialization.getType() == Specialization.Type.MAJOR ? Type.MAJOR_REQUIREMENT : Type.MINOR_REQUIREMENT;
+        this.CAPACITY = CAPACITY; // Initialize the capacity field
+        courseType = specialization.getType() == Specialization.Type.MAJOR ? Type.MAJOR_REQUIREMENT
+                : Type.MINOR_REQUIREMENT;
     }
+
     // Method to enroll a student in the course
     public void enrollStudent(Student student) {
         if (!isFull()) {
@@ -59,10 +60,8 @@ public class Course {
 
     // Method to check if the course is full
     public boolean isFull() {
-        return enrolledStudents.size() >= capacity;
+        return enrolledStudents.size() >= this.getCapacity();
     }
-
-
 
     @Override
     public String toString() {
@@ -86,6 +85,10 @@ public class Course {
         return courseFaculty;
     }
 
+    public List<Student> getEnrolledStudents() {
+        return enrolledStudents;
+    }
+
     public String getCourseName() {
         return courseName;
     }
@@ -97,11 +100,12 @@ public class Course {
     public int getCreditHours() {
         return creditHours;
     }
+
     public Optional<Teacher> getTeacher() {
         return Optional.ofNullable(teacher);
     }
 
-     public void setTeacher(Teacher teacher) {
+    public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
@@ -120,9 +124,10 @@ public class Course {
     public void setWeeklyMeetings(List<WeeklyMeeting> weeklyMeetings) {
         this.weeklyMeetings = weeklyMeetings;
     }
+
     // Getter for capacity
     public int getCapacity() {
-        return capacity;
+        return CAPACITY;
     }
 
     public enum Type {

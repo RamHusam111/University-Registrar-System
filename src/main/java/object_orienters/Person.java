@@ -23,7 +23,6 @@ public abstract class Person {
     private static int teacherSequence = 5000;
     private static Year yearValue = Year.of(2023);
 
-
     public Person(Role role, String name) {
         this.name = name;
         this.role = role;
@@ -55,6 +54,7 @@ public abstract class Person {
         }
         return Integer.parseInt(id);
     }
+
     public void addRegisteredCourse(Course course) {
         // Check if the person is a student and the course is full
         if (this.role == Role.STUDENT && course.isFull()) {
@@ -132,11 +132,11 @@ public abstract class Person {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
 
-    public enum Role{
+    public enum Role {
         STUDENT, TEACHER, STAFF;
     }
 
-    //SCHEDULE CLASS
+    // SCHEDULE CLASS
     private class Schedule {
         private List<Course> courses;
         Map<WeeklyMeeting, Course> meetingCourseMap;
@@ -154,6 +154,7 @@ public abstract class Person {
             return courses.stream().mapToInt(e -> e.getCreditHours()).sum();
         }
 
+        // // TODO: test this method
         // Method to display the schedule
         public String displaySchedule() {
             StringBuilder scheduleBuilder = new StringBuilder();
