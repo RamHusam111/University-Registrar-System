@@ -64,6 +64,40 @@ public class SemesterTest {
     }
 
     @Test
+    public void testRegister2CoursesSameID() {
+        Semester semester2 = semesters.get(1);
+        List<Course> courses = new ArrayList<>();
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/Courses.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Faculty fac = new Faculty(values[2]);
+                int creditHours = Integer.parseInt(values[3]);
+                DayOfWeek day = DayOfWeek.valueOf(values[4].toUpperCase());
+                Duration duration = Duration.ofMinutes(Long.parseLong(values[5]));
+                String room = values[6];
+                LocalTime hour = LocalTime.parse(values[7]);
+                Course course = new Course(values[0], values[1], fac, creditHours, List
+                        .of(new WeeklyMeeting(day, duration, room, hour)), 200);
+                courses.add(course);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        Teacher t = new Teacher("AahmD", spec);
+        Student stu = new Student("Angela", spec);
+        Course c1 = courses.get(0);
+        Course c2 = courses.get(0);
+        semester2.registerInACourse(c1, List.of(stu), t);
+        semester2.registerInACourse(c2, List.of(stu), t);
+        assertTrue(stu.getRegisteredCourses().size() == 1);
+    }
+
+    @Test
     public void testRegisterWithRoomConflict() throws IOException {
         List<WeeklyMeeting> weeklyMeetings = new ArrayList<>();
         List<Course> courses = new ArrayList<>();
@@ -72,7 +106,7 @@ public class SemesterTest {
         BufferedReader brwm = new BufferedReader(new FileReader("src/test/resources/WeeklyMeetings.csv"));
         String line = brwm.readLine();
         while (line != null) {
-            //String[] attributes = line.split(",");
+            // String[] attributes = line.split(",");
             WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0));
             weeklyMeetings.add(wm);
             line = brwm.readLine();

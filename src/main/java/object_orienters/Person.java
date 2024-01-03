@@ -24,8 +24,10 @@ public abstract class Person {
     private static Year yearValue = Year.of(2023);
 
     /**
-     * Constructs a new Person=> (Teacher or Student) with the specified role and name.
-     * Automatically assigns an ID, email, and sets the current date as the enrollment date.
+     * Constructs a new Person=> (Teacher or Student) with the specified role and
+     * name.
+     * Automatically assigns an ID, email, and sets the current date as the
+     * enrollment date.
      * Initializes an empty list for registered courses.
      *
      * @param role The role of the person ( STUDENT, TEACHER).
@@ -38,11 +40,14 @@ public abstract class Person {
         registeredCourses = new ArrayList<>();
         this.id = this.setID();
         this.email = this.id + "@objectOrienters.com";
+        this.schedule = new Schedule(this.getRegisteredCourses());
     }
 
     /**
-     * Generates and sets a unique ID for the person based on their role and enrollment year.
-     * This ID is a combination of the year of enrollment and a sequence number, which differs
+     * Generates and sets a unique ID for the person based on their role and
+     * enrollment year.
+     * This ID is a combination of the year of enrollment and a sequence number,
+     * which differs
      * between students and teachers.
      *
      * @return The generated unique ID.
@@ -70,16 +75,22 @@ public abstract class Person {
         }
         return Integer.parseInt(id);
     }
+
     /**
      * Registers the student in a given course, if possible.
-     * If the person is a student and the course is full, registration is not allowed.
+     * If the person is a student and the course is full, registration is not
+     * allowed.
      *
      * @param course The course to register in.
      */
 
     public void addRegisteredCourse(Course course) {
         // Check if the person is a student and the course is full
-        if (this.role == Role.STUDENT && course.isFull()) {
+        if (this.getRegisteredCourses().stream()
+                .anyMatch(e -> e.getCourseID().equalsIgnoreCase(course.getCourseID()))) {
+            System.out.println("Cannot register in " + course.getCourseName()
+                    + " as the student is already enrolled in a course with the same ID: " + course.getCourseID());
+        } else if (this.role == Role.STUDENT && course.isFull()) {
             System.out.println("Cannot register in " + course.getCourseName() + " as the course is already full.");
         } else {
             this.registeredCourses.add(course);
@@ -88,22 +99,25 @@ public abstract class Person {
 
     /**
      * Adds a list of courses to the Student current list of registered courses.
-     * This method is intended to efficiently register the Student in multiple courses in one operation.
+     * This method is intended to efficiently register the Student in multiple
+     * courses in one operation.
      * It may include validation checks such as ensuring courses are not full or
      * checking for scheduling conflicts.
      *
-     * @param list A list of courses to be added to the Student's registered courses.
-     *                Each course in the list should be an instance of the Course class.
+     * @param list A list of courses to be added to the Student's registered
+     *             courses.
+     *             Each course in the list should be an instance of the Course
+     *             class.
      */
-    public void addListOfRegisteredCourses(List<Course> list) {
-        list.stream().forEach(course -> {
-            if (this.role == Role.STUDENT && course.isFull()) {
-                System.out.println("Cannot register in " + course.getCourseName() + " as the course is already full.");
-            } else {
-                this.registeredCourses.add(course);
-            }
-        });
-    }
+    // public void addListOfRegisteredCourses(List<Course> list) {
+    //     list.stream().forEach(course -> {
+    //         if (this.role == Role.STUDENT && course.isFull()) {
+    //             System.out.println("Cannot register in " + course.getCourseName() + " as the course is already full.");
+    //         } else {
+    //             this.registeredCourses.add(course);
+    //         }
+    //     });
+    // }
 
     public int getId() {
         return id;
@@ -121,11 +135,9 @@ public abstract class Person {
         return registeredCourses;
     }
 
-    // TODO: test this method
     public int getCreditLoad() {
         return schedule.getCreditLoad();
     }
-
 
     private Schedule getSchedule() {
         return schedule;
@@ -134,18 +146,21 @@ public abstract class Person {
     public LocalDate getDateEnrolled() {
         return dateEnrolled;
     }
+
     /**
      * Displays the person's schedule in a readable format.
-     * This method organizes and presents the schedule, showing the timing and details
+     * This method organizes and presents the schedule, showing the timing and
+     * details
      * of the classes or appointments the person has.
      *
      *
-     * @return A string representation of the person's schedule, formatted for easy reading.
-     *         If the schedule is empty or not set, this method may return an appropriate
+     * @return A string representation of the person's schedule, formatted for easy
+     *         reading.
+     *         If the schedule is empty or not set, this method may return an
+     *         appropriate
      *         message indicating so.
      */
     public void showSchedule() {
-        this.schedule = new Schedule(this.getRegisteredCourses());
         System.err.println(this.getSchedule().displaySchedule());
     }
 
@@ -154,9 +169,8 @@ public abstract class Person {
         return list.stream().allMatch(e -> isFreeOn(e));
     }
 
-    //TESTED SUCCESSFULLY
+    // TESTED SUCCESSFULLY
     public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
-
 
         return registeredCourses.stream()
                 .flatMap(course -> course.getWeeklyMeetings().stream())
@@ -166,20 +180,25 @@ public abstract class Person {
                                     || wm.getHour().isAfter(weeklyMeeting.getHour().plus(weeklyMeeting.getDuration())));
                 });
     }
+
     /**
      * Returns a string representation of the Teacher or Student.
-     * This method typically includes key attributes of the person, such as name, ID, role,
+     * This method typically includes key attributes of the person, such as name,
+     * ID, role,
      * email. It returns summary of the
      * person's information.
      *
-     * @return A formatted string representing the person's(Teacher, Student) details.
+     * @return A formatted string representing the person's(Teacher, Student)
+     *         details.
      */
     @Override
     public String toString() {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
+
     /**
-     * Enumeration representing the different roles a person can have in an educational context.
+     * Enumeration representing the different roles a person can have in an
+     * educational context.
      * This includes roles like STUDENT, TEACHER, STAFF. Each role can be associated
      * with specific privileges, access rights, or behaviors within the system.
      *
@@ -200,8 +219,10 @@ public abstract class Person {
                     .forEach(weeklyMeeting -> meetingCourseMap.put(weeklyMeeting, course)));
 
         }
+
         /**
-         * Calculates and returns the total credit hours of courses in which the student is enrolled.
+         * Calculates and returns the total credit hours of courses in which the student
+         * is enrolled.
          *
          * @return The total credit hours.
          */
@@ -209,14 +230,14 @@ public abstract class Person {
             return courses.stream().mapToInt(e -> e.getCreditHours()).sum();
         }
 
-
         /**
-         * Generates and returns a string representation of the person's(Teacher, Student) weekly schedule.
-         * The schedule is organized by day, listing each course meeting time and location.
+         * Generates and returns a string representation of the person's(Teacher,
+         * Student) weekly schedule.
+         * The schedule is organized by day, listing each course meeting time and
+         * location.
          *
          * @return A formatted string of the weekly schedule.
          */
-        // TODO: test this method
         // Method to display the schedule
         public String displaySchedule() {
             StringBuilder scheduleBuilder = new StringBuilder();
@@ -244,16 +265,21 @@ public abstract class Person {
 
             return scheduleBuilder.toString();
         }
+
         /**
          * Formats the details of a single meeting for display in a schedule.
-         * This method is responsible for creating a string representation of a meeting, including
-         * the time, duration, course name, and room information. The output is typically used
+         * This method is responsible for creating a string representation of a meeting,
+         * including
+         * the time, duration, course name, and room information. The output is
+         * typically used
          * as part of a larger schedule display.
          *
-         * @param course The course associated with the meeting.
-         * @param meeting The meeting to be formatted. This object should include details such
+         * @param course  The course associated with the meeting.
+         * @param meeting The meeting to be formatted. This object should include
+         *                details such
          *                as the meeting time, duration, and room.
-         * @return A formatted string representing the meeting's details, suitable for inclusion
+         * @return A formatted string representing the meeting's details, suitable for
+         *         inclusion
          *         in a schedule display.
          */
 
