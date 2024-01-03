@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
 
 public class StudentTest {
 
@@ -21,6 +22,7 @@ public class StudentTest {
     List<Course> courses = new ArrayList<>();
     Semester sem;
 
+    @BeforeEach
     public void readFromFile() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/students.csv"));
@@ -62,7 +64,6 @@ public class StudentTest {
 
     @Test
     public void testEnterGradesMethod() {
-        readFromFile();
         sem = new Semester(LocalDate.of(2023, 9, 1), LocalDate.of(2023, 12, 31));
         String[] grades = { "A", "B+", "B", "C+", "C", "D+", "D", "F" };
         ArrayList<String> list = new ArrayList<>(Arrays.asList(grades));

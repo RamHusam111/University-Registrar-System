@@ -17,7 +17,7 @@ public abstract class Person {
     private String email;
     private Role role = Role.STAFF;
     private List<Course> registeredCourses;
-    protected Schedule schedule;
+    private Schedule schedule;
     private LocalDate dateEnrolled; // YOUSEF CHANGED IT FROM yearEnrolled to dateEnrolled
     private static int stuSequence = 1000;
     private static int teacherSequence = 5000;
@@ -139,7 +139,8 @@ public abstract class Person {
      *         message indicating so.
      */
     public void showSchedule() {
-        this.getSchedule().displaySchedule();
+        this.schedule = new Schedule(this.getRegisteredCourses());
+        System.err.println(this.getSchedule().displaySchedule());
     }
 
     // TODO: test this method
@@ -210,7 +211,7 @@ public abstract class Person {
          *
          * @return A formatted string of the weekly schedule.
          */
-        // // TODO: test this method
+        // TODO: test this method
         // Method to display the schedule
         public String displaySchedule() {
             StringBuilder scheduleBuilder = new StringBuilder();
