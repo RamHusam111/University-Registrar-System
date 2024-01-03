@@ -50,7 +50,8 @@ public class Semester {
     /**
      * Registers a course for the semester, including assigning a teacher and
      * enrolling students.
-     * Checks if 2 courses have the same ID, room conflicts, teacher availability, and student prerequisites.
+     * Checks if 2 courses have the same ID, room conflicts, teacher availability,
+     * and student prerequisites.
      * Only enrolls students who meet all criteria.
      *
      * @param course    The course to be registered.

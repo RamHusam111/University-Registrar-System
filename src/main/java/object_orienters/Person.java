@@ -161,7 +161,7 @@ public abstract class Person {
      *         message indicating so.
      */
     public void showSchedule() {
-        System.err.println(this.getSchedule().displaySchedule());
+        System.out.println(this.getSchedule().displaySchedule());
     }
 
     // TESTED SUCCESSFULLY
