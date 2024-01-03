@@ -23,11 +23,12 @@ public class Semester {
 
     /**
      * Constructs a new Semester with specified start and end dates.
-     * Initializes the semester name, calculates its length in weeks, and sets flags for
+     * Initializes the semester name, calculates its length in weeks, and sets flags
+     * for
      * whether it's a Fall, Spring, or Summer semester.
      *
      * @param semesterStartDate The start date of the semester.
-     * @param semesterEndDate The end date of the semester.
+     * @param semesterEndDate   The end date of the semester.
      */
 
     public Semester(LocalDate semesterStartDate, LocalDate semesterEndDate) {
@@ -47,16 +48,23 @@ public class Semester {
     }
 
     /**
-     * Registers a course for the semester, including assigning a teacher and enrolling students.
-     * Checks for room conflicts, teacher availability, and student prerequisites.
+     * Registers a course for the semester, including assigning a teacher and
+     * enrolling students.
+     * Checks if 2 courses have the same ID, room conflicts, teacher availability, and student prerequisites.
      * Only enrolls students who meet all criteria.
      *
-     * @param course The course to be registered.
+     * @param course    The course to be registered.
      * @param lStudents The list of students attempting to register for the course.
-     * @param teacher The teacher assigned to the course.
+     * @param teacher   The teacher assigned to the course.
      */
     // TESTED SUCCESSFULLY
     public void registerInACourse(Course course, List<Student> lStudents, Teacher teacher) {
+        // Check if 2 courses have the same ID
+        if (courses.stream().anyMatch(e -> e.getCourseID().equalsIgnoreCase(course.getCourseID()))) {
+            System.out.println("There's already a course with the ID: " + course.getCourseID()
+                    + " cannot have 2 courses with the same ID.");
+            return;
+        }
         // Check for room conflict
         boolean roomConflict = courses.stream()
                 .flatMap(e -> e.getWeeklyMeetings().stream())
@@ -109,8 +117,10 @@ public class Semester {
         // Set up the course with the teacher and add to courses list
 
     }
+
     /**
-     * Determines the name of the semester (Fall, Spring, or Summer) based on its start date.
+     * Determines the name of the semester (Fall, Spring, or Summer) based on its
+     * start date.
      *
      * @return The name of the semester.
      */
@@ -179,7 +189,7 @@ public class Semester {
      * Calculates the number of weeks between two dates(Start date and End date).
      *
      * @param startDate The start date.
-     * @param endDate The end date.
+     * @param endDate   The end date.
      * @return The number of weeks between the two dates.
      */
     static long calculateWeeksBetween(LocalDate startDate, LocalDate endDate) {

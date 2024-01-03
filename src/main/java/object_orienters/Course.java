@@ -26,12 +26,10 @@ public class Course {
      * @param weeklyMeetings The weekly meetings scheduled for the course.
      * @param CAPACITY The maximum number of students that can be enrolled.
      */
-    // TODO: add equal method to check unique if in register method semester
     // Constructor for university requirement courses
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
             List<WeeklyMeeting> weeklyMeetings, int CAPACITY) {
         this.enrolledStudents = new ArrayList<>();
-
         this.courseID = courseID;
         this.courseFaculty = courseFaculty;
         this.courseName = courseName;
