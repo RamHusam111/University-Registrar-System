@@ -109,7 +109,7 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public List<Course> getpreRequisites() {
+    public List<Course> getPrerequisites() {
         return preRequisites;
     }
 

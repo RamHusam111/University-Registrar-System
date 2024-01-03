@@ -2,7 +2,6 @@ package object_orienters;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,10 +30,11 @@ public class Semester {
         this.students = new HashSet<>();
         this.teachers = new HashSet<>();
         this.courses = new HashSet<>();
-        this.weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
         this.isFall = this.name.equals("Fall");
         this.isSpring = this.name.equals("Spring");
         this.isSummer = this.name.equals("Summer");
+        this.weeksNumber = calculateWeeksBetween(semesterStartDate, semesterEndDate);
+
     }
 
     // TODO: Test this method
@@ -156,6 +156,11 @@ public class Semester {
     static long calculateWeeksBetween(LocalDate startDate, LocalDate endDate) {
         // Calculate the number of weeks in the Semester
         return ChronoUnit.WEEKS.between(startDate, endDate);
+    }
+
+    @Override
+    public String toString() {
+        return "Semester: " + semesterName + "[from:" + semesterStartDate + ", to:" + semesterEndDate + "]";
     }
 
 }

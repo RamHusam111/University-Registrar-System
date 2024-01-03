@@ -35,4 +35,8 @@ public class Specialization {
     public List<Teacher> getTeachers() {
         return this.teachers;
     }
+
+    public String toString() {
+        return name;
+    }
 }

@@ -18,12 +18,8 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assume.assumeFalse;
-import static org.junit.Assume.assumeThat;
 import static org.junit.Assume.assumeTrue;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assumptions.assumingThat;
-import static org.junit.jupiter.api.DynamicTest.stream;
 
 public class SemesterTest {
     private LocalDate start;
@@ -76,7 +72,7 @@ public class SemesterTest {
         BufferedReader brwm = new BufferedReader(new FileReader("src/test/resources/WeeklyMeetings.csv"));
         String line = brwm.readLine();
         while (line != null) {
-            String[] attributes = line.split(",");
+            //String[] attributes = line.split(",");
             WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.FRIDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(8, 0));
             weeklyMeetings.add(wm);
             line = brwm.readLine();

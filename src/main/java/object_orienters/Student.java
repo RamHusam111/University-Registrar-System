@@ -1,6 +1,5 @@
 package object_orienters;
 
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,7 +8,7 @@ import java.util.Optional;
 public class Student extends Person {
     private Specialization major;
     private Optional<Specialization> minor;
-    private final boolean isCurrentlyRegisterd;
+    private boolean isCurrentlyRegistered;
     private Map<Course, Double> completedCoursesGrades;
     private GPAstatus gpaStatus;
     private Faculty faculty;
@@ -17,7 +16,7 @@ public class Student extends Person {
     public Student(String name, Specialization major) {
         super(Role.STUDENT, name);
         this.major = major;
-        isCurrentlyRegisterd = true;
+        isCurrentlyRegistered = false;
         completedCoursesGrades = new HashMap<>();
         this.faculty = major.getFaculty();
         faculty.getStudents().add(this);
@@ -26,13 +25,12 @@ public class Student extends Person {
     public Student(String name, Specialization major, Specialization minor) {
         super(Role.STUDENT, name);
         this.major = major;
-        this.minor = Optional.of(minor);
-        isCurrentlyRegisterd = true;
+        this.minor = Optional.ofNullable(minor);
+        isCurrentlyRegistered = true;
         completedCoursesGrades = new HashMap<>();
         this.faculty = major.getFaculty();
         faculty.getStudents().add(this);
     }
-
 
     // Changed
     public void enterCourseGrade(Course course, String grade) {
@@ -40,11 +38,10 @@ public class Student extends Person {
             completedCoursesGrades.put(course, convertGrade(grade));
             getRegisteredCourses().remove(course);
 
-            if( course.getTeacher().isPresent())
+            if (course.getTeacher().isPresent())
                 course.getTeacher().get().getRegisteredCourses().remove(course);
             course.setTeacher(null);
-        }
-        else
+        } else
             System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());
     }
 
@@ -84,8 +81,9 @@ public class Student extends Person {
         return faculty;
     }
 
-    public boolean isCurrentlyRegisterd() {
-        return isCurrentlyRegisterd;
+    public boolean isCurrentlyRegistered() {
+        isCurrentlyRegistered = this.getRegisteredCourses().size() > 0;
+        return isCurrentlyRegistered;
     }
 
     // TODO: test this method
@@ -100,10 +98,8 @@ public class Student extends Person {
 
     // TESTED
     public boolean preRequisitesCheck(Course course) {
-        List<Course> preRequisites = course.getpreRequisites();
+        List<Course> preRequisites = course.getPrerequisites();
         return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e));
-        // Angela changed the method from registerCourse to completed courses ^(in the
-        // allMatch method)
     }
 
     // TESTED
@@ -130,12 +126,20 @@ public class Student extends Person {
     public String getReport() {
         return super.toString() + "\nMajor:" + this.getMajor() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
                 + this.getDateEnrolled().getYear() + "\nRegistered this semester: "
-                + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
+                + this.isCurrentlyRegistered() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
 
     public enum GPAstatus {
         HIGHESTHONORS, DEANSLIST, HONORS, NORMAL, PROBATION;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" + this.getName() +
+                ", major: " + major +
+                ", minor: " + minor +
+                ", isRegisterd=" + isCurrentlyRegistered + '}';
     }
 
 }
