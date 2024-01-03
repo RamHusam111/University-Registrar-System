@@ -1,150 +1,200 @@
-EDU380,EDU Course 380,Arts,4,Wednesday,90,M-392,11:00
-HIST296,HIST Course 296,Business,4,Monday,120,M-106,13:30
-HIST137,HIST Course 137,Education,3,Thursday,90,M-259,08:00
-SPEC217,SPEC Course 217,Education,3,Tuesday,60,M-121,08:30
-FIN370,FIN Course 370,Science,3,Monday,60,M-396,13:30
-PHIL171,PHIL Course 171,Arts,4,Wednesday,90,M-186,14:00
-MGMT156,MGMT Course 156,Science,2,Thursday,90,M-126,11:00
-EDU461,EDU Course 461,Education,4,Monday,120,M-197,11:30
-BUSI289,BUSI Course 289,Science,3,Thursday,90,M-265,14:30
-ART318,ART Course 318,Science,3,Monday,120,M-204,16:30
-HIST165,HIST Course 165,Arts,2,Tuesday,90,M-398,09:00
-BIOL154,BIOL Course 154,Science,3,Wednesday,120,M-343,13:30
-ART258,ART Course 258,Science,3,Friday,120,M-373,16:00
-EDU207,EDU Course 207,Business,4,Friday,60,M-203,12:00
-CSCI241,CSCI Course 241,Education,4,Friday,60,M-135,16:00
-ELEC154,ELEC Course 154,Business,3,Tuesday,60,M-219,10:00
-EDU232,EDU Course 232,Arts,2,Tuesday,90,M-313,09:30
-PRIM268,PRIM Course 268,Engineering,4,Monday,60,M-380,15:00
-CSCI323,CSCI Course 323,Arts,4,Monday,120,M-136,08:00
-EDU469,EDU Course 469,Education,2,Monday,120,M-367,13:30
-FIN137,FIN Course 137,Education,4,Wednesday,90,M-383,13:30
-CHEM422,CHEM Course 422,Arts,4,Monday,90,M-307,16:30
-MKTG148,MKTG Course 148,Science,3,Friday,90,M-323,16:30
-MGMT316,MGMT Course 316,Business,4,Thursday,60,M-174,11:30
-EDU289,EDU Course 289,Business,2,Wednesday,60,M-235,09:30
-PHYS270,PHYS Course 270,Education,2,Friday,120,M-171,14:30
-MGMT398,MGMT Course 398,Business,2,Friday,90,M-261,10:00
-CHEM373,CHEM Course 373,Science,2,Wednesday,60,M-394,16:00
-MECH402,MECH Course 402,Education,3,Thursday,60,M-336,16:30
-HIST125,HIST Course 125,Education,4,Monday,120,M-325,11:00
-HIST417,HIST Course 417,Science,4,Friday,90,M-331,08:30
-EDU409,EDU Course 409,Engineering,3,Friday,60,M-122,14:30
-CSCI494,CSCI Course 494,Business,4,Friday,60,M-215,11:30
-MKTG359,MKTG Course 359,Arts,4,Tuesday,60,M-225,12:30
-SPEC451,SPEC Course 451,Science,2,Wednesday,90,M-295,14:00
-MECH323,MECH Course 323,Business,3,Tuesday,60,M-231,10:30
-MUSC158,MUSC Course 158,Education,2,Tuesday,60,M-319,12:00
-BUSI151,BUSI Course 151,Science,2,Tuesday,90,M-348,13:00
-ELEC257,ELEC Course 257,Business,4,Thursday,60,M-319,08:30
-BIOL272,BIOL Course 272,Business,2,Monday,90,M-213,13:00
-BIOL205,BIOL Course 205,Education,4,Tuesday,90,M-349,09:30
-MATH198,MATH Course 198,Arts,2,Friday,90,M-163,12:00
-BIOL390,BIOL Course 390,Science,4,Thursday,60,M-289,08:00
-CHEM267,CHEM Course 267,Engineering,2,Wednesday,60,M-301,13:30
-MGMT244,MGMT Course 244,Engineering,2,Tuesday,120,M-193,12:30
-FIN237,FIN Course 237,Education,4,Thursday,120,M-233,13:00
-MUSC198,MUSC Course 198,Arts,4,Tuesday,60,M-332,16:30
-MATH348,MATH Course 348,Arts,2,Tuesday,90,M-218,14:00
-MECH330,MECH Course 330,Education,4,Tuesday,90,M-149,15:00
-CHEM134,CHEM Course 134,Education,4,Monday,60,M-175,13:00
-FIN155,FIN Course 155,Science,3,Tuesday,60,M-348,16:00
-MUSC325,MUSC Course 325,Arts,2,Thursday,90,M-136,14:00
-ART256,ART Course 256,Science,4,Thursday,60,M-337,11:30
-CHEM110,CHEM Course 110,Business,4,Thursday,90,M-353,08:00
-CSCI141,CSCI Course 141,Education,4,Monday,60,M-266,12:30
-ENGR403,ENGR Course 403,Science,4,Wednesday,120,M-179,12:30
-HIST322,HIST Course 322,Business,3,Monday,120,M-363,12:00
-MUSC217,MUSC Course 217,Business,4,Monday,60,M-349,15:30
-PHIL498,PHIL Course 498,Arts,4,Monday,60,M-155,08:00
-MATH141,MATH Course 141,Engineering,4,Monday,90,M-200,08:00
-BIOL228,BIOL Course 228,Science,4,Tuesday,60,M-369,09:30
-MUSC420,MUSC Course 420,Business,4,Tuesday,60,M-278,12:30
-ENGR390,ENGR Course 390,Engineering,4,Friday,120,M-162,14:30
-FIN268,FIN Course 268,Business,3,Wednesday,90,M-187,16:00
-MECH437,MECH Course 437,Business,4,Monday,60,M-149,16:30
-MATH396,MATH Course 396,Business,2,Monday,120,M-266,10:00
-ART243,ART Course 243,Engineering,2,Friday,120,M-271,14:00
-SECO319,SECO Course 319,Education,4,Friday,60,M-378,09:00
-PHIL337,PHIL Course 337,Business,3,Thursday,90,M-170,09:30
-MECH200,MECH Course 200,Business,3,Thursday,120,M-332,16:30
-MATH135,MATH Course 135,Science,2,Tuesday,90,M-170,16:00
-BIOL167,BIOL Course 167,Science,2,Tuesday,120,M-385,16:30
-ART324,ART Course 324,Education,3,Thursday,90,M-320,15:00
-FIN329,FIN Course 329,Arts,2,Thursday,120,M-109,13:00
-HIST167,HIST Course 167,Engineering,3,Thursday,60,M-293,16:30
-HIST297,HIST Course 297,Science,3,Monday,120,M-323,11:30
-MECH300,MECH Course 300,Engineering,3,Thursday,120,M-124,11:30
-PHYS297,PHYS Course 297,Education,2,Friday,90,M-164,16:00
-CHEM211,CHEM Course 211,Education,4,Wednesday,60,M-359,08:30
-PHIL159,PHIL Course 159,Business,3,Tuesday,90,M-252,14:30
-SPEC365,SPEC Course 365,Education,2,Friday,120,M-380,14:00
-PHYS171,PHYS Course 171,Science,2,Tuesday,120,M-211,09:30
-CSCI167,CSCI Course 167,Science,2,Friday,120,M-358,08:30
-SPEC146,SPEC Course 146,Science,3,Friday,90,M-327,12:30
-MATH477,MATH Course 477,Business,3,Tuesday,90,M-334,13:00
-PHYS262,PHYS Course 262,Business,3,Friday,90,M-271,15:00
-BUSI184,BUSI Course 184,Education,2,Friday,90,M-255,08:00
-MGMT324,MGMT Course 324,Arts,4,Thursday,120,M-150,15:00
-MUSC167,MUSC Course 167,Engineering,2,Tuesday,90,M-317,08:00
-CHEM216,CHEM Course 216,Business,2,Wednesday,90,M-231,08:00
-MGMT266,MGMT Course 266,Science,2,Wednesday,60,M-388,10:30
-MECH230,MECH Course 230,Education,4,Friday,90,M-214,16:30
-BUSI103,BUSI Course 103,Education,4,Wednesday,60,M-243,13:30
-CSCI392,CSCI Course 392,Education,3,Wednesday,120,M-225,11:00
-ART149,ART Course 149,Arts,4,Wednesday,60,M-222,11:00
-MATH252,MATH Course 252,Arts,4,Thursday,60,M-328,10:30
-CHEM338,CHEM Course 338,Business,2,Thursday,120,M-253,15:30
-PRIM351,PRIM Course 351,Science,3,Friday,120,M-238,12:30
-SPEC254,SPEC Course 254,Engineering,3,Wednesday,90,M-294,11:00
-HIST415,HIST Course 415,Arts,2,Monday,120,M-190,13:30
-PRIM276,PRIM Course 276,Business,3,Friday,120,M-207,12:30
-BIOL424,BIOL Course 424,Science,2,Friday,90,M-209,14:30
-ELEC366,ELEC Course 366,Arts,4,Wednesday,60,M-168,10:00
-BIOL395,BIOL Course 395,Business,3,Wednesday,90,M-348,13:00
-BIOL281,BIOL Course 281,Education,3,Wednesday,120,M-351,10:00
-ENGR411,ENGR Course 411,Business,3,Tuesday,90,M-234,13:30
-BIOL444,BIOL Course 444,Education,3,Monday,90,M-348,13:30
-SECO348,SECO Course 348,Engineering,2,Thursday,90,M-320,13:30
-MKTG199,MKTG Course 199,Science,4,Wednesday,90,M-378,08:00
-ENGR311,ENGR Course 311,Education,2,Friday,120,M-166,10:30
-CHEM491,CHEM Course 491,Education,2,Monday,60,M-134,12:00
-HIST203,HIST Course 203,Engineering,4,Monday,60,M-355,14:00
-ART147,ART Course 147,Education,4,Thursday,90,M-313,09:30
-MECH241,MECH Course 241,Science,4,Thursday,60,M-398,10:30
-ELEC125,ELEC Course 125,Engineering,3,Tuesday,90,M-380,11:00
-CSCI349,CSCI Course 349,Arts,4,Wednesday,120,M-276,11:00
-EDU282,EDU Course 282,Engineering,4,Tuesday,60,M-221,13:00
-SECO200,SECO Course 200,Education,3,Monday,120,M-136,13:30
-BUSI468,BUSI Course 468,Business,2,Monday,60,M-386,14:30
-HIST409,HIST Course 409,Arts,4,Thursday,60,M-198,11:30
-BUSI404,BUSI Course 404,Arts,3,Tuesday,60,M-396,13:30
-PRIM200,PRIM Course 200,Education,4,Wednesday,60,M-335,13:00
-MECH411,MECH Course 411,Engineering,4,Friday,120,M-132,08:30
-BUSI311,BUSI Course 311,Business,4,Monday,90,M-390,13:00
-PHYS385,PHYS Course 385,Science,2,Monday,60,M-179,14:30
-BUSI411,BUSI Course 411,Education,3,Monday,120,M-354,11:30
-SECO314,SECO Course 314,Science,2,Monday,120,M-365,13:00
-MUSC365,MUSC Course 365,Science,3,Thursday,90,M-322,12:00
-ART273,ART Course 273,Education,3,Tuesday,60,M-105,08:00
-SECO176,SECO Course 176,Arts,3,Monday,60,M-203,10:30
-HIST452,HIST Course 452,Science,2,Wednesday,120,M-283,13:30
-SECO362,SECO Course 362,Engineering,4,Thursday,60,M-126,14:30
-EDU229,EDU Course 229,Science,3,Tuesday,60,M-183,11:00
-PHYS480,PHYS Course 480,Arts,3,Thursday,90,M-261,09:00
-PRIM423,PRIM Course 423,Business,2,Wednesday,120,M-234,15:30
-CHEM277,CHEM Course 277,Business,4,Thursday,60,M-399,10:00
-HIST259,HIST Course 259,Education,4,Thursday,120,M-382,08:30
-MATH424,MATH Course 424,Education,2,Friday,90,M-398,10:00
-SPEC444,SPEC Course 444,Engineering,4,Wednesday,120,M-247,15:00
-MKTG238,MKTG Course 238,Engineering,4,Wednesday,90,M-244,08:30
-MGMT231,MGMT Course 231,Science,3,Friday,60,M-214,16:30
-FIN475,FIN Course 475,Arts,3,Tuesday,90,M-353,14:00
-SPEC410,SPEC Course 410,Education,2,Monday,60,M-344,08:00
-CHEM493,CHEM Course 493,Education,4,Wednesday,60,M-213,14:30
-EDU399,EDU Course 399,Education,3,Wednesday,60,M-270,15:00
-PHYS411,PHYS Course 411,Engineering,4,Monday,90,M-104,16:30
-ELEC464,ELEC Course 464,Engineering,2,Tuesday,120,M-273,10:00
-MGMT201,MGMT Course 201,Education,4,Wednesday,90,M-286,14:00
-ELEC416,ELEC Course 416,Education,3,Wednesday,120,M-299,13:30
-EDU387,EDU Course 387,Arts,3,Monday,60,M-194,08:00
+PHAR101,Clinical Pharmacology,Pharmacy,3,42
+ENVI102,Environmental Science,Environmental Sciences,3,82
+BUSI103,Marketing Strategies,Business,2,23
+PHYS104,Sports Physiology,Physical Education,2,33
+VETE105,Veterinary Anatomy,Veterinary Medicine,3,56
+PHYS106,Sports Physiology,Physical Education,2,82
+MUSI107,Music Theory,Music,3,86
+COMM108,Media and Communication,Communication,4,95
+COMP109,Software Engineering,Computing,3,65
+ARCH110,Architectural Design Principles,Architecture,3,24
+DENT111,Dental Surgery Techniques,Dentistry,4,69
+COMP112,Fundamentals of Computing,Computing,2,78
+VETE113,Veterinary Anatomy,Veterinary Medicine,4,43
+BUSI114,Marketing Strategies,Business,4,26
+SOCI115,Anthropology and Society,Social Sciences,2,63
+ARCH116,Architectural Design Principles,Architecture,4,61
+ENGI117,Principles of Engineering,Engineering,4,36
+LAW118,Constitutional Law Overview,Law,4,33
+VETE119,Veterinary Anatomy,Veterinary Medicine,2,68
+THEO120,Theological Studies,Theology,4,39
+MUSI121,Music Theory,Music,4,24
+COMP122,Fundamentals of Computing,Computing,2,51
+THEO123,Theological Studies,Theology,4,89
+COMM124,Media and Communication,Communication,3,50
+EDUC125,Educational Psychology,Education,2,78
+PHAR126,Clinical Pharmacology,Pharmacy,3,62
+MUSI127,Music Theory,Music,4,88
+COMP128,Fundamentals of Computing,Computing,4,89
+AGRI129,Agronomy Fundamentals,Agriculture,4,77
+SOCI130,Anthropology and Society,Social Sciences,2,87
+VETE131,Veterinary Anatomy,Veterinary Medicine,4,50
+DENT132,Dental Surgery Techniques,Dentistry,3,26
+PHAR133,Clinical Pharmacology,Pharmacy,2,33
+VETE134,Veterinary Anatomy,Veterinary Medicine,4,76
+VETE135,Veterinary Anatomy,Veterinary Medicine,2,56
+ENGI136,Principles of Engineering,Engineering,2,23
+ARCH137,Architectural Design Principles,Architecture,2,31
+PHYS138,Sports Physiology,Physical Education,2,68
+MUSI139,Music Theory,Music,4,74
+ENVI140,Environmental Science,Environmental Sciences,3,34
+AGRI141,Agronomy Fundamentals,Agriculture,2,22
+SOCI142,Anthropology and Society,Social Sciences,3,39
+HUMA143,Philosophy and Ethics,Humanities,3,78
+COMP144,Fundamentals of Computing,Computing,3,77
+SOCI145,Anthropology and Society,Social Sciences,2,34
+ENGI146,Principles of Engineering,Engineering,3,53
+ENVI147,Environmental Science,Environmental Sciences,3,68
+COMM148,Media and Communication,Communication,3,28
+MUSI149,Music Theory,Music,3,35
+DENT150,Dental Surgery Techniques,Dentistry,2,54
+COMP151,Software Engineering,Computing,3,93
+COMP152,Software Engineering,Computing,3,81
+AGRI153,Agronomy Fundamentals,Agriculture,2,90
+COMP154,Software Engineering,Computing,2,40
+PHAR155,Basics of Pharmacy,Pharmacy,4,93
+ENVI156,Environmental Science,Environmental Sciences,3,95
+HUMA157,Philosophy and Ethics,Humanities,3,37
+MUSI158,Music Theory,Music,2,32
+PHAR159,Clinical Pharmacology,Pharmacy,2,33
+MUSI160,Music Theory,Music,2,79
+AGRI161,Agronomy Fundamentals,Agriculture,4,63
+DENT162,Dental Surgery Techniques,Dentistry,2,33
+SCIE163,Introduction to Biology,Science,2,79
+SCIE164,Introduction to Biology,Science,2,50
+THEO165,Theological Studies,Theology,2,71
+MUSI166,Music Theory,Music,3,93
+LAW167,Constitutional Law Overview,Law,4,79
+DENT168,Dental Surgery Techniques,Dentistry,2,68
+PHAR169,Basics of Pharmacy,Pharmacy,4,22
+MUSI170,Music Theory,Music,2,87
+EDUC171,Educational Psychology,Education,3,97
+ARCH172,Architectural Design Principles,Architecture,4,74
+SOCI173,Anthropology and Society,Social Sciences,2,44
+AGRI174,Agronomy Fundamentals,Agriculture,4,65
+COMM175,Media and Communication,Communication,2,73
+ENVI176,Environmental Science,Environmental Sciences,2,34
+COMP177,Fundamentals of Computing,Computing,2,30
+BUSI178,Marketing Strategies,Business,4,71
+COMM179,Media and Communication,Communication,3,21
+EDUC180,Educational Psychology,Education,2,32
+AGRI181,Agronomy Fundamentals,Agriculture,2,44
+PHYS182,Sports Physiology,Physical Education,3,22
+PHAR183,Basics of Pharmacy,Pharmacy,2,59
+PHYS184,Sports Physiology,Physical Education,3,94
+VETE185,Veterinary Anatomy,Veterinary Medicine,2,32
+ENGI186,Principles of Engineering,Engineering,3,79
+BUSI187,Marketing Strategies,Business,2,62
+HUMA188,Philosophy and Ethics,Humanities,3,70
+VETE189,Veterinary Anatomy,Veterinary Medicine,2,99
+LAW190,Constitutional Law Overview,Law,2,100
+DENT191,Dental Surgery Techniques,Dentistry,3,24
+PHAR192,Clinical Pharmacology,Pharmacy,2,54
+SOCI193,Anthropology and Society,Social Sciences,3,97
+COMP194,Software Engineering,Computing,2,87
+SOCI195,Anthropology and Society,Social Sciences,4,29
+VETE196,Veterinary Anatomy,Veterinary Medicine,3,42
+PHAR197,Basics of Pharmacy,Pharmacy,3,35
+AGRI198,Agronomy Fundamentals,Agriculture,4,53
+ENGI199,Principles of Engineering,Engineering,4,77
+ARCH200,Architectural Design Principles,Architecture,4,64
+ENVI201,Environmental Science,Environmental Sciences,2,81
+ENGI202,Principles of Engineering,Engineering,2,23
+THEO203,Theological Studies,Theology,2,38
+ENVI204,Environmental Science,Environmental Sciences,4,66
+ENVI205,Environmental Science,Environmental Sciences,4,86
+AGRI206,Agronomy Fundamentals,Agriculture,3,96
+COMM207,Media and Communication,Communication,2,83
+MUSI208,Music Theory,Music,4,71
+VETE209,Veterinary Anatomy,Veterinary Medicine,4,70
+ARCH210,Architectural Design Principles,Architecture,4,78
+VETE211,Veterinary Anatomy,Veterinary Medicine,4,93
+THEO212,Theological Studies,Theology,2,48
+DENT213,Dental Surgery Techniques,Dentistry,4,75
+PHAR214,Clinical Pharmacology,Pharmacy,3,96
+LAW215,Constitutional Law Overview,Law,4,45
+COMP216,Fundamentals of Computing,Computing,3,62
+ARCH217,Architectural Design Principles,Architecture,2,82
+PHAR218,Basics of Pharmacy,Pharmacy,3,68
+PHAR219,Basics of Pharmacy,Pharmacy,3,71
+BUSI220,Marketing Strategies,Business,2,78
+VETE221,Veterinary Anatomy,Veterinary Medicine,2,62
+PHAR222,Clinical Pharmacology,Pharmacy,3,28
+COMP223,Fundamentals of Computing,Computing,4,48
+PHYS224,Sports Physiology,Physical Education,4,44
+PHAR225,Clinical Pharmacology,Pharmacy,3,22
+AGRI226,Agronomy Fundamentals,Agriculture,2,72
+MUSI227,Music Theory,Music,3,30
+ARCH228,Architectural Design Principles,Architecture,2,62
+SCIE229,Introduction to Biology,Science,4,44
+AGRI230,Agronomy Fundamentals,Agriculture,4,98
+COMP231,Fundamentals of Computing,Computing,2,52
+EDUC232,Educational Psychology,Education,4,39
+SOCI233,Anthropology and Society,Social Sciences,2,78
+ENVI234,Environmental Science,Environmental Sciences,4,25
+LAW235,Constitutional Law Overview,Law,2,75
+PHYS236,Sports Physiology,Physical Education,3,61
+ARCH237,Architectural Design Principles,Architecture,3,49
+COMP238,Software Engineering,Computing,3,56
+COMP239,Software Engineering,Computing,4,50
+PHAR240,Basics of Pharmacy,Pharmacy,3,83
+ENVI241,Environmental Science,Environmental Sciences,4,90
+LAW242,Constitutional Law Overview,Law,2,62
+MUSI243,Music Theory,Music,4,94
+COMM244,Media and Communication,Communication,4,75
+COMP245,Software Engineering,Computing,3,32
+THEO246,Theological Studies,Theology,2,67
+MUSI247,Music Theory,Music,4,88
+SCIE248,Introduction to Biology,Science,2,31
+HUMA249,Philosophy and Ethics,Humanities,3,87
+COMM250,Media and Communication,Communication,2,49
+MUSI251,Music Theory,Music,3,78
+AGRI252,Agronomy Fundamentals,Agriculture,4,46
+COMP253,Fundamentals of Computing,Computing,2,86
+VETE254,Veterinary Anatomy,Veterinary Medicine,2,50
+PHAR255,Basics of Pharmacy,Pharmacy,4,40
+BUSI256,Marketing Strategies,Business,4,28
+HUMA257,Philosophy and Ethics,Humanities,3,43
+COMP258,Fundamentals of Computing,Computing,3,52
+DENT259,Dental Surgery Techniques,Dentistry,2,85
+COMP260,Software Engineering,Computing,3,83
+VETE261,Veterinary Anatomy,Veterinary Medicine,2,68
+PHYS262,Sports Physiology,Physical Education,3,59
+ENGI263,Principles of Engineering,Engineering,4,36
+VETE264,Veterinary Anatomy,Veterinary Medicine,4,30
+SCIE265,Introduction to Biology,Science,4,64
+AGRI266,Agronomy Fundamentals,Agriculture,4,43
+VETE267,Veterinary Anatomy,Veterinary Medicine,3,49
+PHAR268,Clinical Pharmacology,Pharmacy,2,60
+COMP269,Software Engineering,Computing,3,52
+VETE270,Veterinary Anatomy,Veterinary Medicine,3,73
+LAW271,Constitutional Law Overview,Law,3,70
+PHYS272,Sports Physiology,Physical Education,4,60
+COMP273,Fundamentals of Computing,Computing,4,52
+PHAR274,Clinical Pharmacology,Pharmacy,2,52
+SCIE275,Introduction to Biology,Science,3,86
+ENGI276,Principles of Engineering,Engineering,3,41
+AGRI277,Agronomy Fundamentals,Agriculture,4,20
+LAW278,Constitutional Law Overview,Law,3,74
+PHAR279,Clinical Pharmacology,Pharmacy,3,83
+ENGI280,Principles of Engineering,Engineering,2,23
+COMP281,Software Engineering,Computing,4,81
+LAW282,Constitutional Law Overview,Law,2,69
+SCIE283,Introduction to Biology,Science,3,74
+SOCI284,Anthropology and Society,Social Sciences,3,57
+VETE285,Veterinary Anatomy,Veterinary Medicine,2,89
+PHYS286,Sports Physiology,Physical Education,4,23
+PHAR287,Clinical Pharmacology,Pharmacy,2,59
+LAW288,Constitutional Law Overview,Law,2,90
+COMM289,Media and Communication,Communication,3,89
+PHAR290,Clinical Pharmacology,Pharmacy,4,97
+ENGI291,Principles of Engineering,Engineering,4,55
+VETE292,Veterinary Anatomy,Veterinary Medicine,2,53
+LAW293,Constitutional Law Overview,Law,4,58
+ARCH294,Architectural Design Principles,Architecture,3,62
+MUSI295,Music Theory,Music,2,50
+PHAR296,Clinical Pharmacology,Pharmacy,4,87
+HUMA297,Philosophy and Ethics,Humanities,2,45
+BUSI298,Marketing Strategies,Business,3,84
+ENVI299,Environmental Science,Environmental Sciences,3,21
+ENVI300,Environmental Science,Environmental Sciences,2,68
