@@ -27,7 +27,7 @@ public class Student extends Person {
     public Student(String name, Specialization major, Specialization minor) {
         super(Role.STUDENT, name);
         this.major = major;
-        this.minor = Optional.of(minor);
+        this.minor = Optional.ofNullable(minor);
         isCurrentlyRegisterd = true;
         completedCoursesGrades = new HashMap<>();
         this.faculty = major.getFaculty();

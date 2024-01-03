@@ -86,11 +86,17 @@ public class TaskSwitcher {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Faculty faculty = RegistrarDriver.faculties.get(facultyName);
-            if (faculty == null) {
+            Optional<Faculty> facultyOpt = Optional.ofNullable(RegistrarDriver.faculties.get(facultyName));
+        
+            Faculty faculty = null;
+            if (facultyOpt.isEmpty()) {
                 faculty = new Faculty(facultyName);
                 RegistrarDriver.faculties.put(facultyName, faculty);
             }
+            else{
+                faculty = facultyOpt.get();
+            }
+            
             Specialization spec = new Specialization(specialization, faculty, Specialization.Type.MAJOR);
             RegistrarDriver.specializations.put(spec.getName(), spec);
             return spec;
@@ -104,12 +110,19 @@ public class TaskSwitcher {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Faculty faculty = RegistrarDriver.faculties.get(facultyName);
-            if (faculty == null) {
+            Optional<Faculty> facultyOpt = Optional.ofNullable(RegistrarDriver.faculties.get(facultyName));
+        
+            Faculty faculty = null;
+            if (facultyOpt.isEmpty()) {
                 faculty = new Faculty(facultyName);
                 RegistrarDriver.faculties.put(facultyName, faculty);
             }
-            return new Specialization(specialization, faculty, Specialization.Type.MINOR);
+            else{
+                faculty = facultyOpt.get();
+            }
+            Specialization spec = new Specialization(specialization, faculty, Specialization.Type.MINOR);
+            RegistrarDriver.specializations.put(spec.getName(), spec);
+            return spec;
         };
 
         Specialization major = Optional.ofNullable(RegistrarDriver.specializations.get(majorString))
@@ -118,6 +131,9 @@ public class TaskSwitcher {
         if (minorString != null)
             minor = Optional.ofNullable(RegistrarDriver.specializations.get(minorString))
                     .orElse(createMinorSpecialization.apply(minorString));
+                    
+        System.out.println(RegistrarDriver.specializations.get(majorString));
+        System.out.println(RegistrarDriver.specializations);
 
         Student student = new Student(name, major,
                 minor);
@@ -159,6 +175,7 @@ public class TaskSwitcher {
             }
             return new Specialization(specialization, faculty, Specialization.Type.MAJOR);
         };
+
         Specialization specialization = Optional.ofNullable(RegistrarDriver.specializations.get(specString))
                 .orElse(createMajorSpecialization.apply(specString));
         Teacher teacher = new Teacher(name,
