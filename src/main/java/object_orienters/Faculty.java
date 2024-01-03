@@ -9,8 +9,7 @@ public class Faculty {
     private List<Student> students;
     private List<Course> majorsCourses;
     private List<Course> minorsCourses;
-    // private List<String> majors;
-    // private List<String> minors;
+    private List<Specialization> specializations;
     private static List<Faculty> faculties = new ArrayList<>();
 
     /**
@@ -99,6 +98,19 @@ public class Faculty {
     @Override
     public String toString() {
         return "Faculty{" + name + ", majors Courses = " + majorsCourses + ", minors = " + minorsCourses;
+    }
+
+    //TODO: Implement this method
+    public List<Specialization> getSpecializations() {
+        return specializations;
+    }
+
+     public List<Specialization> getMjors() {
+        return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MAJOR).toList();
+    }
+
+    public List<Specialization> getMinors() {
+        return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MINOR).toList();
     }
 
 }
