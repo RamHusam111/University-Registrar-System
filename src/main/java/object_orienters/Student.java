@@ -34,7 +34,14 @@ public class Student extends Person {
         faculty.getStudents().add(this);
     }
 
-    // Changed
+
+    /**
+     * Records the grade for a completed course.
+     * courses and updates the teacher's course list if necessary.
+     *
+     * @param course The course for which the grade is being entered.
+     * @param grade The grade received in the course.
+     */
     public void enterCourseGrade(Course course, String grade) {
         if (getRegisteredCourses().contains(course)) {
             completedCoursesGrades.put(course, convertGrade(grade));
@@ -47,6 +54,13 @@ public class Student extends Person {
             System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());
     }
 
+    /**
+     * Converts a letter grade to its numerical equivalent based on a standard grading scale.
+     * For example, an "A" might convert to 4.0, a "B+" to 3.5, and so forth.
+     *
+     * @param letterGrade The letter grade to be converted.
+     * @return The numerical equivalent of the letter grade as a Double.
+     */
     // HELPER METHOD FOR enterGrades METHOD
     private Double convertGrade(String letterGrade) {
         switch (letterGrade) {
@@ -71,33 +85,69 @@ public class Student extends Person {
         }
     }
 
+
+    /**
+     * Retrieves the student's major specialization.
+     *
+     * @return The student's major specialization.
+     */
     public Specialization getMajor() {
         return major;
     }
 
+    /**
+     * Retrieves the student's minor specialization, if any.
+     *
+     * @return An Optional containing the minor specialization if set, or an empty Optional otherwise.
+     */
     public Optional<Specialization> getMinor() {
         return this.minor;
     }
 
+    /**
+     * Retrieves the faculty associated with the student's major.
+     *
+     * @return The faculty associated with the student's major.
+     */
     public Faculty getFaculty() {
         return faculty;
     }
 
+    /**
+     * Checks whether the student is currently registered for any courses.
+     *
+     * @return True if the student is currently registered, false otherwise.
+     */
     public boolean isCurrentlyRegisterd() {
         return isCurrentlyRegisterd;
     }
 
+    /**
+     * Retrieves the student's GPA status after recalculating their GPA.
+     *
+     * @return The student's current GPA status.
+     */
     // TODO: test this method
     public GPAstatus getGpaStatus() {
         calculateGPA();
         return gpaStatus;
     }
-
+    /**
+     * Retrieves a map of completed courses along with the grades received.
+     *
+     * @return A map with Course keys and Double values representing grades.
+     */
     public Map<Course, Double> getCompletedCoursesGrades() {
         return completedCoursesGrades;
     }
 
-    // TESTED
+
+    /**
+     * Checks if the student has completed all prerequisites for a given course.
+     *
+     * @param course The course for which prerequisites are being checked.
+     * @return True if all prerequisites are met, false otherwise.
+     */
     public boolean preRequisitesCheck(Course course) {
         List<Course> preRequisites = course.getPrerequisites();
         return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e));
@@ -105,7 +155,12 @@ public class Student extends Person {
         // allMatch method)
     }
 
-    // TESTED
+    /**
+     * Calculates the student's GPA based on completed courses and their grades.
+     * Utilizes parallel computation for efficiency.
+     *
+     * @return The calculated GPA.
+     */
     public double calculateGPA() {
         ForkJoinPool pool = new ForkJoinPool();
         RecursiveTask<Double> totalPtsTask = new RecursiveTask<Double>() {
@@ -131,6 +186,13 @@ public class Student extends Person {
         return gpa;
     }
 
+    /**
+     * Updates the student's GPA status based on the calculated GPA.
+     * This method categorizes the GPA into various statuses such as Highest Honors, Dean's List, Honors,
+     * Normal, and Probation, based on predefined GPA thresholds.
+     *
+     * @param gpa The calculated Grade Point Average of the student.
+     */
     // HELPER METHOD FOR calculateGPA()
     private void updateGPAStatus(double gpa) {
         if (gpa >= 3.90) {
@@ -146,6 +208,14 @@ public class Student extends Person {
         }
     }
 
+
+    /**
+     * Generates a comprehensive academic report for the student.
+     * Includes details such as major, minor, year of admission, current registration status,
+     * registered courses, GPA, and GPA status.
+     *
+     * @return A formatted string containing the student's academic report.
+     */
     public String getReport() {
         return super.toString() + "\nMajor:" + this.getMajor() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
                 + this.getDateEnrolled().getYear() + "\nRegistered this semester: "
@@ -153,6 +223,9 @@ public class Student extends Person {
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
     }
 
+    /**
+     * Enumeration representing various GPA statuses, such as honors and probation.
+     */
     public enum GPAstatus {
         HIGHESTHONORS, DEANSLIST, HONORS, NORMAL, PROBATION;
     }
