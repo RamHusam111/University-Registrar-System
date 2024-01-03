@@ -55,7 +55,7 @@ public class Semester {
      * @param lStudents The list of students attempting to register for the course.
      * @param teacher The teacher assigned to the course.
      */
-    // TODO: Test this method
+    // TESTED SUCCESSFULLY
     public void registerInACourse(Course course, List<Student> lStudents, Teacher teacher) {
         // Check for room conflict
         boolean roomConflict = courses.stream()

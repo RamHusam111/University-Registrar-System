@@ -48,7 +48,7 @@ public abstract class Person {
      * @return The generated unique ID.
      */
 
-    // TODO: test this method
+    // TESTED SUCCESSFULLY
     private int setID() {
         String id = "";
         Year enrolledYear = Year.of(dateEnrolled.getYear());
@@ -121,6 +121,12 @@ public abstract class Person {
         return registeredCourses;
     }
 
+    // TODO: test this method
+    public int getCreditLoad() {
+        return schedule.getCreditLoad();
+    }
+
+
     private Schedule getSchedule() {
         return schedule;
     }
@@ -143,12 +149,12 @@ public abstract class Person {
         System.err.println(this.getSchedule().displaySchedule());
     }
 
-    // TODO: test this method
+    // TESTED SUCCESSFULLY
     public boolean isFreeOn(List<WeeklyMeeting> list) {
         return list.stream().allMatch(e -> isFreeOn(e));
     }
 
-    // TODO: test this method
+    //TESTED SUCCESSFULLY
     public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
 
 
@@ -199,7 +205,6 @@ public abstract class Person {
          *
          * @return The total credit hours.
          */
-        // TODO: test this method
         public int getCreditLoad() {
             return courses.stream().mapToInt(e -> e.getCreditHours()).sum();
         }

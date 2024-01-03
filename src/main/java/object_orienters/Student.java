@@ -127,7 +127,8 @@ public class Student extends Person {
      *
      * @return The student's current GPA status.
      */
-    // TODO: test this method
+
+    //Tested
     public GPAstatus getGpaStatus() {
         calculateGPA();
         return gpaStatus;

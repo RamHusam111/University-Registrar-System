@@ -27,7 +27,6 @@ public class TaskSwitcher {
                 System.out.println("Enter Semester Start Date (dd/MM/yyyy): ");
                 startDate = LocalDate.parse(br.readLine(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             } catch (DateTimeParseException e) {
                 System.out.println("Invalid date format. Please enter date in dd/MM/yyyy format");
