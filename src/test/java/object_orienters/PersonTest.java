@@ -12,6 +12,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class PersonTest {
@@ -44,7 +46,8 @@ public class PersonTest {
         stu1 = new Student("Alex", mathMajor);
         t1 = new Teacher("Dr. Smith", mathMajor);
         c1 = new Course("MATH101", "Calculus I", mathMajor, 1, List
-                .of(new WeeklyMeeting(DayOfWeek.TUESDAY, Duration.ofMinutes(60), "M-301", LocalTime.parse("09:00"))),100);
+                .of(new WeeklyMeeting(DayOfWeek.TUESDAY, Duration.ofMinutes(60), "M-301", LocalTime.parse("09:00"))),
+                100);
         new Semester(LocalDate.of(2023, 9, 1), LocalDate.of(2023, 12, 31)).registerInACourse(c1, List.of(stu1), t1);
     }
 
@@ -60,7 +63,7 @@ public class PersonTest {
 
         for (int i = 0; i < weeklyMeetings.size(); i++) {
 
-            if (index -4 <= i && i < index + 4) {
+            if (index - 4 <= i && i < index + 4) {
                 assertTrue(!stu1.isFreeOn(weeklyMeetings.get(i)));
             } else
                 assertTrue(stu1.isFreeOn(weeklyMeetings.get(i)));
@@ -69,9 +72,12 @@ public class PersonTest {
     }
 
     @Test
-    public void isFreeOnTest2() {
-
-
+    public void getCreditLoad() {
+        Specialization major = new Specialization("Maths", new Faculty("Science"), Specialization.Type.MAJOR);
+        c2 = new Course("MATH102", "Calculus II", major, 1, List
+                .of(new WeeklyMeeting(DayOfWeek.TUESDAY, Duration.ofMinutes(60), "M-301", LocalTime.parse("09:00"))),
+                100);
+        stu1.addRegisteredCourse(c2);
+        assertEquals(2, stu1.getCreditLoad());
     }
-
 }

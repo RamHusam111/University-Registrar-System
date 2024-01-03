@@ -1,12 +1,15 @@
 package object_orienters;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 /**
  * Hello world!
@@ -18,7 +21,7 @@ public class RegistrarDriver extends Thread {
         System.out.println("Hello World! its Action 1");
     };
 
-     public static List<Semester> semesters = new ArrayList<>();
+    public static Map<String, Semester> semesters = new HashMap<>();
     public static Map<Integer, Student> students = new HashMap<>();
     public static Map<Integer, Teacher> teachers = new HashMap<>();
     public static Map<String, Course> courses = new HashMap<>();
@@ -28,6 +31,9 @@ public class RegistrarDriver extends Thread {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
+        
+        
+        ////////////////////////////////
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int input = 1;
 
