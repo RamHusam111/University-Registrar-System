@@ -216,7 +216,7 @@ public abstract class Person {
          *
          * @return A formatted string of the weekly schedule.
          */
-        // TODO: test this method
+
         // Method to display the schedule
         public String displaySchedule() {
             StringBuilder scheduleBuilder = new StringBuilder();
