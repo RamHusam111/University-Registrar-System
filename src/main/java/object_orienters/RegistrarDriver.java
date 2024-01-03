@@ -14,6 +14,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Hello world!
@@ -35,8 +37,6 @@ public class RegistrarDriver extends Thread {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        
-        
         ////////////////////////////////
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int input = 1;
