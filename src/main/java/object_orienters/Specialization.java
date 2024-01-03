@@ -21,6 +21,7 @@ public class Specialization {
         this.teachers = new ArrayList<>();
         this.name = name;
         this.faculty = faculty;
+        faculty.getSpecializations().add(this);
         this.type = type;
     }
 
