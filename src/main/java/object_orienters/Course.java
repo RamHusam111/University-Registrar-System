@@ -16,6 +16,16 @@ public class Course {
     private Teacher teacher;
     private List<Student> enrolledStudents;
 
+    /**
+     * Constructor for university requirement courses.
+     *
+     * @param courseID The unique identifier for the course.
+     * @param courseName The name of the course.
+     * @param courseFaculty The faculty to which the course belongs.
+     * @param creditHours The number of credit hours the course offers.
+     * @param weeklyMeetings The weekly meetings scheduled for the course.
+     * @param CAPACITY The maximum number of students that can be enrolled.
+     */
     // TODO: add equal method to check unique if in register method semester
     // Constructor for university requirement courses
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
@@ -31,6 +41,17 @@ public class Course {
         this.CAPACITY = CAPACITY; // Initialize the capacity field
         courseType = Type.UNIVERSITY_REQUIREMENT;
     }
+
+    /**
+     * Constructor for major/minor requirement courses.
+     *
+     * @param courseID The unique identifier for the course.
+     * @param courseName The name of the course.
+     * @param specialization The specialization that this course falls under.
+     * @param creditHours The number of credit hours the course offers.
+     * @param weeklyMeetings The weekly meetings scheduled for the course.
+     * @param CAPACITY The maximum number of students that can be enrolled.
+     */
 
     // Constructor for major/minor requirement courses
     public Course(String courseID, String courseName, Specialization specialization, int creditHours,
@@ -49,6 +70,12 @@ public class Course {
                 : Type.MINOR_REQUIREMENT;
     }
 
+    /**
+     * Enrolls a student in the course if there is available capacity.
+     * If the course is full, enrollment is not possible and an appropriate message is displayed.
+     *
+     * @param student The student to be enrolled in the course.
+     */
     // Method to enroll a student in the course
     public void enrollStudent(Student student) {
         if (!isFull()) {
@@ -58,11 +85,23 @@ public class Course {
         }
     }
 
+    /**
+     * Checks if the course has reached its maximum capacity of enrolled students.
+     *
+     * @return true if the number of enrolled students equals or exceeds the capacity,
+     *         false otherwise.
+     */
     // Method to check if the course is full
     public boolean isFull() {
         return enrolledStudents.size() >= this.getCapacity();
     }
 
+    /**
+     * Returns a string representation of the course, including details such as
+     * course type, course name, and credit hours.
+     *
+     * @return A formatted string containing key information about the course.
+     */
     @Override
     public String toString() {
         return "Course{" +
@@ -77,10 +116,22 @@ public class Course {
         return courseID;
     }
 
+    /**
+     * Retrieves the type of the course.
+     *
+     * @return The course type, which indicates whether it is a major requirement,
+     *         university requirement, or minor requirement.
+     */
     public Type getCourseType() {
         return courseType;
     }
 
+    /**
+     * Retrieves the faculty to which the course is associated.
+     *
+     *
+     * @return The faculty associated with the course.
+     */
     public Faculty getCourseFaculty() {
         return courseFaculty;
     }
@@ -101,6 +152,12 @@ public class Course {
         return creditHours;
     }
 
+    /**
+     * Retrieves the teacher assigned to the course.
+     *
+     * @return An Optional containing the teacher if one is assigned, or an empty Optional
+     *         if no teacher is assigned to the course.
+     */
     public Optional<Teacher> getTeacher() {
         return Optional.ofNullable(teacher);
     }
@@ -130,6 +187,11 @@ public class Course {
         return CAPACITY;
     }
 
+    /**
+     * Enumeration representing the different types of courses.
+     * This helps categorize courses based on their requirement type such as
+     * major requirement, minor requirement, or university requirement.
+     */
     public enum Type {
         MAJOR_REQUIREMENT, UNIVERSITY_REQUIREMENT, MINOR_REQUIREMENT;
     }
