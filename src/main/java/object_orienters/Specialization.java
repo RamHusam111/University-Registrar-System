@@ -13,9 +13,9 @@ public class Specialization {
      * Constructs a new Specialization with the given name, faculty, and type.
      * Initializes an empty list of teachers.
      *
-     * @param name The name of the specialization.
+     * @param name    The name of the specialization.
      * @param faculty The faculty to which the specialization belongs.
-     * @param type The type of the specialization, either MAJOR or MINOR.
+     * @param type    The type of the specialization, either MAJOR or MINOR.
      */
     public Specialization(String name, Faculty faculty, Type type) {
         this.teachers = new ArrayList<>();
@@ -53,7 +53,8 @@ public class Specialization {
     }
 
     /**
-     * Enumeration representing the type of specialization, whether it is a major or a minor.
+     * Enumeration representing the type of specialization, whether it is a major or
+     * a minor.
      */
     public enum Type {
         MAJOR, MINOR;
@@ -74,6 +75,7 @@ public class Specialization {
      * @return A string containing the name of the specialization.
      */
     public String toString() {
-        return name;
+        return "Specialization Name: " + this.getName() + "\nSpecialization Faculty: " + this.getFaculty().getName()
+                + "\nSpecialization Type: " + this.getType();
     }
 }

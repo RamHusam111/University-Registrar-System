@@ -8,6 +8,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -56,10 +57,10 @@ public class PersonTest {
         int dayOffset = 37;
         int hourOffset = 4;
         int minsOffset = 0;
-
-        int index = (stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getDay().getValue() - 1) * dayOffset;
-        index += stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getHour().getHour() % 8 * hourOffset;
-        index += stu1.getRegisteredCourses().get(0).getWeeklyMeetings().get(0).getHour().getMinute() % 15 * minsOffset;
+        List<Course> myList = new ArrayList<>(stu1.getRegisteredCourses());
+        int index = (myList.get(0).getWeeklyMeetings().get(0).getDay().getValue() - 1) * dayOffset;
+        index += myList.get(0).getWeeklyMeetings().get(0).getHour().getHour() % 8 * hourOffset;
+        index += myList.get(0).getWeeklyMeetings().get(0).getHour().getMinute() % 15 * minsOffset;
 
         for (int i = 0; i < weeklyMeetings.size(); i++) {
 

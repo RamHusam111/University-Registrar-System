@@ -34,28 +34,29 @@ public class Student extends Person {
         faculty.getStudents().add(this);
     }
 
-
     /**
      * Records the grade for a completed course.
      * courses and updates the teacher's course list if necessary.
      *
      * @param course The course for which the grade is being entered.
-     * @param grade The grade received in the course.
+     * @param grade  The grade received in the course.
      */
     public void enterCourseGrade(Course course, String grade) {
         if (getRegisteredCourses().contains(course)) {
             completedCoursesGrades.put(course, convertGrade(grade));
             getRegisteredCourses().remove(course);
 
-            if (course.getTeacher().isPresent())
+            if (course.getTeacher().isPresent()) 
                 course.getTeacher().get().getRegisteredCourses().remove(course);
             course.setTeacher(null);
+            
         } else
             System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());
     }
 
     /**
-     * Converts a letter grade to its numerical equivalent based on a standard grading scale.
+     * Converts a letter grade to its numerical equivalent based on a standard
+     * grading scale.
      * For example, an "A" might convert to 4.0, a "B+" to 3.5, and so forth.
      *
      * @param letterGrade The letter grade to be converted.
@@ -85,7 +86,6 @@ public class Student extends Person {
         }
     }
 
-
     /**
      * Retrieves the student's major specialization.
      *
@@ -98,7 +98,8 @@ public class Student extends Person {
     /**
      * Retrieves the student's minor specialization, if any.
      *
-     * @return An Optional containing the minor specialization if set, or an empty Optional otherwise.
+     * @return An Optional containing the minor specialization if set, or an empty
+     *         Optional otherwise.
      */
     public Optional<Specialization> getMinor() {
         return this.minor;
@@ -128,11 +129,12 @@ public class Student extends Person {
      * @return The student's current GPA status.
      */
 
-    //Tested
+    // Tested
     public GPAstatus getGpaStatus() {
         calculateGPA();
         return gpaStatus;
     }
+
     /**
      * Retrieves a map of completed courses along with the grades received.
      *
@@ -141,7 +143,6 @@ public class Student extends Person {
     public Map<Course, Double> getCompletedCoursesGrades() {
         return completedCoursesGrades;
     }
-
 
     /**
      * Checks if the student has completed all prerequisites for a given course.
@@ -189,7 +190,8 @@ public class Student extends Person {
 
     /**
      * Updates the student's GPA status based on the calculated GPA.
-     * This method categorizes the GPA into various statuses such as Highest Honors, Dean's List, Honors,
+     * This method categorizes the GPA into various statuses such as Highest Honors,
+     * Dean's List, Honors,
      * Normal, and Probation, based on predefined GPA thresholds.
      *
      * @param gpa The calculated Grade Point Average of the student.
@@ -209,10 +211,10 @@ public class Student extends Person {
         }
     }
 
-
     /**
      * Generates a comprehensive academic report for the student.
-     * Includes details such as major, minor, year of admission, current registration status,
+     * Includes details such as major, minor, year of admission, current
+     * registration status,
      * registered courses, GPA, and GPA status.
      *
      * @return A formatted string containing the student's academic report.
