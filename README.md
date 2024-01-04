@@ -43,14 +43,6 @@ This project is a comprehensive academic management system implemented in Java. 
 2. Compile each Java file using a Java compiler (e.g., `javac ClassName.java`).
 3. Run the `RegistrarDriver` class to start the application (e.g., `java RegistrarDriver`).
 
-#### Contributing
-Contributions to this project are welcome. To contribute:
-1. Fork the repository.
-2. Create a new branch for your feature.
-3. Commit your changes.
-4. Push to the branch.
-5. Submit a pull request.
-
 ### Author
 Object Orienters.
 
