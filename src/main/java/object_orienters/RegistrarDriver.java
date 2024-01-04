@@ -50,6 +50,8 @@ public class RegistrarDriver {
                             + Color.YELLOW.value + "\n9 - View Registered Teachers"
                             + Color.CYAN.value + "\n10 - View Available Courses"
                             + Color.PURPLE.value + "\n11 - show all details of a semester"
+                            + Color.PURPLE.value + "\n12 - Enter Student Grade"
+                            + Color.PURPLE.value + "\n13 - Calculate student GPA"
                             + Color.YELLOW.value + "\n0 - Exit"
                             + Color.RESET.value);
 

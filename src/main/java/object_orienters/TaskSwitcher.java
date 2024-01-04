@@ -9,9 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * A class that switches between different tasks.
@@ -364,7 +364,8 @@ public class TaskSwitcher {
             } else {
                 System.out.println("\n\nCourse Prerequisites:");
                 System.out.println(
-                        course.getPrerequisites().stream().map(c -> c.getCourseID()).reduce((c1, c2) -> c1 + "\n" + c2).orElse("No Prerequisites exist for this course"));
+                        course.getPrerequisites().stream().map(c -> c.getCourseID()).reduce((c1, c2) -> c1 + "\n" + c2)
+                                .orElse("No Prerequisites exist for this course"));
             }
 
         } catch (IOException e) {
@@ -421,11 +422,47 @@ public class TaskSwitcher {
     };
 
     private static Runnable action12 = () -> {
+
         //TODO: implement eneter Grades
+        BufferedReader br = new BufferedReader (new InputStreamReader (System.in));
+        System.out.println("Enter student ID to enter the grade");
+        String id;
+
+        try {
+            id = br.readLine();
+            Student stu = RegistrarDriver.students.get(Integer.parseInt(id));
+            stu.getRegisteredCourses().stream().forEach(
+                    e -> {
+
+                        System.out.println("Enter The grade " + e.getCourseID()+":");
+                        try {
+                            String grade = br.readLine();
+                            stu.enterCourseGrade(e,grade);
+                        }catch (Exception ex){}
+
+            });
+
+
+
+        }catch (Exception e){
+
+        }
+
+
     };
 
     private static Runnable action13 = () -> {
-        //TODO: implement calculate GPA
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter student ID to calculate GPA for: ");
+        String id;
+        try {
+            id = br.readLine();
+            Student stu = RegistrarDriver.students.get(Integer.parseInt(id));
+            System.out.println("GPA for " + stu.getId() + " = " + stu.calculateGPA());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     };
 
     private static Runnable action7 = () -> {
@@ -652,6 +689,10 @@ public class TaskSwitcher {
                 return new Task(input, action10);
             case 11:
                 return new Task(input, action11);
+            case 12:
+                return new Task(input, action12);
+            case 13:
+                return new Task(input, action13);
 
             default:
                 return new Task(input);
