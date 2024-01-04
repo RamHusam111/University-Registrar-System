@@ -46,10 +46,10 @@ public class Student extends Person {
             completedCoursesGrades.put(course, convertGrade(grade));
             getRegisteredCourses().remove(course);
 
-            if (course.getTeacher().isPresent()) 
+            if (course.getTeacher().isPresent())
                 course.getTeacher().get().getRegisteredCourses().remove(course);
             course.setTeacher(null);
-            
+
         } else
             System.out.println("Error: " + this.getName() + " is not registered in " + course.getCourseName());
     }
@@ -220,7 +220,7 @@ public class Student extends Person {
      * @return A formatted string containing the student's academic report.
      */
     public String getReport() {
-        return super.toString() + "\nMajor:" + this.getMajor() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
+        return super.toString() + "\nMajor:" + this.getMajor().getName() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
                 + this.getDateEnrolled().getYear() + "\nRegistered this semester: "
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();

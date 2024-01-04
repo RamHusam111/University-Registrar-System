@@ -271,8 +271,8 @@ public class Semester {
      */
     @Override
     public String toString() {
-        return "Semester Name: " + this.getSemesterName() + "\nSemester Start Date " + this.getSemesterStartDate()
-                + "\nSemester End Date " + this.getSemesterEndDate() + "\nSemester Length" + this.getWeeksNumber();
+        return "Semester Name: " + this.getSemesterName() + "\nSemester Start Date: " + this.getSemesterStartDate()
+                + "\nSemester End Date: " + this.getSemesterEndDate() + "\nSemester Length: " + this.getWeeksNumber();
     }
 
    
