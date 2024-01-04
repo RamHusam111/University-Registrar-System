@@ -333,7 +333,9 @@ public class SemesterTest {
         assertTrue(semester3.getRegisteredCourses().size() == 1);
     }
 
+
     //Remove Specific Students from a Course
+
     @Test
     public void testUnregisterSpecificStudentsFromCourse() {
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
@@ -347,12 +349,14 @@ public class SemesterTest {
         Teacher teacher = new Teacher("Angela", spec);
         Teacher teacher2 = new Teacher("hhhhh", spec);
 
+
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
         semester44.registerInACourse(course, Arrays.asList(student3, student4), teacher);
         // Unregister specific student(s) from the course
         System.out.println(course.getEnrolledStudents());
         semester44.unregisterInACourse(course, Arrays.asList(student1), false);
         System.out.println(course.getEnrolledStudents());
+
         // Assertions
         assertFalse( course.getEnrolledStudents().contains(student1));
         assertTrue( course.getEnrolledStudents().contains(student2));
