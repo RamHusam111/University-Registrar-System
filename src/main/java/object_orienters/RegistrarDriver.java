@@ -16,8 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Hello world!
- *
+ * Represents the registrar of the university.
  */
 public class RegistrarDriver {
 
@@ -33,27 +32,26 @@ public class RegistrarDriver {
 
         readFiles();
 
-        ////////////////////////////////
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int input = 1;
 
         while (input != 0) {
-            System.out.println("\u001B[31m>>>>>>>>>>>> Choose what you want to do: " + Color.RESET.value);
+            System.out.println(Color.RED.value + ">>>>>>>>>>>> Choose what you want to do: " + Color.RESET.value);
             System.out.println(
-                    Color.CYAN.value + "\n1 - Create New Semester"
-                            + Color.GREEN.value + "\n2 - Add New Student"
+                    Color.PURPLE.value + "\n1 - Create New Semester"
+                            + Color.PURPLE.value + "\n2 - Add New Student"
                             + Color.PURPLE.value + "\n3 - Add New Teacher"
-                            + Color.YELLOW.value + "\n4 - Add New Course"
-                            + Color.GREEN.value + "\n5 - add prerequisite to a course"
-                            + Color.CYAN.value + "\n6 - View Course Prerequisites"
-                            + Color.GREEN.value + "\n7 - Register"
+                            + Color.PURPLE.value + "\n4 - Add New Course"
+                            + Color.PURPLE.value + "\n5 - add prerequisite to a course"
+                            + Color.PURPLE.value + "\n6 - View Course Prerequisites"
+                            + Color.PURPLE.value + "\n7 - Register"
                             + Color.PURPLE.value + "\n8 - View Registered Students"
-                            + Color.YELLOW.value + "\n9 - View Registered Teachers"
-                            + Color.CYAN.value + "\n10 - View Available Courses"
+                            + Color.PURPLE.value + "\n9 - View Registered Teachers"
+                            + Color.PURPLE.value + "\n10 - View Available Courses"
                             + Color.PURPLE.value + "\n11 - show all details of a semester"
                             + Color.PURPLE.value + "\n12 - Enter Student Grade"
                             + Color.PURPLE.value + "\n13 - Calculate student GPA"
-                            + Color.YELLOW.value + "\n0 - Exit"
+                            + Color.PURPLE.value + "\n0 - Exit"
                             + Color.RESET.value);
 
             try {
@@ -74,6 +72,9 @@ public class RegistrarDriver {
 
     }
 
+    /**
+     * Reads the CSV files and populates the data structures.
+     */
     public static void readFiles() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/WeeklyMeetings.csv"));

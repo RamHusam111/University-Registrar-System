@@ -7,6 +7,14 @@ import java.util.Set;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
+/**
+ * Represents a student at the university.
+ * A student can have a major and a minor specialization.
+ * A student can be registered for courses.
+ * A student can have a GPA status.
+ * A student can have a faculty.
+ * A student can have a list of completed courses and their grades.
+ */
 public class Student extends Person {
     private Specialization major;
     private Optional<Specialization> minor;
@@ -15,6 +23,14 @@ public class Student extends Person {
     private GPAstatus gpaStatus;
     private Faculty faculty;
 
+    /**
+     * Constructs a new Student with the given name and major specialization.
+     * Initializes the student with the role STUDENT and adds the student to the
+     * specialization's list of students and the faculty's list of students.
+     *
+     * @param name  The name of the student.
+     * @param major The major specialization of the student.
+     */
     public Student(String name, Specialization major) {
         super(Role.STUDENT, name);
         this.major = major;
@@ -24,6 +40,16 @@ public class Student extends Person {
         faculty.getStudents().add(this);
     }
 
+    /**
+     * Constructs a new Student with the given name, major specialization, and minor
+     * specialization.
+     * Initializes the student with the role STUDENT and adds the student to the
+     * specialization's list of students and the faculty's list of students.
+     *
+     * @param name  The name of the student.
+     * @param major The major specialization of the student.
+     * @param minor The minor specialization of the student.
+     */
     public Student(String name, Specialization major, Specialization minor) {
         super(Role.STUDENT, name);
         this.major = major;

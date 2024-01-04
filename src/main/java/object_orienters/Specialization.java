@@ -3,6 +3,11 @@ package object_orienters;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a specialization offered by the university.
+ * A specialization can be a major or a minor.
+ * A specialization can have a list of teachers assigned to it.
+ */
 public class Specialization {
     private String name;
     private Faculty faculty;

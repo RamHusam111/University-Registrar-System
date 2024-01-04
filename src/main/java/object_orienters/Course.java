@@ -6,6 +6,18 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Represents a course offered by the university.
+ * A course can be a major requirement, minor requirement, or university
+ * requirement.
+ * A course can have a teacher assigned to it, and can have a list of
+ * prerequisites.
+ * A course can also have a list of weekly meetings, which are the days and times
+ * that the course meets.
+ * A course can have a maximum capacity of students that can be enrolled.
+ * It also holds the number of credit hours the course offers.
+ * And Finally, a course can have a list of students enrolled in it.
+ */
 public class Course {
     private final int CAPACITY;
     private Type courseType;
@@ -28,7 +40,6 @@ public class Course {
      * @param weeklyMeetings The weekly meetings scheduled for the course.
      * @param CAPACITY       The maximum number of students that can be enrolled.
      */
-    // Constructor for university requirement courses
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
             List<WeeklyMeeting> weeklyMeetings, int CAPACITY) {
         this.enrolledStudents = new ArrayList<>();
@@ -52,8 +63,6 @@ public class Course {
      * @param weeklyMeetings The weekly meetings scheduled for the course.
      * @param CAPACITY       The maximum number of students that can be enrolled.
      */
-
-    // Constructor for major/minor requirement courses
     public Course(String courseID, String courseName, Specialization specialization, int creditHours,
             List<WeeklyMeeting> weeklyMeetings, int CAPACITY) {
         this.enrolledStudents = new ArrayList<>();
@@ -121,6 +130,11 @@ public class Course {
         return false;
     }
 
+    /**
+     * Retrieves the unique identifier for the course.
+     *
+     * @return The course ID.
+     */
     public String getCourseID() {
         return courseID;
     }
@@ -145,18 +159,38 @@ public class Course {
         return courseFaculty;
     }
 
+    /**
+     * Retrieves the list of students enrolled in the course.
+     *
+     * @return A list of students enrolled in the course.
+     */
     public List<Student> getEnrolledStudents() {
         return enrolledStudents;
     }
 
+    /**
+     * Retrieves the name of the course.
+     *
+     * @return The name of the course.
+     */
     public String getCourseName() {
         return courseName;
     }
 
+    /**
+     * Retrieves the number of credit hours the course offers.
+     *
+     * @return The number of credit hours the course offers.
+     */
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
+    /**
+     * Retrieves the number of credit hours the course offers.
+     *
+     * @return The number of credit hours the course offers.
+     */
     public int getCreditHours() {
         return creditHours;
     }
@@ -172,27 +206,56 @@ public class Course {
         return Optional.ofNullable(teacher);
     }
 
+    /**
+     * Assigns a teacher to the course.
+     *
+     * @param teacher The teacher to be assigned to the course.
+     */
     public void setTeacher(Teacher teacher) {
         this.teacher = teacher;
     }
 
+    /**
+     * Retrieves the list of prerequisites for the course.
+     *
+     * @return A Set of courses that are prerequisites for the course.
+     */
     public Set<Course> getPrerequisites() {
         return preRequisites;
     }
 
+    /**
+     * Adds a prerequisite to the course.
+     *
+     * @param preRequisite The course to be added as a prerequisite.
+     */
     public void addPrerequisites(Course preRequisite) {
         this.preRequisites.add(preRequisite);
     }
 
+    /**
+     * Retrieves the list of weekly meetings for the course.
+     *
+     * @return A list of weekly meetings for the course.
+     */
     public List<WeeklyMeeting> getWeeklyMeetings() {
         return weeklyMeetings;
     }
 
+    /**
+     * Sets the list of weekly meetings for the course.
+     *
+     * @param weeklyMeetings The list of weekly meetings to be set for the course.
+     */
     public void setWeeklyMeetings(List<WeeklyMeeting> weeklyMeetings) {
         this.weeklyMeetings = weeklyMeetings;
     }
 
-    // Getter for capacity
+    /**
+     * Retrieves the maximum number of students that can be enrolled in the course.
+     *
+     * @return The maximum number of students that can be enrolled in the course.
+     */
     public int getCapacity() {
         return CAPACITY;
     }

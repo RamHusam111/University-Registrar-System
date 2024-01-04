@@ -6,6 +6,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents a semester at the university.
+ * A semester can have a list of students, teachers, and courses.
+ * A semester can also have a name, start date, and end date.
+ * A semester can be a Fall, Spring, or Summer semester.
+ * A semester can also have a length in weeks.
+ */
 public class Semester {
 
     private String name; // name of the semester
@@ -231,6 +238,7 @@ public class Semester {
         this.name = name;
     }
 
+    
     public String getSemesterName() {
         return semesterName;
     }

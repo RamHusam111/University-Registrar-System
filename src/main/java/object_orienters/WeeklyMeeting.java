@@ -4,6 +4,10 @@ import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalTime;
 
+/**
+ * Represents a weekly meeting of a course.
+ * A weekly meeting has a day, duration, room, and hour.
+ */
 public class WeeklyMeeting {
     private DayOfWeek day;
     private Duration duration;
@@ -12,6 +16,14 @@ public class WeeklyMeeting {
     private String id;
     private String timeId;
 
+    /**
+     * Constructs a new WeeklyMeeting with the given day, duration, room, and hour.
+     *
+     * @param day      The day of the weekly meeting.
+     * @param duration The duration of the weekly meeting.
+     * @param room     The room of the weekly meeting.
+     * @param hour     The hour of the weekly meeting.
+     */
     public WeeklyMeeting(DayOfWeek day, Duration duration, String room, LocalTime hour) {
         this.day = day;
         this.duration = duration;
@@ -57,6 +69,20 @@ public class WeeklyMeeting {
         this.room = room;
     }
 
+    /**
+     * Checks if the weekly meeting has a time conflict with another weekly meeting.
+     *
+     * @param weeklyMeeting The other weekly meeting.
+     * @return True if the weekly meetings have a time conflict, false otherwise.
+     */    
+    public boolean hasTimeConflict(WeeklyMeeting weeklyMeeting) {
+        return this.getDay().equals(weeklyMeeting.getDay())
+                   && !(weeklyMeeting.getHour().plus(weeklyMeeting.getDuration()).isBefore(weeklyMeeting.getHour())
+                 || weeklyMeeting.getHour().isAfter(weeklyMeeting.getHour().plus(weeklyMeeting.getDuration())));
+    }
+
+ 
+
     @Override
     public String toString() {
 
@@ -78,6 +104,12 @@ public class WeeklyMeeting {
         return this.timeId.equals(((WeeklyMeeting) wM).timeId);
     }
 
+    /**
+     * Checks if the weekly meeting has a room conflict with another weekly meeting.
+     *
+     * @param weeklyMeetings The other weekly meeting.
+     * @return True if the weekly meetings have a room conflict, false otherwise.
+     */
     public boolean hasRoomConflict(WeeklyMeeting weeklyMeetings) {
         return this.getDay().equals(weeklyMeetings.getDay())
                 && !this.getHour().plus(this.getDuration()).isBefore(weeklyMeetings.getHour())
