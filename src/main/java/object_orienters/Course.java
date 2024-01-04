@@ -1,8 +1,10 @@
 package object_orienters;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 public class Course {
     private final int CAPACITY;
@@ -11,7 +13,7 @@ public class Course {
     private String courseID;
     private String courseName;
     private int creditHours;
-    private List<Course> preRequisites;
+    private Set<Course> preRequisites;
     private List<WeeklyMeeting> weeklyMeetings;
     private Teacher teacher;
     private List<Student> enrolledStudents;
@@ -34,7 +36,7 @@ public class Course {
         this.courseFaculty = courseFaculty;
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.preRequisites = new ArrayList<>();
+        this.preRequisites = new HashSet<Course>();
         this.weeklyMeetings = weeklyMeetings;
         this.CAPACITY = CAPACITY; // Initialize the capacity field
         courseType = Type.UNIVERSITY_REQUIREMENT;
@@ -61,7 +63,7 @@ public class Course {
         courseFaculty.addMajorCourse(this);
         this.courseName = courseName;
         this.creditHours = creditHours;
-        this.preRequisites = new ArrayList<>();
+        this.preRequisites = new HashSet<>();
         this.weeklyMeetings = weeklyMeetings;
         this.CAPACITY = CAPACITY; // Initialize the capacity field
         courseType = specialization.getType() == Specialization.Type.MAJOR ? Type.MAJOR_REQUIREMENT
@@ -174,7 +176,7 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public List<Course> getPrerequisites() {
+    public Set<Course> getPrerequisites() {
         return preRequisites;
     }
 

@@ -1,9 +1,9 @@
 package object_orienters;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
@@ -151,7 +151,7 @@ public class Student extends Person {
      * @return True if all prerequisites are met, false otherwise.
      */
     public boolean preRequisitesCheck(Course course) {
-        List<Course> preRequisites = course.getPrerequisites();
+        Set<Course> preRequisites = course.getPrerequisites();
         return preRequisites.stream().allMatch(e -> this.completedCoursesGrades.keySet().contains(e));
         // Angela changed the method from registerCourse to completed courses ^(in the
         // allMatch method)

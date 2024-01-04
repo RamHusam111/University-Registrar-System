@@ -38,22 +38,21 @@ public class RegistrarDriver {
         int input = 1;
 
         while (input != 0) {
-            System.out.println(Color.RED.value + ">>>>>>>>>>>> Choose what you want to do: " + Color.RESET);
+            System.out.println("\u001B[31m>>>>>>>>>>>> Choose what you want to do: " + Color.RESET.value);
             System.out.println(
-              Color.CYAN + "\n1 - Create New Semester"
-            + Color.GREEN +"\n2 - Add New Student"
-            + Color.PURPLE +"\n3 - Add New Teacher"
-            + Color.YELLOW +"\n4 - Add New Course"
-            + Color.CYAN + "\n5 - View Course Prerequisites"
-            + Color.GREEN +"\n6 - Register"
-            + Color.PURPLE +"\n7 - View Registered Students"
-            + Color.YELLOW +"\n8 - View Registered Teachers"
-            + Color.CYAN +"\n9 - View Available Courses"
-            + Color.GREEN +"\n10 - add prerequisite to a course"
-            + Color.PURPLE +"\n11 - show all details of a semester"
-            + Color.YELLOW +"\n0 - Exit"
-            + Color.RESET
-            );
+                    Color.CYAN.value + "\n1 - Create New Semester"
+                            + Color.GREEN.value + "\n2 - Add New Student"
+                            + Color.PURPLE.value + "\n3 - Add New Teacher"
+                            + Color.YELLOW.value + "\n4 - Add New Course"
+                            + Color.GREEN.value + "\n5 - add prerequisite to a course"
+                            + Color.CYAN.value + "\n6 - View Course Prerequisites"
+                            + Color.GREEN.value + "\n7 - Register"
+                            + Color.PURPLE.value + "\n8 - View Registered Students"
+                            + Color.YELLOW.value + "\n9 - View Registered Teachers"
+                            + Color.CYAN.value + "\n10 - View Available Courses"
+                            + Color.PURPLE.value + "\n11 - show all details of a semester"
+                            + Color.YELLOW.value + "\n0 - Exit"
+                            + Color.RESET.value);
 
             try {
                 input = Integer.parseInt(in.readLine());
