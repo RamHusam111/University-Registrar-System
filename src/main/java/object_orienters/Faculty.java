@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents a faculty at the university.
+ * A faculty can have a list of teachers, students, major courses, minor courses,
+ * and specializations.
+ */
+
 public class Faculty {
     private String name;
     private Set<Teacher> teachers;
@@ -109,16 +115,30 @@ public class Faculty {
                 + "\nMinor Specializations: " + this.getMinors();
     }
 
-    // TODO: Write Java docs for the following methods.
+    /**
+     * Retrieves the list of Specializations associated with this faculty.
+     *
+     * @return A list of Specializations.
+     */
     public List<Specialization> getSpecializations() {
         return specializations;
     }
 
+    /**
+     * Retrieves the list of Major Specialisation assoiciated with this faculty.
+     *
+     * @return A list of Major Specialisation assoiciated with this faculty.
+     */
     public List<Specialization> getMjors() {
         return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MAJOR)
                 .toList();
     }
 
+    /**
+     * Retrieves the list of Minor Specialisation assoiciated with this faculty.
+     *
+     * @return A list of Minor Specialisation assoiciated with this faculty.
+     */
     public List<Specialization> getMinors() {
         return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MINOR)
                 .toList();

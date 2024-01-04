@@ -12,6 +12,13 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * A class representing a person in an educational context.
+ * This class is responsible for storing and providing access to information
+ * about a person,
+ * such as their name, ID, email, role, and schedule.
+ * A person can be either a student or a teacher, May be extened to STAFF.
+ */
 public abstract class Person {
     private int id;
     private String name;
@@ -99,48 +106,69 @@ public abstract class Person {
     }
 
     /**
-     * Adds a list of courses to the Student current list of registered courses.
-     * This method is intended to efficiently register the Student in multiple
-     * courses in one operation.
-     * It may include validation checks such as ensuring courses are not full or
-     * checking for scheduling conflicts.
+     * Retrieves the ID of the person.
      *
+     * @return The ID of the person.
      */
-    // public void addListOfRegisteredCourses(List<Course> list) {
-    // list.stream().forEach(course -> {
-    // if (this.role == Role.STUDENT && course.isFull()) {
-    // System.out.println("Cannot register in " + course.getCourseName() + " as the
-    // course is already full.");
-    // } else {
-    // this.registeredCourses.add(course);
-    // }
-    // });
-    // }
-
     public int getId() {
         return id;
     }
 
+    /**
+     * Retrieves the role of the person.
+     *
+     * @return The role of the person.
+     */
+    public Role getRole() {
+        return role;
+    }
+
+    /**
+     * Retrieves the email of the person.
+     *
+     * @return The email of the person.
+     */
     public String getEmail() {
         return email;
     }
 
+    /**
+     * Retrieves the name of the person.
+     *
+     * @return The name of the person.
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Retrieves the list of courses in which the person is currently registered in a Semester.
+     *
+     * @return The list of courses in which the person is currently registered in a Semeester.
+     */
     public Set<Course> getRegisteredCourses() {
         return registeredCourses;
     }
 
+    /**
+     * Retrieves the total credit hours of courses in which the person is enrolled.
+     *
+     * @return The total credit hours.
+     */
     public int getCreditLoad() {
         return schedule.getCreditLoad();
     }
+
 
     private Schedule getSchedule() {
         return schedule;
     }
 
+    /**
+     * Retrieves the date the person enrolled in the university.
+     *
+     * @return The date the person enrolled in the university.
+     */
     public LocalDate getDateEnrolled() {
         return dateEnrolled;
     }
@@ -162,12 +190,28 @@ public abstract class Person {
         System.out.println(this.getSchedule().displaySchedule());
     }
 
-    // TESTED SUCCESSFULLY
+    /**
+     * Checks if the person is free on a given day and time.
+     * This method checks the person's schedule to see if they have any other
+     * commitments
+     * during the specified list of Weekly Meetings.
+     *
+     * @param list The list of Weekly Meetings to check.
+     * @return true if the person is free, false otherwise.
+     */
     public boolean isFreeOn(List<WeeklyMeeting> list) {
         return list.stream().allMatch(e -> isFreeOn(e));
     }
 
-    // TESTED SUCCESSFULLY
+    /**
+     * Checks if the person is free on a given day and time.
+     * This method checks the person's schedule to see if they have any other
+     * commitments
+     * during the specified Weekly Meeting.
+     *
+     * @param weeklyMeeting The Weekly Meeting to check.
+     * @return true if the person is free, false otherwise.
+     */
     public boolean isFreeOn(WeeklyMeeting weeklyMeeting) {
 
         return registeredCourses.stream()
@@ -194,6 +238,13 @@ public abstract class Person {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
 
+    /**
+     * Checks if the person is equal to another person.
+     * This method compares the ID of the person to the ID of the other person.
+     *
+     * @param obj The other person to compare to.
+     * @return true if the two persons are equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Person) {
@@ -213,11 +264,23 @@ public abstract class Person {
         STUDENT, TEACHER, STAFF;
     }
 
-    // SCHEDULE CLASS
+    /**
+     * A class representing the weekly schedule of a person(Teacher, Student).
+     * This class is responsible for organizing and displaying the weekly schedule
+     * of a person.
+     * The schedule is organized by day, listing each course meeting time and
+     * location.
+     */
     private class Schedule {
         private Set<Course> courses;
         Map<WeeklyMeeting, Course> meetingCourseMap;
 
+        /**
+         * Constructs a new Schedule representation for the person(Teacher, Student) based on the
+         * courses in which they are enrolled.
+         *
+         * @param courses The courses in which the person is enrolled.
+         */
         public Schedule(Set<Course> courses) {
             this.courses = courses;
             this.meetingCourseMap = new HashMap<>();

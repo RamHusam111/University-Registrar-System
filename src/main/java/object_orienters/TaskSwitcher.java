@@ -13,7 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * A class that switches between different tasks.
+ * depending on the registar input.
+ */
 public class TaskSwitcher {
+
 
     private static Faculty createFaculty(String facultyName) {
         Faculty faculty = RegistrarDriver.faculties.get(
@@ -607,6 +612,14 @@ public class TaskSwitcher {
 
     };
 
+    /**
+     * //TODO: write description
+     * 
+     * 
+     * @param input the action code to be executed
+     * @return Task To be executed on another thread by the Regiatrar
+     *
+     */
     public static Task get(int input) {
         switch (input) {
             case 1:

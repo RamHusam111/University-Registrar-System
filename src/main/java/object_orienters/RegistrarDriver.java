@@ -16,8 +16,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * Hello world!
- *
+ * Represents the registrar of the university.
  */
 public class RegistrarDriver {
 
@@ -72,6 +71,9 @@ public class RegistrarDriver {
 
     }
 
+    /**
+     * Reads the CSV files and populates the data structures.
+     */
     public static void readFiles() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/WeeklyMeetings.csv"));

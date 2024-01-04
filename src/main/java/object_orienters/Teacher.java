@@ -1,6 +1,9 @@
 package object_orienters;
 
-
+/**
+ * Represents a teacher at the university.
+ * A teacher can have a specialization, and can teach courses.
+ */
 public class Teacher extends Person {
 
   private Specialization specialization;
