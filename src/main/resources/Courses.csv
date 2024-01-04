@@ -1,200 +1,200 @@
 PHAR101,Clinical Pharmacology,Pharmacy,3,42
 ENVI102,Environmental Science,Environmental Sciences,3,82
-BUSI103,Marketing Strategies,Business,2,23
-PHYS104,Sports Physiology,Physical Education,2,33
+BUSI103,Marketing Strategies,Business,3,23
+PHYS104,Sports Physiology,Physical Education,3,33
 VETE105,Veterinary Anatomy,Veterinary Medicine,3,56
-PHYS106,Sports Physiology,Physical Education,2,82
+PHYS106,Sports Physiology,Physical Education,3,82
 MUSI107,Music Theory,Music,3,86
-COMM108,Media and Communication,Communication,4,95
+COMM108,Media and Communication,Communication,3,95
 COMP109,Software Engineering,Computing,3,65
 ARCH110,Architectural Design Principles,Architecture,3,24
-DENT111,Dental Surgery Techniques,Dentistry,4,69
-COMP112,Fundamentals of Computing,Computing,2,78
-VETE113,Veterinary Anatomy,Veterinary Medicine,4,43
-BUSI114,Marketing Strategies,Business,4,26
-SOCI115,Anthropology and Society,Social Sciences,2,63
-ARCH116,Architectural Design Principles,Architecture,4,61
-ENGI117,Principles of Engineering,Engineering,4,36
-LAW118,Constitutional Law Overview,Law,4,33
-VETE119,Veterinary Anatomy,Veterinary Medicine,2,68
-THEO120,Theological Studies,Theology,4,39
-MUSI121,Music Theory,Music,4,24
-COMP122,Fundamentals of Computing,Computing,2,51
-THEO123,Theological Studies,Theology,4,89
+DENT111,Dental Surgery Techniques,Dentistry,3,69
+COMP112,Fundamentals of Computing,Computing,3,78
+VETE113,Veterinary Anatomy,Veterinary Medicine,3,43
+BUSI114,Marketing Strategies,Business,3,26
+SOCI115,Anthropology and Society,Social Sciences,3,63
+ARCH116,Architectural Design Principles,Architecture,3,61
+ENGI117,Principles of Engineering,Engineering,3,36
+LAW118,Constitutional Law Overview,Law,3,33
+VETE119,Veterinary Anatomy,Veterinary Medicine,3,68
+THEO120,Theological Studies,Theology,3,39
+MUSI121,Music Theory,Music,3,24
+COMP122,Fundamentals of Computing,Computing,3,51
+THEO123,Theological Studies,Theology,3,89
 COMM124,Media and Communication,Communication,3,50
-EDUC125,Educational Psychology,Education,2,78
+EDUC125,Educational Psychology,Education,3,78
 PHAR126,Clinical Pharmacology,Pharmacy,3,62
-MUSI127,Music Theory,Music,4,88
-COMP128,Fundamentals of Computing,Computing,4,89
-AGRI129,Agronomy Fundamentals,Agriculture,4,77
-SOCI130,Anthropology and Society,Social Sciences,2,87
-VETE131,Veterinary Anatomy,Veterinary Medicine,4,50
+MUSI127,Music Theory,Music,3,88
+COMP128,Fundamentals of Computing,Computing,3,89
+AGRI129,Agronomy Fundamentals,Agriculture,3,77
+SOCI130,Anthropology and Society,Social Sciences,3,87
+VETE131,Veterinary Anatomy,Veterinary Medicine,3,50
 DENT132,Dental Surgery Techniques,Dentistry,3,26
-PHAR133,Clinical Pharmacology,Pharmacy,2,33
-VETE134,Veterinary Anatomy,Veterinary Medicine,4,76
-VETE135,Veterinary Anatomy,Veterinary Medicine,2,56
-ENGI136,Principles of Engineering,Engineering,2,23
-ARCH137,Architectural Design Principles,Architecture,2,31
-PHYS138,Sports Physiology,Physical Education,2,68
-MUSI139,Music Theory,Music,4,74
+PHAR133,Clinical Pharmacology,Pharmacy,3,33
+VETE134,Veterinary Anatomy,Veterinary Medicine,3,76
+VETE135,Veterinary Anatomy,Veterinary Medicine,3,56
+ENGI136,Principles of Engineering,Engineering,3,23
+ARCH137,Architectural Design Principles,Architecture,3,31
+PHYS138,Sports Physiology,Physical Education,3,68
+MUSI139,Music Theory,Music,3,74
 ENVI140,Environmental Science,Environmental Sciences,3,34
-AGRI141,Agronomy Fundamentals,Agriculture,2,22
+AGRI141,Agronomy Fundamentals,Agriculture,3,22
 SOCI142,Anthropology and Society,Social Sciences,3,39
 HUMA143,Philosophy and Ethics,Humanities,3,78
 COMP144,Fundamentals of Computing,Computing,3,77
-SOCI145,Anthropology and Society,Social Sciences,2,34
+SOCI145,Anthropology and Society,Social Sciences,3,34
 ENGI146,Principles of Engineering,Engineering,3,53
 ENVI147,Environmental Science,Environmental Sciences,3,68
 COMM148,Media and Communication,Communication,3,28
 MUSI149,Music Theory,Music,3,35
-DENT150,Dental Surgery Techniques,Dentistry,2,54
+DENT150,Dental Surgery Techniques,Dentistry,3,54
 COMP151,Software Engineering,Computing,3,93
 COMP152,Software Engineering,Computing,3,81
-AGRI153,Agronomy Fundamentals,Agriculture,2,90
-COMP154,Software Engineering,Computing,2,40
-PHAR155,Basics of Pharmacy,Pharmacy,4,93
+AGRI153,Agronomy Fundamentals,Agriculture,3,90
+COMP154,Software Engineering,Computing,3,40
+PHAR155,Basics of Pharmacy,Pharmacy,3,93
 ENVI156,Environmental Science,Environmental Sciences,3,95
 HUMA157,Philosophy and Ethics,Humanities,3,37
-MUSI158,Music Theory,Music,2,32
-PHAR159,Clinical Pharmacology,Pharmacy,2,33
-MUSI160,Music Theory,Music,2,79
-AGRI161,Agronomy Fundamentals,Agriculture,4,63
-DENT162,Dental Surgery Techniques,Dentistry,2,33
-SCIE163,Introduction to Biology,Science,2,79
-SCIE164,Introduction to Biology,Science,2,50
-THEO165,Theological Studies,Theology,2,71
+MUSI158,Music Theory,Music,3,32
+PHAR159,Clinical Pharmacology,Pharmacy,3,33
+MUSI160,Music Theory,Music,3,79
+AGRI161,Agronomy Fundamentals,Agriculture,3,63
+DENT162,Dental Surgery Techniques,Dentistry,3,33
+SCIE163,Introduction to Biology,Science,3,79
+SCIE164,Introduction to Biology,Science,3,50
+THEO165,Theological Studies,Theology,3,71
 MUSI166,Music Theory,Music,3,93
-LAW167,Constitutional Law Overview,Law,4,79
-DENT168,Dental Surgery Techniques,Dentistry,2,68
-PHAR169,Basics of Pharmacy,Pharmacy,4,22
-MUSI170,Music Theory,Music,2,87
+LAW167,Constitutional Law Overview,Law,3,79
+DENT168,Dental Surgery Techniques,Dentistry,3,68
+PHAR169,Basics of Pharmacy,Pharmacy,3,22
+MUSI170,Music Theory,Music,3,87
 EDUC171,Educational Psychology,Education,3,97
-ARCH172,Architectural Design Principles,Architecture,4,74
-SOCI173,Anthropology and Society,Social Sciences,2,44
-AGRI174,Agronomy Fundamentals,Agriculture,4,65
-COMM175,Media and Communication,Communication,2,73
-ENVI176,Environmental Science,Environmental Sciences,2,34
-COMP177,Fundamentals of Computing,Computing,2,30
-BUSI178,Marketing Strategies,Business,4,71
+ARCH172,Architectural Design Principles,Architecture,3,74
+SOCI173,Anthropology and Society,Social Sciences,3,44
+AGRI174,Agronomy Fundamentals,Agriculture,3,65
+COMM175,Media and Communication,Communication,3,73
+ENVI176,Environmental Science,Environmental Sciences,3,34
+COMP177,Fundamentals of Computing,Computing,3,30
+BUSI178,Marketing Strategies,Business,3,71
 COMM179,Media and Communication,Communication,3,21
-EDUC180,Educational Psychology,Education,2,32
-AGRI181,Agronomy Fundamentals,Agriculture,2,44
+EDUC180,Educational Psychology,Education,3,32
+AGRI181,Agronomy Fundamentals,Agriculture,3,44
 PHYS182,Sports Physiology,Physical Education,3,22
-PHAR183,Basics of Pharmacy,Pharmacy,2,59
+PHAR183,Basics of Pharmacy,Pharmacy,3,59
 PHYS184,Sports Physiology,Physical Education,3,94
-VETE185,Veterinary Anatomy,Veterinary Medicine,2,32
+VETE185,Veterinary Anatomy,Veterinary Medicine,3,32
 ENGI186,Principles of Engineering,Engineering,3,79
-BUSI187,Marketing Strategies,Business,2,62
+BUSI187,Marketing Strategies,Business,3,62
 HUMA188,Philosophy and Ethics,Humanities,3,70
-VETE189,Veterinary Anatomy,Veterinary Medicine,2,99
-LAW190,Constitutional Law Overview,Law,2,100
+VETE189,Veterinary Anatomy,Veterinary Medicine,3,99
+LAW190,Constitutional Law Overview,Law,3,100
 DENT191,Dental Surgery Techniques,Dentistry,3,24
-PHAR192,Clinical Pharmacology,Pharmacy,2,54
+PHAR192,Clinical Pharmacology,Pharmacy,3,54
 SOCI193,Anthropology and Society,Social Sciences,3,97
-COMP194,Software Engineering,Computing,2,87
-SOCI195,Anthropology and Society,Social Sciences,4,29
+COMP194,Software Engineering,Computing,3,87
+SOCI195,Anthropology and Society,Social Sciences,3,29
 VETE196,Veterinary Anatomy,Veterinary Medicine,3,42
 PHAR197,Basics of Pharmacy,Pharmacy,3,35
-AGRI198,Agronomy Fundamentals,Agriculture,4,53
-ENGI199,Principles of Engineering,Engineering,4,77
-ARCH200,Architectural Design Principles,Architecture,4,64
-ENVI201,Environmental Science,Environmental Sciences,2,81
-ENGI202,Principles of Engineering,Engineering,2,23
-THEO203,Theological Studies,Theology,2,38
-ENVI204,Environmental Science,Environmental Sciences,4,66
-ENVI205,Environmental Science,Environmental Sciences,4,86
-AGRI206,Agronomy Fundamentals,Agriculture,3,96
-COMM207,Media and Communication,Communication,2,83
-MUSI208,Music Theory,Music,4,71
-VETE209,Veterinary Anatomy,Veterinary Medicine,4,70
-ARCH210,Architectural Design Principles,Architecture,4,78
-VETE211,Veterinary Anatomy,Veterinary Medicine,4,93
-THEO212,Theological Studies,Theology,2,48
-DENT213,Dental Surgery Techniques,Dentistry,4,75
-PHAR214,Clinical Pharmacology,Pharmacy,3,96
-LAW215,Constitutional Law Overview,Law,4,45
-COMP216,Fundamentals of Computing,Computing,3,62
-ARCH217,Architectural Design Principles,Architecture,2,82
-PHAR218,Basics of Pharmacy,Pharmacy,3,68
-PHAR219,Basics of Pharmacy,Pharmacy,3,71
-BUSI220,Marketing Strategies,Business,2,78
-VETE221,Veterinary Anatomy,Veterinary Medicine,2,62
-PHAR222,Clinical Pharmacology,Pharmacy,3,28
-COMP223,Fundamentals of Computing,Computing,4,48
-PHYS224,Sports Physiology,Physical Education,4,44
-PHAR225,Clinical Pharmacology,Pharmacy,3,22
-AGRI226,Agronomy Fundamentals,Agriculture,2,72
-MUSI227,Music Theory,Music,3,30
-ARCH228,Architectural Design Principles,Architecture,2,62
-SCIE229,Introduction to Biology,Science,4,44
-AGRI230,Agronomy Fundamentals,Agriculture,4,98
-COMP231,Fundamentals of Computing,Computing,2,52
-EDUC232,Educational Psychology,Education,4,39
-SOCI233,Anthropology and Society,Social Sciences,2,78
-ENVI234,Environmental Science,Environmental Sciences,4,25
-LAW235,Constitutional Law Overview,Law,2,75
-PHYS236,Sports Physiology,Physical Education,3,61
-ARCH237,Architectural Design Principles,Architecture,3,49
-COMP238,Software Engineering,Computing,3,56
-COMP239,Software Engineering,Computing,4,50
-PHAR240,Basics of Pharmacy,Pharmacy,3,83
-ENVI241,Environmental Science,Environmental Sciences,4,90
-LAW242,Constitutional Law Overview,Law,2,62
-MUSI243,Music Theory,Music,4,94
-COMM244,Media and Communication,Communication,4,75
-COMP245,Software Engineering,Computing,3,32
-THEO246,Theological Studies,Theology,2,67
-MUSI247,Music Theory,Music,4,88
-SCIE248,Introduction to Biology,Science,2,31
-HUMA249,Philosophy and Ethics,Humanities,3,87
-COMM250,Media and Communication,Communication,2,49
-MUSI251,Music Theory,Music,3,78
-AGRI252,Agronomy Fundamentals,Agriculture,4,46
-COMP253,Fundamentals of Computing,Computing,2,86
-VETE254,Veterinary Anatomy,Veterinary Medicine,2,50
-PHAR255,Basics of Pharmacy,Pharmacy,4,40
-BUSI256,Marketing Strategies,Business,4,28
-HUMA257,Philosophy and Ethics,Humanities,3,43
-COMP258,Fundamentals of Computing,Computing,3,52
-DENT259,Dental Surgery Techniques,Dentistry,2,85
-COMP260,Software Engineering,Computing,3,83
-VETE261,Veterinary Anatomy,Veterinary Medicine,2,68
-PHYS262,Sports Physiology,Physical Education,3,59
-ENGI263,Principles of Engineering,Engineering,4,36
-VETE264,Veterinary Anatomy,Veterinary Medicine,4,30
-SCIE265,Introduction to Biology,Science,4,64
-AGRI266,Agronomy Fundamentals,Agriculture,4,43
-VETE267,Veterinary Anatomy,Veterinary Medicine,3,49
-PHAR268,Clinical Pharmacology,Pharmacy,2,60
-COMP269,Software Engineering,Computing,3,52
-VETE270,Veterinary Anatomy,Veterinary Medicine,3,73
-LAW271,Constitutional Law Overview,Law,3,70
-PHYS272,Sports Physiology,Physical Education,4,60
-COMP273,Fundamentals of Computing,Computing,4,52
-PHAR274,Clinical Pharmacology,Pharmacy,2,52
-SCIE275,Introduction to Biology,Science,3,86
-ENGI276,Principles of Engineering,Engineering,3,41
-AGRI277,Agronomy Fundamentals,Agriculture,4,20
-LAW278,Constitutional Law Overview,Law,3,74
-PHAR279,Clinical Pharmacology,Pharmacy,3,83
-ENGI280,Principles of Engineering,Engineering,2,23
-COMP281,Software Engineering,Computing,4,81
-LAW282,Constitutional Law Overview,Law,2,69
-SCIE283,Introduction to Biology,Science,3,74
-SOCI284,Anthropology and Society,Social Sciences,3,57
-VETE285,Veterinary Anatomy,Veterinary Medicine,2,89
-PHYS286,Sports Physiology,Physical Education,4,23
-PHAR287,Clinical Pharmacology,Pharmacy,2,59
-LAW288,Constitutional Law Overview,Law,2,90
-COMM289,Media and Communication,Communication,3,89
-PHAR290,Clinical Pharmacology,Pharmacy,4,97
-ENGI291,Principles of Engineering,Engineering,4,55
-VETE292,Veterinary Anatomy,Veterinary Medicine,2,53
-LAW293,Constitutional Law Overview,Law,4,58
-ARCH294,Architectural Design Principles,Architecture,3,62
-MUSI295,Music Theory,Music,2,50
-PHAR296,Clinical Pharmacology,Pharmacy,4,87
-HUMA297,Philosophy and Ethics,Humanities,2,45
-BUSI298,Marketing Strategies,Business,3,84
-ENVI299,Environmental Science,Environmental Sciences,3,21
-ENVI300,Environmental Science,Environmental Sciences,2,68
+AGRI198,Agronomy Fundamentals,Agriculture,3,53
+ENGI199,Principles of Engineering,Engineering,3,77
+ARCH200,Architectural Design Principles,Architecture,3,64
+SOFT101,Software Engineering,Software Development,3,81
+AGRO102,Agronomic Practices,Agronomy,3,23
+MUSI103,Classical Music Performance,Music Performance,3,38
+ENVI104,Environmental Management,Environmental Policy,3,66
+MECH105,Thermodynamics in Engineering,Mechanical Engineering,3,86
+EDUC106,Educational Development,Education Psychology,3,96
+CONS107,Constitutional Law Principles,Constitutional Law,3,83
+SPOR108,Sports Physiology,Sports Science,3,71
+PHAR109,Advanced Pharmacology,Pharmacology,3,70
+AGRO110,Agronomic Practices,Agronomy,3,78
+SOFT111,Software Engineering,Software Development,3,93
+PHAR112,Advanced Pharmacology,Pharmacology,3,48
+PHIL113,Philosophical Foundations,Philosophy,3,75
+BIOL114,Molecular Biology,Biology,3,96
+ARCH115,Modern Architectural Design,Architectural Design,3,45
+MUSI116,Classical Music Performance,Music Performance,3,62
+MARK117,Strategic Marketing,Marketing,3,82
+CONS118,Constitutional Law Principles,Constitutional Law,3,68
+MEDI119,Media and Society,Media Studies,3,71
+AGRO120,Agronomic Practices,Agronomy,3,78
+ARCH121,Modern Architectural Design,Architectural Design,3,62
+SOFT122,Software Engineering,Software Development,3,28
+PHAR123,Pharmaceutical Research,Pharmaceutical Sciences,3,48
+MUSI124,Classical Music Performance,Music Performance,3,44
+PHIL125,Philosophical Foundations,Philosophy,3,22
+SPOR126,Sports Physiology,Sports Science,3,72
+MARK127,Strategic Marketing,Marketing,3,30
+ARCH128,Modern Architectural Design,Architectural Design,3,62
+CONS129,Constitutional Law Principles,Constitutional Law,3,44
+SOFT130,Software Engineering,Software Development,3,98
+MARK131,Strategic Marketing,Marketing,3,52
+ENVI132,Environmental Management,Environmental Policy,3,39
+SPOR133,Sports Physiology,Sports Science,3,78
+MEDI134,Media and Society,Media Studies,3,25
+PHIL135,Philosophical Foundations,Philosophy,3,75
+BIOL136,Molecular Biology,Biology,3,61
+PHAR137,Advanced Pharmacology,Pharmacology,3,49
+AGRO138,Agronomic Practices,Agronomy,3,56
+COMP139,Computer Algorithms,Computer Science,3,50
+AGRO140,Agronomic Practices,Agronomy,3,83
+DIVI141,Theology and Culture,Divinity Studies,3,90
+MEDI142,Media and Society,Media Studies,3,62
+EDUC143,Educational Development,Education Psychology,3,94
+ANTH144,Cultural Anthropology,Anthropology,3,75
+PHAR145,Advanced Pharmacology,Pharmacology,3,32
+PHIL146,Philosophical Foundations,Philosophy,3,67
+CONS147,Constitutional Law Principles,Constitutional Law,3,88
+MECH148,Thermodynamics in Engineering,Mechanical Engineering,3,31
+MECH149,Thermodynamics in Engineering,Mechanical Engineering,3,87
+PHAR150,Advanced Pharmacology,Pharmacology,3,49
+MARK151,Strategic Marketing,Marketing,3,78
+EDUC152,Educational Development,Education Psychology,3,46
+ARCH153,Modern Architectural Design,Architectural Design,3,86
+PHAR154,Pharmaceutical Research,Pharmaceutical Sciences,3,50
+DIVI155,Theology and Culture,Divinity Studies,3,40
+MECH156,Thermodynamics in Engineering,Mechanical Engineering,3,28
+COMP157,Computer Algorithms,Computer Science,3,43
+BIOL158,Molecular Biology,Biology,3,52
+MARK159,Strategic Marketing,Marketing,3,85
+MARK160,Strategic Marketing,Marketing,3,83
+ORAL161,Oral Surgical Techniques,Oral Surgery,3,68
+SOFT162,Software Engineering,Software Development,3,59
+DIVI163,Theology and Culture,Divinity Studies,3,36
+ORAL164,Oral Surgical Techniques,Oral Surgery,3,30
+MARK165,Strategic Marketing,Marketing,3,64
+AGRO166,Agronomic Practices,Agronomy,3,43
+SOFT167,Software Engineering,Software Development,3,49
+SOFT168,Software Engineering,Software Development,3,60
+MECH169,Thermodynamics in Engineering,Mechanical Engineering,3,52
+MECH170,Thermodynamics in Engineering,Mechanical Engineering,3,73
+VETE171,Veterinary Clinical Practices,Veterinary Medicine,3,70
+MARK172,Strategic Marketing,Marketing,3,60
+MARK173,Strategic Marketing,Marketing,3,52
+ORAL174,Oral Surgical Techniques,Oral Surgery,3,52
+AGRO175,Agronomic Practices,Agronomy,3,86
+MUSI176,Classical Music Performance,Music Performance,3,41
+CONS177,Constitutional Law Principles,Constitutional Law,3,20
+PHAR178,Advanced Pharmacology,Pharmacology,3,74
+SOFT179,Software Engineering,Software Development,3,83
+ENVI180,Environmental Management,Environmental Policy,3,23
+ENVI181,Environmental Management,Environmental Policy,3,81
+BIOL182,Molecular Biology,Biology,3,69
+EDUC183,Educational Development,Education Psychology,3,74
+ENVI184,Environmental Management,Environmental Policy,3,57
+CONS185,Constitutional Law Principles,Constitutional Law,3,89
+ARCH186,Modern Architectural Design,Architectural Design,3,23
+SOFT187,Software Engineering,Software Development,3,59
+BIOL188,Molecular Biology,Biology,3,90
+ARCH189,Modern Architectural Design,Architectural Design,3,89
+PHAR190,Pharmaceutical Research,Pharmaceutical Sciences,3,97
+MARK191,Strategic Marketing,Marketing,3,55
+DIVI192,Theology and Culture,Divinity Studies,3,53
+VETE193,Veterinary Clinical Practices,Veterinary Medicine,3,58
+ORAL194,Oral Surgical Techniques,Oral Surgery,3,62
+PHAR195,Pharmaceutical Research,Pharmaceutical Sciences,3,50
+MECH196,Thermodynamics in Engineering,Mechanical Engineering,3,87
+BIOL197,Molecular Biology,Biology,3,45
+PHAR198,Advanced Pharmacology,Pharmacology,3,84
+MUSI199,Classical Music Performance,Music Performance,3,21
+COMP200,Computer Algorithms,Computer Science,3,68

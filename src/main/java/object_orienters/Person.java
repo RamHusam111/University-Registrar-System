@@ -7,8 +7,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class Person {
@@ -16,7 +18,7 @@ public abstract class Person {
     private String name;
     private String email;
     private Role role = Role.STAFF;
-    private List<Course> registeredCourses;
+    private Set<Course> registeredCourses;
     private Schedule schedule;
     private LocalDate dateEnrolled; // YOUSEF CHANGED IT FROM yearEnrolled to dateEnrolled
     private static int stuSequence = 1000;
@@ -37,7 +39,7 @@ public abstract class Person {
         this.name = name;
         this.role = role;
         dateEnrolled = LocalDate.now();
-        registeredCourses = new ArrayList<>();
+        registeredCourses = new HashSet<>();
         this.id = this.setID();
         this.email = this.id + "@objectOrienters.com";
         this.schedule = new Schedule(this.getRegisteredCourses());
@@ -106,13 +108,14 @@ public abstract class Person {
      *
      */
     // public void addListOfRegisteredCourses(List<Course> list) {
-    //     list.stream().forEach(course -> {
-    //         if (this.role == Role.STUDENT && course.isFull()) {
-    //             System.out.println("Cannot register in " + course.getCourseName() + " as the course is already full.");
-    //         } else {
-    //             this.registeredCourses.add(course);
-    //         }
-    //     });
+    // list.stream().forEach(course -> {
+    // if (this.role == Role.STUDENT && course.isFull()) {
+    // System.out.println("Cannot register in " + course.getCourseName() + " as the
+    // course is already full.");
+    // } else {
+    // this.registeredCourses.add(course);
+    // }
+    // });
     // }
 
     public int getId() {
@@ -127,7 +130,7 @@ public abstract class Person {
         return name;
     }
 
-    public List<Course> getRegisteredCourses() {
+    public Set<Course> getRegisteredCourses() {
         return registeredCourses;
     }
 
@@ -192,6 +195,14 @@ public abstract class Person {
         return "ID: " + this.getId() + "\nName: " + this.getName() + "\nEmail: " + this.getEmail();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Person) {
+            return this.getId() == ((Person) obj).getId();
+        }
+        return false;
+    }
+
     /**
      * Enumeration representing the different roles a person can have in an
      * educational context.
@@ -205,10 +216,10 @@ public abstract class Person {
 
     // SCHEDULE CLASS
     private class Schedule {
-        private List<Course> courses;
+        private Set<Course> courses;
         Map<WeeklyMeeting, Course> meetingCourseMap;
 
-        public Schedule(List<Course> courses) {
+        public Schedule(Set<Course> courses) {
             this.courses = courses;
             this.meetingCourseMap = new HashMap<>();
             this.courses.forEach(course -> course.getWeeklyMeetings()

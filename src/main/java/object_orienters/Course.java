@@ -19,12 +19,12 @@ public class Course {
     /**
      * Constructor for university requirement courses.
      *
-     * @param courseID The unique identifier for the course.
-     * @param courseName The name of the course.
-     * @param courseFaculty The faculty to which the course belongs.
-     * @param creditHours The number of credit hours the course offers.
+     * @param courseID       The unique identifier for the course.
+     * @param courseName     The name of the course.
+     * @param courseFaculty  The faculty to which the course belongs.
+     * @param creditHours    The number of credit hours the course offers.
      * @param weeklyMeetings The weekly meetings scheduled for the course.
-     * @param CAPACITY The maximum number of students that can be enrolled.
+     * @param CAPACITY       The maximum number of students that can be enrolled.
      */
     // Constructor for university requirement courses
     public Course(String courseID, String courseName, Faculty courseFaculty, int creditHours,
@@ -43,12 +43,12 @@ public class Course {
     /**
      * Constructor for major/minor requirement courses.
      *
-     * @param courseID The unique identifier for the course.
-     * @param courseName The name of the course.
+     * @param courseID       The unique identifier for the course.
+     * @param courseName     The name of the course.
      * @param specialization The specialization that this course falls under.
-     * @param creditHours The number of credit hours the course offers.
+     * @param creditHours    The number of credit hours the course offers.
      * @param weeklyMeetings The weekly meetings scheduled for the course.
-     * @param CAPACITY The maximum number of students that can be enrolled.
+     * @param CAPACITY       The maximum number of students that can be enrolled.
      */
 
     // Constructor for major/minor requirement courses
@@ -70,7 +70,8 @@ public class Course {
 
     /**
      * Enrolls a student in the course if there is available capacity.
-     * If the course is full, enrollment is not possible and an appropriate message is displayed.
+     * If the course is full, enrollment is not possible and an appropriate message
+     * is displayed.
      *
      * @param student The student to be enrolled in the course.
      */
@@ -86,7 +87,8 @@ public class Course {
     /**
      * Checks if the course has reached its maximum capacity of enrolled students.
      *
-     * @return true if the number of enrolled students equals or exceeds the capacity,
+     * @return true if the number of enrolled students equals or exceeds the
+     *         capacity,
      *         false otherwise.
      */
     // Method to check if the course is full
@@ -102,12 +104,19 @@ public class Course {
      */
     @Override
     public String toString() {
-        return "Course{" +
-                ", courseType='" + courseType + '\'' +
-                // ", courseDepartment=" + courseDepartment +
-                ", courseName='" + courseName + '\'' +
-                ", creditHours=" + creditHours +
-                '}';
+        return "Course ID: " + this.getCourseID() + "\nCourse Name: " + this.getCourseName() +
+                "\nCredit Hours: " + this.getCourseName() + "\nCapacity: " + this.getCapacity() + "\nCourse Faculty: "
+                + this.getCourseFaculty().getName() + "\nPrerequisites: " + this.getPrerequisites().toString()
+                + "\nCourse Type: "
+                + this.getCourseType();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Course) {
+            return this.getCourseID().equals(((Course) obj).getCourseID());
+        }
+        return false;
     }
 
     public String getCourseID() {
@@ -153,7 +162,8 @@ public class Course {
     /**
      * Retrieves the teacher assigned to the course.
      *
-     * @return An Optional containing the teacher if one is assigned, or an empty Optional
+     * @return An Optional containing the teacher if one is assigned, or an empty
+     *         Optional
      *         if no teacher is assigned to the course.
      */
     public Optional<Teacher> getTeacher() {

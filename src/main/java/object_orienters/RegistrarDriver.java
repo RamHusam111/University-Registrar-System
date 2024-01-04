@@ -127,8 +127,14 @@ public class RegistrarDriver extends Thread {
                 List<WeeklyMeeting> courseMeetings = IntStream.range(startIndex, startIndex + 3)
                         .mapToObj(index -> weeklyMeetings.get(index))
                         .collect(Collectors.toList());
-                Course course = new Course(values[0], values[1], faculties.get(values[2]),
-                        Integer.parseInt(values[3]), courseMeetings, Integer.parseInt(values[4]));
+                Course course = null;
+                if (faculties.containsKey(values[2])) {
+                    course = new Course(values[0], values[1], faculties.get(values[2]),
+                            Integer.parseInt(values[3]), courseMeetings, Integer.parseInt(values[4]));
+                } else {
+                    course = new Course(values[0], values[1], specializations.get(values[2]),
+                            Integer.parseInt(values[3]), courseMeetings, Integer.parseInt(values[4]));
+                }
                 courses.put(course.getCourseID(), course);
                 line = bufferedReader.readLine();
                 courseCount++;
