@@ -5,7 +5,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 public class Semester {
 
@@ -174,7 +173,7 @@ public class Semester {
      *
      * @return The name of the semester.
      */
-    public String giveName() {
+    private String giveName() {
         int startMonth = semesterStartDate.getMonthValue();
         if ((startMonth >= 9 && startMonth <= 12)) {
             // Fall semester (September to December)

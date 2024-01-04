@@ -27,6 +27,7 @@ public class Faculty {
         this.students = new ArrayList<>();
         this.majorsCourses = new ArrayList<>();
         this.minorsCourses = new ArrayList<>();
+        this.specializations = new ArrayList<>();
         faculties.add(this);
 
     }
@@ -102,7 +103,7 @@ public class Faculty {
         return "Faculty{" + name + ", majors Courses = " + majorsCourses + ", minors = " + minorsCourses;
     }
 
-    //TODO: Implement this method
+    //TODO: Write Java docs for the following methods.
     public List<Specialization> getSpecializations() {
         return specializations;
     }
