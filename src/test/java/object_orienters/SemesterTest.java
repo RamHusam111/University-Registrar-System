@@ -147,7 +147,7 @@ public class SemesterTest {
             spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
             semester.registerInACourse(course, List.of(new Student("Jhon", spec)), new Teacher("AahmD", spec));
             assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1
-                    && semester.getCourse().size() == 1);
+                    && semester.getRegisteredCourses().size() == 1);
         }
 
     }
@@ -164,7 +164,7 @@ public class SemesterTest {
                 50),
                 List.of(new Student("Jhon", spec)), t);
         assertTrue(semester.getTeachers().size() == 1 && semester.getStudents().size() == 1
-                && semester.getCourse().size() == 1);
+                && semester.getRegisteredCourses().size() == 1);
 
     }
 
@@ -330,7 +330,7 @@ public class SemesterTest {
 
         assertTrue(course.getEnrolledStudents().size() == 35);
         assertTrue(semester3.getTeachers().size() == 1);
-        assertTrue(semester3.getCourse().size() == 1);
+        assertTrue(semester3.getRegisteredCourses().size() == 1);
     }
 
     // Remove Specific Students from a Course
@@ -395,7 +395,7 @@ public class SemesterTest {
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
         semester44.unregisterInACourse(course, Arrays.asList(student1, student2), true);
 
-        assertFalse(semester.getCourse().contains(course));
+        assertFalse(semester.getRegisteredCourses().contains(course));
     }
 
 }
