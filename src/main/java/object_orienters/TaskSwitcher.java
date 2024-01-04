@@ -359,7 +359,8 @@ public class TaskSwitcher {
             } else {
                 System.out.println("\n\nCourse Prerequisites:");
                 System.out.println(
-                        course.getPrerequisites().stream().map(c -> c.getCourseID()).reduce((c1, c2) -> c1 + "\n" + c2).orElse("No Prerequisites exist for this course"));
+                        course.getPrerequisites().stream().map(c -> c.getCourseID()).reduce((c1, c2) -> c1 + "\n" + c2)
+                                .orElse("No Prerequisites exist for this course"));
             }
 
         } catch (IOException e) {
@@ -416,6 +417,7 @@ public class TaskSwitcher {
     };
 
     private static Runnable action12 = () -> {
+
         //TODO: implement eneter Grades
         BufferedReader br = new BufferedReader (new InputStreamReader (System.in));
         System.out.println("Enter student ID to enter the grade");
@@ -440,6 +442,7 @@ public class TaskSwitcher {
         }catch (Exception e){
 
         }
+
 
     };
 
@@ -673,6 +676,10 @@ public class TaskSwitcher {
                 return new Task(input, action10);
             case 11:
                 return new Task(input, action11);
+            case 12:
+                return new Task(input, action12);
+            case 13:
+                return new Task(input, action13);
 
             default:
                 return new Task(input);
