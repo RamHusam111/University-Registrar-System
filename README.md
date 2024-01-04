@@ -28,8 +28,9 @@ This project is a comprehensive academic management system implemented in Java. 
 - **Specialization.java**: Defines various specializations or majors that students can enroll in.
 - **Teacher.java**: A subclass of Faculty, specifically focused on teaching responsibilities and course management.
 - **WeeklyMeeting.java**: Manages weekly meetings or classes, including time, location, and participants.
-- **TaskSwitcher.java**: A utility class for managing tasks or operations within the system.
+- **TaskSwitcher.java**: Potentially a utility class for managing tasks or operations within the system.
 - **RegistrarDriver.java**: The main driver class that initiates and orchestrates the functionality of the entire system.
+- **Task.java**: Manages concurrent tasks in the system, handling parallel processes with specific process IDs, useful for operations requiring multithreading.
 
 #### Features
 - **Student Management**: Keep track of student information, including courses enrolled, grades, and GPA.
