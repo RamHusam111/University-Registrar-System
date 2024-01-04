@@ -443,9 +443,18 @@ public class TaskSwitcher {
 
     };
 
-
     private static Runnable action13 = () -> {
-        //TODO: implement calculate GPA
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter student ID to calculate GPA for: ");
+        String id;
+        try {
+            id = br.readLine();
+            Student stu = RegistrarDriver.students.get(Integer.parseInt(id));
+            System.out.println("GPA for " + stu.getId() + " = " + stu.calculateGPA());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     };
 
     private static Runnable action7 = () -> {
