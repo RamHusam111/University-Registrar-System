@@ -164,6 +164,10 @@ public class TaskSwitcher {
                 System.out.println("Invalid date format. Please enter date in dd/MM/yyyy format");
             }
         }
+        if (startDate.isAfter(endDate)) {
+            System.out.println("Start Date is after End Date. Please enter valid dates");
+            return createSemester();
+        }
         Semester semester = new Semester(startDate,
                 endDate);
         RegistrarDriver.semesters.put(semester.getSemesterName(), semester);
@@ -498,7 +502,7 @@ public class TaskSwitcher {
                     });
 
             course.get().addPrerequisites(prerequisite);
-            System.out.println("Prerequisite " + prerequisite + " added successfully to " + course.get());
+            System.out.println("\nPREREQUISITE:\n\n" + prerequisite + "\n\nADDED SUCCESSFULLY TO COURSE:\n\n" + course.get()+"\n");
 
         } else {
             System.out.println("Course not found");
