@@ -333,7 +333,9 @@ public class SemesterTest {
         assertTrue(semester3.getRegisteredCourses().size() == 1);
     }
 
-    // Remove Specific Students from a Course
+
+    //Remove Specific Students from a Course
+
     @Test
     public void testUnregisterSpecificStudentsFromCourse() {
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
@@ -342,24 +344,24 @@ public class SemesterTest {
                 List.of(wm), 200);
         Student student1 = new Student("Alice", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
         Student student2 = new Student("Bob", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Teacher teacher = new Teacher("AahmD", spec);
-
-        Student student3 = new Student("Alice", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Student student4 = new Student("Bob", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        //Teacher teacher = new Teacher("AahmD", spec);
+        Student student3 = new Student("Husam", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        Student student4 = new Student("Yousef", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        Teacher teacher = new Teacher("Angela", spec);
         Teacher teacher2 = new Teacher("hhhhh", spec);
+
 
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
         semester44.registerInACourse(course, Arrays.asList(student3, student4), teacher);
         // Unregister specific student(s) from the course
-        semester44.unregisterInACourse(course, Arrays.asList(student1),false);
-
-        
+        System.out.println(course.getEnrolledStudents());
+        semester44.unregisterInACourse(course, Arrays.asList(student1), false);
+        System.out.println(course.getEnrolledStudents());
 
         // Assertions
         assertFalse( course.getEnrolledStudents().contains(student1));
         assertTrue( course.getEnrolledStudents().contains(student2));
     }
+
 
     // Unassign a Teacher from a Course
     @Test
@@ -375,7 +377,7 @@ public class SemesterTest {
         Teacher teacher = new Teacher("AahmD", spec);
 
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
-        semester44.unregisterInACourse(course, null, true);
+        semester44.unregisterInACourse(course, List.of(), true);
 
         assertFalse(course.getTeacher().isPresent());
     }
