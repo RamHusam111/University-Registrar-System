@@ -69,6 +69,7 @@ public class Faculty {
     public Set<Teacher> getTeachers() {
         return teachers;
     }
+
     /**
      * Retrieves the list of students associated with this faculty.
      *
@@ -77,6 +78,7 @@ public class Faculty {
     public List<Student> getStudents() {
         return students;
     }
+
     /**
      * Adds a major course to the list of major courses offered by this faculty.
      *
@@ -85,6 +87,7 @@ public class Faculty {
     public void addMajorCourse(Course majorCourse) {
         this.majorsCourses.add(majorCourse);
     }
+
     /**
      * Adds a minor course to the list of minor courses offered by this faculty.
      *
@@ -93,27 +96,32 @@ public class Faculty {
     public void addMinor(Course minorCourse) {
         this.minorsCourses.add(minorCourse);
     }
+
     /**
-     * Returns a string representation of the faculty, including its name and lists of major and minor courses.
+     * Returns a string representation of the faculty, including its name and lists
+     * of major and minor courses.
      *
      * @return A formatted string containing the faculty's details.
      */
     @Override
     public String toString() {
-        return "Faculty{" + name + ", majors Courses = " + majorsCourses + ", minors = " + minorsCourses;
+        return "Faculty name: " + this.getName() + "\nMajor Specializations: " + this.getMajorsCourses()
+                + "\nMinor Specializations: " + this.getMinors();
     }
 
-    //TODO: Write Java docs for the following methods.
+    // TODO: Write Java docs for the following methods.
     public List<Specialization> getSpecializations() {
         return specializations;
     }
 
-     public List<Specialization> getMjors() {
-        return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MAJOR).toList();
+    public List<Specialization> getMjors() {
+        return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MAJOR)
+                .toList();
     }
 
     public List<Specialization> getMinors() {
-        return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MINOR).toList();
+        return specializations.stream().filter(specialization -> specialization.getType() == Specialization.Type.MINOR)
+                .toList();
     }
 
 }

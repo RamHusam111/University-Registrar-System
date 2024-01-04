@@ -29,7 +29,6 @@ public class SemesterTest {
     private Semester semester;
     private Semester semester44;
 
-
     @Before
     public void setUp() throws IOException {
         String filePath = "src/test/resources/SemestersDates.csv";
@@ -334,7 +333,7 @@ public class SemesterTest {
         assertTrue(semester3.getCourse().size() == 1);
     }
 
-//Remove Specific Students from a Course
+    // Remove Specific Students from a Course
     @Test
     public void testUnregisterSpecificStudentsFromCourse() {
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
@@ -343,31 +342,36 @@ public class SemesterTest {
                 List.of(wm), 200);
         Student student1 = new Student("Alice", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
         Student student2 = new Student("Bob", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Student student3 = new Student("Husam", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Student student4 = new Student("Yousef", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Teacher teacher = new Teacher("Angela", spec);
+        Teacher teacher = new Teacher("AahmD", spec);
+
+        Student student3 = new Student("Alice", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        Student student4 = new Student("Bob", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        //Teacher teacher = new Teacher("AahmD", spec);
         Teacher teacher2 = new Teacher("hhhhh", spec);
 
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
         semester44.registerInACourse(course, Arrays.asList(student3, student4), teacher);
         // Unregister specific student(s) from the course
-        System.out.println(course.getEnrolledStudents());
-        semester44.unregisterInACourse(course, Arrays.asList(student1), false);
-        System.out.println(course.getEnrolledStudents());
+        semester44.unregisterInACourse(course, Arrays.asList(student1),false);
+
+        
+
         // Assertions
         assertFalse( course.getEnrolledStudents().contains(student1));
         assertTrue( course.getEnrolledStudents().contains(student2));
     }
 
-    //Unassign a Teacher from a Course
+    // Unassign a Teacher from a Course
     @Test
     public void testUnassignTeacherFromCourse() {
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
         WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.MONDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(14, 0));
         Course course = new Course("SWER348", "Advanced OOP", new Faculty("Applied Science and Technology"), 3,
                 List.of(wm), 200);
-        Student student1 = new Student("Alice", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Student student2 = new Student("Bob", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        Student student1 = new Student("Alice",
+                new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        Student student2 = new Student("Bob",
+                new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
         Teacher teacher = new Teacher("AahmD", spec);
 
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
@@ -375,23 +379,23 @@ public class SemesterTest {
 
         assertFalse(course.getTeacher().isPresent());
     }
-    //Remove a Course from the Semester
+
+    // Remove a Course from the Semester
     @Test
     public void testRemoveCourseFromSemester() {
         Specialization spec = new Specialization("maths", new Faculty("Science"), Specialization.Type.MAJOR);
         WeeklyMeeting wm = new WeeklyMeeting(DayOfWeek.MONDAY, Duration.ofMinutes(59), "M-101", LocalTime.of(14, 0));
         Course course = new Course("SWER348", "Advanced OOP", new Faculty("Applied Science and Technology"), 3,
                 List.of(wm), 200);
-        Student student1 = new Student("Alice", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-        Student student2 = new Student("Bob", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
-
+        Student student1 = new Student("Alice",
+                new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
+        Student student2 = new Student("Bob",
+                new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
         Teacher teacher = new Teacher("AahmD", spec);
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
         semester44.unregisterInACourse(course, Arrays.asList(student1, student2), true);
-        assertFalse( semester.getCourse().contains(course));
+
+        assertFalse(semester.getCourse().contains(course));
     }
-
-
-
 
 }

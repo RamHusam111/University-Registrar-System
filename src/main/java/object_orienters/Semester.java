@@ -47,80 +47,104 @@ public class Semester {
     }
 
     /**
-     * Registers a course in the semester, assigning a teacher and enrolling a list of students.
-     * Ensures that the course is not already registered, that it does not have scheduling conflicts,
-     * and that the assigned teacher and students meet the necessary criteria for registration.
+     * Registers a course in the semester, assigning a teacher and enrolling a list
+     * of students.
+     * Ensures that the course is not already registered, that it does not have
+     * scheduling conflicts,
+     * and that the assigned teacher and students meet the necessary criteria for
+     * registration.
      *
-     * @param course The course to be registered in the semester.
+     * @param course    The course to be registered in the semester.
      * @param lStudents The list of students attempting to enroll in the course.
-     * @param teacher The teacher assigned to teach the course.
+     * @param teacher   The teacher assigned to teach the course.
      *
-     * Note: The method checks for duplicate course IDs, scheduling conflicts, teacher availability,
-     * and student prerequisites before successful registration.
+     *                  Note: The method checks for duplicate course IDs, scheduling
+     *                  conflicts, teacher availability,
+     *                  and student prerequisites before successful registration.
      */
     // TESTED SUCCESSFULLY
     public void registerInACourse(Course course, List<Student> lStudents, Teacher teacher) {
-        boolean isNewCourse = courses.stream().noneMatch(e -> e.getCourseID().equalsIgnoreCase(course.getCourseID()));
-
-        // Add new course to the semester if it doesn't already exist
-        if (isNewCourse) {
-            // Check for room conflict
-            boolean roomConflict = courses.stream()
-                    .flatMap(e -> e.getWeeklyMeetings().stream())
-                    .anyMatch(wm -> course.getWeeklyMeetings().stream().anyMatch(wm2 -> wm2.hasRoomConflict(wm)));
-
-            if (roomConflict) {
-                System.out.println("Error registering " + course.getCourseName() + " because another course has conflict with room");
-                return;
-            }
-
-            // Check if teacher is free
-            if (!teacher.isFreeOn(course.getWeeklyMeetings())) {
-                System.out.println("Error registering " + course.getCourseName() + " because teacher has conflict with course Weekly Meetings");
-                return;
-            }
-
-            // Assign the teacher to the course and add the course to the teacher's registered courses
-            course.setTeacher(teacher);
-            teacher.getRegisteredCourses().add(course);
-            this.teachers.add(teacher);
-
-            // Add the course to the semester's course list
-            this.courses.add(course);
-        }
-
-        // For existing courses, check if the same teacher is already assigned
-        else if (course.getTeacher().isPresent() && !course.getTeacher().get().equals(teacher)) {
-            System.out.println("Error registering " + course.getCourseName() + " because it already has a different teacher assigned.");
+        // Check if 2 courses have the same ID
+        if (courses.stream().anyMatch(e -> e.getCourseID().equalsIgnoreCase(course.getCourseID()))) {
+            System.out.println("There's already a course with the ID: " + course.getCourseID());
             return;
         }
 
-        // Register the new list of students to the course
+        // Check if the course already has a different teacher assigned
+        if (course.getTeacher().isPresent() && !course.getTeacher().get().equals(teacher)) {
+            System.out.println("Error registering " + course.getCourseName() +
+                    " because it already has a different teacher assigned.");
+            return;
+        }
+        // Check for room conflict
+        boolean roomConflict = courses.stream()
+                .flatMap(e -> e.getWeeklyMeetings().stream())
+                .anyMatch(wm -> course.getWeeklyMeetings().stream().anyMatch(wm2 -> wm2.hasRoomConflict(wm)));
+
+        if (roomConflict) {
+            System.out.println(
+                    "Error registering " + course.getCourseName() + " because another course has conflict with room");
+            return;
+        }
+
+        // Check if teacher is free
+        if (!teacher.isFreeOn(course.getWeeklyMeetings())) {
+            System.out.println("Error registering " + course.getCourseName()
+                    + " because teacher has conflict with course Weekly Meetings");
+            return;
+        }
+        // Assign the teacher to the course and add the course to the teacher's
+        // registered courses
+        course.setTeacher(teacher);
+        teacher.getRegisteredCourses().add(course);
+        this.teachers.add(teacher);
+
+        // Check if prerequisites are met
+        lStudents.stream().filter(e -> !e.preRequisitesCheck(course)).forEach(student -> {
+            System.out.println("Prerequisites need to be completed for " + student.getId() + ": "
+                    + student.getName() + "> to register in " + course.getCourseName());
+        });
+
+        // Check if student is free on weekly meetings
+        lStudents.stream().filter(e -> !e.isFreeOn(course.getWeeklyMeetings())).forEach(student -> {
+            System.out.println("Error registering " + student.getId() + " " + student.getName() + " in "
+                    + course.getCourseName() + " because of conflict");
+        });
+
+        // Register students who meet all criteria
         for (Student student : lStudents) {
-            if (!course.getEnrolledStudents().contains(student) &&
-                    student.isFreeOn(course.getWeeklyMeetings()) &&
-                    student.preRequisitesCheck(course) &&
-                    !course.isFull()) {
+            if (student.isFreeOn(course.getWeeklyMeetings()) && student.preRequisitesCheck(course)
+                    && !course.isFull()) {
                 course.enrollStudent(student);
                 student.addRegisteredCourse(course);
-                System.out.println(student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
+                System.out.println(
+                        student.getId() + " " + student.getName() + " registered in " + course.getCourseName());
                 this.students.add(student);
-            } else {
-                System.out.println("Cannot register " + student.getName() + " in " + course.getCourseName());
             }
         }
+
+        this.courses.add(course);
+
     }
 
-
     /**
-     * Unregisters a course from the semester, removing specific students and/or unassigning the teacher.
-     * The course is removed from the semester if it no longer has any enrolled students or an assigned teacher.
+     * Unregisters a course from the semester, removing specific students and/or
+     * unassigning the teacher.
+     * The course is removed from the semester if it no longer has any enrolled
+     * students or an assigned teacher.
      *
-     * @param course The course from which students or the teacher will be unregistered.
-     * @param studentsToUnregister The list of students to be unregistered from the course. Can be null if no students need to be unregistered.
-     * @param unregisterTeacher A boolean indicating whether to unassign the teacher from the course.
+     * @param course               The course from which students or the teacher
+     *                             will be unregistered.
+     * @param studentsToUnregister The list of students to be unregistered from the
+     *                             course. Can be null if no students need to be
+     *                             unregistered.
+     * @param unregisterTeacher    A boolean indicating whether to unassign the
+     *                             teacher from the course.
      *
-     * Note: The method updates course enrollment and teacher assignment accordingly and removes the course from the semester if it's left with no participants.
+     *                             Note: The method updates course enrollment and
+     *                             teacher assignment accordingly and removes the
+     *                             course from the semester if it's left with no
+     *                             participants.
      */
     public void unregisterInACourse(Course course, List<Student> studentsToUnregister, boolean unregisterTeacher) {
         if (!courses.contains(course)) {
@@ -129,14 +153,17 @@ public class Semester {
         }
 
         // Unenroll specified students from the course
-        studentsToUnregister.stream()
-                .filter(student -> course.getEnrolledStudents().contains(student))
-                .forEach(student -> {
+        if (studentsToUnregister != null) {
+            for (Student student : studentsToUnregister) {
+                if (course.getEnrolledStudents().contains(student)) {
                     course.getEnrolledStudents().remove(student);
                     student.getRegisteredCourses().remove(course);
                     this.students.remove(student);
-                    System.out.println("Student " + student.getId() + " " + student.getName() + " unregistered from " + course.getCourseName());
-                });
+                    System.out.println("Student " + student.getId() + " " + student.getName() + " unregistered from "
+                            + course.getCourseName());
+                }
+            }
+        }
 
         // Unassign the teacher from the course
         if (unregisterTeacher && course.getTeacher().isPresent()) {
@@ -147,16 +174,13 @@ public class Semester {
             System.out.println("Teacher " + teacher.getName() + " is unassigned from course " + course.getCourseName());
         }
 
-        // If there are no more students enrolled and the teacher is unassigned, remove the course from the semester
+        // If there are no more students enrolled and the teacher is unassigned, remove
+        // the course from the semester
         if (course.getEnrolledStudents().isEmpty() && !course.getTeacher().isPresent()) {
             courses.remove(course);
             System.out.println("Course " + course.getCourseName() + " removed from the semester.");
         }
     }
-
-
-
-
 
     /**
      * Determines the name of the semester (Fall, Spring, or Summer) based on its
@@ -246,7 +270,8 @@ public class Semester {
      */
     @Override
     public String toString() {
-        return "Semester: " + semesterName + "[from:" + semesterStartDate + ", to:" + semesterEndDate + "]";
+        return "Semester Name: " + this.getSemesterName() + "\nSemester Start Date " + this.getSemesterStartDate()
+                + "\nSemester End Date " + this.getSemesterEndDate() + "\nSemester Length" + this.getWeeksNumber();
     }
 
 }
