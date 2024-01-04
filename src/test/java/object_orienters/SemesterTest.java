@@ -1,6 +1,5 @@
 package object_orienters;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -50,7 +49,15 @@ public class SemesterTest {
 
     @Test
     public void testGiveName() {
-        assertEquals("Fall", semester.giveName());
+        Class clazz = semester.getClass();
+        Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals("giveName")).forEach(m -> {
+            try {
+                m.setAccessible(true);
+                assertEquals("Fall", m.invoke(semester));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Test

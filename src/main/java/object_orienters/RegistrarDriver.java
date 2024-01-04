@@ -2,7 +2,6 @@ package object_orienters;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.time.DayOfWeek;
@@ -10,8 +9,8 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,15 +26,17 @@ public class RegistrarDriver extends Thread {
         System.out.println("Hello World! its Action 1");
     };
 
-    public static Map<String, Semester> semesters = new HashMap<>();
-    public static Map<Integer, Student> students = new HashMap<>();
-    public static Map<Integer, Teacher> teachers = new HashMap<>();
-    public static Map<String, Course> courses = new HashMap<>();
+    public static Map<String, Semester> semesters = new LinkedHashMap<>();
+    public static Map<Integer, Student> students = new LinkedHashMap<>();
+    public static Map<Integer, Teacher> teachers = new LinkedHashMap<>();
+    public static Map<String, Course> courses = new LinkedHashMap<>();
     public static List<WeeklyMeeting> weeklyMeetings = new ArrayList<>();
-    public static Map<String, Specialization> specializations = new HashMap<>();
-    public static Map<String, Faculty> faculties = new HashMap<>();
+    public static Map<String, Specialization> specializations = new LinkedHashMap<>();
+    public static Map<String, Faculty> faculties = new LinkedHashMap<>();
 
     public static void main(String[] args) throws InterruptedException, IOException {
+
+        readFiles();
 
         ////////////////////////////////
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
@@ -64,7 +65,7 @@ public class RegistrarDriver extends Thread {
 
     }
 
-    public void readFiles() {
+    public static void readFiles() {
         try {
             BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/WeeklyMeetings.csv"));
             String line = bufferedReader.readLine();
