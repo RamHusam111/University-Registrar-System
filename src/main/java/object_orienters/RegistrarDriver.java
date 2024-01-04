@@ -9,7 +9,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,11 +19,7 @@ import java.util.stream.IntStream;
  * Hello world!
  *
  */
-public class RegistrarDriver extends Thread {
-
-    public static Runnable Action1 = () -> {
-        System.out.println("Hello World! its Action 1");
-    };
+public class RegistrarDriver {
 
     public static Map<String, Semester> semesters = new LinkedHashMap<>();
     public static Map<Integer, Student> students = new LinkedHashMap<>();
@@ -43,8 +38,22 @@ public class RegistrarDriver extends Thread {
         int input = 1;
 
         while (input != 0) {
-            System.out.println(">>>>>>>>>>>> Choose what you want to do: ");
-            System.out.println("1 - Create New Semester \n2 - Add New Student \n3 - Add New Teacher \n4 - Add New Course \n5 - View Course Prerequisites \n6 - Register \n7 - View Registered Students \n8 - View Registered Teachers \n9 - View Available Courses \n10 - add prerequisite to a course \n11- show all details of a semester \n0 - Exit");
+            System.out.println(Color.RED.value + ">>>>>>>>>>>> Choose what you want to do: " + Color.RESET);
+            System.out.println(
+              Color.CYAN + "\n1 - Create New Semester"
+            + Color.GREEN +"\n2 - Add New Student"
+            + Color.PURPLE +"\n3 - Add New Teacher"
+            + Color.YELLOW +"\n4 - Add New Course"
+            + Color.CYAN + "\n5 - View Course Prerequisites"
+            + Color.GREEN +"\n6 - Register"
+            + Color.PURPLE +"\n7 - View Registered Students"
+            + Color.YELLOW +"\n8 - View Registered Teachers"
+            + Color.CYAN +"\n9 - View Available Courses"
+            + Color.GREEN +"\n10 - add prerequisite to a course"
+            + Color.PURPLE +"\n11 - show all details of a semester"
+            + Color.YELLOW +"\n0 - Exit"
+            + Color.RESET
+            );
 
             try {
                 input = Integer.parseInt(in.readLine());

@@ -106,8 +106,8 @@ public class Course {
     public String toString() {
         return "Course ID: " + this.getCourseID() + "\nCourse Name: " + this.getCourseName() +
                 "\nCredit Hours: " + this.getCourseName() + "\nCapacity: " + this.getCapacity() + "\nCourse Faculty: "
-                + this.getCourseFaculty().getName() + "\nPrerequisites: " + this.getPrerequisites().toString()
-                + "\nCourse Type: "
+                + this.getCourseFaculty().getName() + "\nPrerequisites: [" + this.getPrerequisites().stream().map(e -> e.getCourseID() + ", ").reduce("", String::concat)
+                + "]\nCourse Type: "
                 + this.getCourseType();
     }
 
