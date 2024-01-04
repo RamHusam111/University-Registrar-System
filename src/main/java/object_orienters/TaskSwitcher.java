@@ -9,9 +9,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class TaskSwitcher {
 
@@ -417,7 +417,33 @@ public class TaskSwitcher {
     };
 
     private static Runnable action12 = () -> {
-        // TODO: implement eneter Grades
+
+        //TODO: implement eneter Grades
+        BufferedReader br = new BufferedReader (new InputStreamReader (System.in));
+        System.out.println("Enter student ID to enter the grade");
+        String id;
+
+        try {
+            id = br.readLine();
+            Student stu = RegistrarDriver.students.get(Integer.parseInt(id));
+            stu.getRegisteredCourses().stream().forEach(
+                    e -> {
+
+                        System.out.println("Enter The grade " + e.getCourseID()+":");
+                        try {
+                            String grade = br.readLine();
+                            stu.enterCourseGrade(e,grade);
+                        }catch (Exception ex){}
+
+            });
+
+
+
+        }catch (Exception e){
+
+        }
+
+
     };
 
     private static Runnable action13 = () -> {
