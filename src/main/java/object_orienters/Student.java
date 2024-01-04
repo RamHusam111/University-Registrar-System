@@ -220,7 +220,7 @@ public class Student extends Person {
      * @return A formatted string containing the student's academic report.
      */
     public String getReport() {
-        return super.toString() + "\nMajor:" + this.getMajor().getName() + "\nMinor: " + this.getMinor() + "\nAdmitted year: "
+        return super.toString() + "\nMajor:" + this.getMajor().getName() +( minor != null && minor.isPresent() ?  "\nMinor: " + this.getMinor().get().getName() :"") + "\nAdmitted year: "
                 + this.getDateEnrolled().getYear() + "\nRegistered this semester: "
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();

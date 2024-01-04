@@ -102,7 +102,6 @@ public class TaskSwitcher {
             minor = createMinorSpecialization(minorString);
 
         System.out.println(RegistrarDriver.specializations.get(majorString));
-        System.out.println(RegistrarDriver.specializations);
 
         student = new Student(name, major, minor);
         RegistrarDriver.students.put(student.getId(), student);
@@ -464,9 +463,9 @@ public class TaskSwitcher {
             }
         }
 
-        System.out.println("Registered Students: " + students
-                + "\nWith Teacher: " + teacher
-                + "\nIn Course: " + course);
+        System.out.println("Registered Students: \n\n" + students
+                + "\n\n\nWith Teacher: \n\n" + teacher
+                + "\n\n\nIn Course: \n\n" + course);
         semester.registerInACourse(course, students, teacher);
 
     };
