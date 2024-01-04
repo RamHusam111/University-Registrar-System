@@ -2,14 +2,20 @@ package object_orienters;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.DayOfWeek;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Hello world!
@@ -31,8 +37,6 @@ public class RegistrarDriver extends Thread {
 
     public static void main(String[] args) throws InterruptedException, IOException {
 
-        
-        
         ////////////////////////////////
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int input = 1;
@@ -60,4 +64,77 @@ public class RegistrarDriver extends Thread {
 
     }
 
+    public void readFiles() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("src/main/resources/WeeklyMeetings.csv"));
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                DayOfWeek day = DayOfWeek.valueOf(values[0].toUpperCase());
+                Duration duration = Duration.ofMinutes(Long.parseLong(values[1]));
+                String room = values[2];
+                LocalTime hour = LocalTime.parse(values[3]);
+                WeeklyMeeting wm = new WeeklyMeeting(day, duration, room, hour);
+                weeklyMeetings.add(wm);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            bufferedReader = new BufferedReader(new FileReader("src/main/resources/Faculties.csv"));
+            line = bufferedReader.readLine();
+            while (line != null) {
+                Faculty faculty = new Faculty(line);
+                faculties.put(faculty.getName(), faculty);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            bufferedReader = new BufferedReader(new FileReader("src/main/resources/SemesterDates.csv"));
+            line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Semester semester = new Semester(LocalDate.parse(values[0].trim()), LocalDate.parse(values[1].trim()));
+                semesters.put(semester.getSemesterName(), semester);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            bufferedReader = new BufferedReader(new FileReader("src/main/resources/students.csv"));
+            line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Specialization spec = new Specialization(values[1], faculties.get(values[2]),
+                        Specialization.Type.valueOf(values[3]));
+                specializations.put(spec.getName(), spec);
+                Student student = new Student(values[0], spec);
+                students.put(student.getId(), student);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            bufferedReader = new BufferedReader(new FileReader("src/main/resources/Teachers.csv"));
+            line = bufferedReader.readLine();
+            while (line != null) {
+                String[] values = line.split(",");
+                Teacher teacher = new Teacher(values[0], specializations.get(values[1]));
+                teachers.put(teacher.getId(), teacher);
+                line = bufferedReader.readLine();
+            }
+            bufferedReader.close();
+            bufferedReader = new BufferedReader(new FileReader("src/main/resources/Courses.csv"));
+            line = bufferedReader.readLine();
+            int courseCount = 0;
+            while (line != null) {
+                String[] values = line.split(",");
+                int startIndex = courseCount * 3;
+                List<WeeklyMeeting> courseMeetings = IntStream.range(startIndex, startIndex + 3)
+                        .mapToObj(index -> weeklyMeetings.get(index))
+                        .collect(Collectors.toList());
+                Course course = new Course(values[0], values[1], faculties.get(values[2]),
+                        Integer.parseInt(values[3]), courseMeetings, Integer.parseInt(values[4]));
+                courses.put(course.getCourseID(), course);
+                line = bufferedReader.readLine();
+                courseCount++;
+            }
+            bufferedReader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

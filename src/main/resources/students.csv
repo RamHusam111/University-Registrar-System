@@ -1,150 +1,200 @@
-Mary Johnson,Business,Marketing,Type.MAJOR
-Robert Smith,Business,International Business,Type.MINOR
-Linda Smith,Engineering,Civil Engineering,Type.MAJOR
-Linda Smith,Arts,Literature,Type.MINOR
-Linda Johnson,Science,Physics,Type.MAJOR
-Patricia Johnson,Arts,History,Type.MINOR
-Mary Jones,Engineering,Civil Engineering,Type.MAJOR
-Mary Williams,Business,Management,Type.MINOR
-Patricia Brown,Business,Marketing,Type.MAJOR
-John Williams,Science,Chemistry,Type.MINOR
-William Williams,Business,Management,Type.MAJOR
-Patricia Johnson,Arts,History,Type.MINOR
-Michael Brown,Science,Physics,Type.MAJOR
-Jennifer Williams,Science,Mathematics,Type.MINOR
-James Williams,Arts,History,Type.MAJOR
-Robert Smith,Science,Biology,Type.MINOR
-John Smith,Engineering,Mechanical Engineering,Type.MAJOR
-James Brown,Business,Finance,Type.MINOR
-William Jones,Business,Management,Type.MAJOR
-James Brown,Business,Marketing,Type.MINOR
-Elizabeth Brown,Education,Secondary Education,Type.MAJOR
-John Williams,Science,Biology,Type.MINOR
-William Johnson,Arts,History,Type.MAJOR
-Jennifer Jones,Science,Chemistry,Type.MINOR
-Elizabeth Johnson,Engineering,Civil Engineering,Type.MAJOR
-Mary Brown,Science,Biology,Type.MINOR
-Linda Smith,Business,Management,Type.MAJOR
-James Johnson,Education,Educational Leadership,Type.MINOR
-Jennifer Johnson,Arts,Music,Type.MAJOR
-Jennifer Smith,Education,Educational Leadership,Type.MINOR
-Patricia Johnson,Education,Special Education,Type.MAJOR
-James Johnson,Engineering,Civil Engineering,Type.MINOR
-Patricia Smith,Engineering,Civil Engineering,Type.MAJOR
-James Jones,Education,Primary Education,Type.MINOR
-John Johnson,Engineering,Civil Engineering,Type.MAJOR
-Linda Smith,Education,Special Education,Type.MINOR
-Elizabeth Brown,Education,Educational Leadership,Type.MAJOR
-Patricia Jones,Arts,Literature,Type.MINOR
-Michael Jones,Science,Chemistry,Type.MAJOR
-James Johnson,Science,Biology,Type.MINOR
-Robert Jones,Science,Biology,Type.MAJOR
-Patricia Brown,Engineering,Computer Science,Type.MINOR
-Robert Johnson,Arts,Philosophy,Type.MAJOR
-Patricia Brown,Science,Mathematics,Type.MINOR
-Robert Williams,Education,Educational Leadership,Type.MAJOR
-James Smith,Business,Marketing,Type.MINOR
-Mary Smith,Business,International Business,Type.MAJOR
-William Williams,Engineering,Civil Engineering,Type.MINOR
-Michael Jones,Education,Special Education,Type.MAJOR
-John Smith,Engineering,Computer Science,Type.MINOR
-Robert Johnson,Business,Management,Type.MAJOR
-Mary Williams,Business,International Business,Type.MINOR
-Robert Brown,Arts,Literature,Type.MAJOR
-Jennifer Johnson,Business,Marketing,Type.MINOR
-John Brown,Business,Management,Type.MAJOR
-John Jones,Business,Finance,Type.MINOR
-Patricia Jones,Arts,Philosophy,Type.MAJOR
-Michael Brown,Business,Finance,Type.MINOR
-Patricia Jones,Science,Biology,Type.MAJOR
-James Jones,Business,International Business,Type.MINOR
-John Jones,Arts,Music,Type.MAJOR
-Linda Jones,Arts,Music,Type.MINOR
-Patricia Jones,Business,Management,Type.MAJOR
-Jennifer Jones,Education,Educational Leadership,Type.MINOR
-Mary Brown,Education,Educational Leadership,Type.MAJOR
-Mary Smith,Engineering,Civil Engineering,Type.MINOR
-John Williams,Arts,Music,Type.MAJOR
-Michael Johnson,Science,Mathematics,Type.MINOR
-James Jones,Engineering,Electrical Engineering,Type.MAJOR
-John Smith,Business,Management,Type.MINOR
-Michael Williams,Business,Management,Type.MAJOR
-Patricia Johnson,Arts,Literature,Type.MINOR
-Patricia Smith,Science,Mathematics,Type.MAJOR
-Linda Brown,Science,Mathematics,Type.MINOR
-Linda Brown,Business,Finance,Type.MAJOR
-Patricia Brown,Arts,Literature,Type.MINOR
-John Williams,Business,Marketing,Type.MAJOR
-William Jones,Science,Biology,Type.MINOR
-Jennifer Jones,Arts,Philosophy,Type.MAJOR
-Jennifer Brown,Business,Management,Type.MINOR
-William Williams,Science,Physics,Type.MAJOR
-Mary Jones,Education,Primary Education,Type.MINOR
-Linda Jones,Engineering,Electrical Engineering,Type.MAJOR
-Mary Jones,Engineering,Computer Science,Type.MINOR
-Linda Brown,Science,Chemistry,Type.MAJOR
-William Johnson,Engineering,Electrical Engineering,Type.MINOR
-William Johnson,Business,International Business,Type.MAJOR
-Patricia Brown,Business,Marketing,Type.MINOR
-Linda Johnson,Science,Chemistry,Type.MAJOR
-Robert Smith,Business,Management,Type.MINOR
-Michael Jones,Business,Management,Type.MAJOR
-Elizabeth Jones,Engineering,Electrical Engineering,Type.MINOR
-Michael Smith,Education,Educational Leadership,Type.MAJOR
-Linda Johnson,Education,Educational Leadership,Type.MINOR
-Linda Brown,Science,Physics,Type.MAJOR
-John Brown,Arts,History,Type.MINOR
-Elizabeth Smith,Business,Finance,Type.MAJOR
-Patricia Brown,Arts,Philosophy,Type.MINOR
-Michael Brown,Science,Physics,Type.MAJOR
-Jennifer Brown,Business,Management,Type.MINOR
-Elizabeth Brown,Business,Finance,Type.MAJOR
-Michael Brown,Education,Secondary Education,Type.MINOR
-Michael Smith,Arts,History,Type.MAJOR
-Michael Brown,Science,Mathematics,Type.MINOR
-James Smith,Arts,History,Type.MAJOR
-John Johnson,Science,Biology,Type.MINOR
-James Johnson,Business,Management,Type.MAJOR
-Mary Williams,Education,Special Education,Type.MINOR
-Jennifer Williams,Arts,Philosophy,Type.MAJOR
-James Johnson,Arts,Philosophy,Type.MINOR
-James Smith,Arts,History,Type.MAJOR
-Elizabeth Johnson,Education,Special Education,Type.MINOR
-Mary Brown,Business,Finance,Type.MAJOR
-John Jones,Arts,Literature,Type.MINOR
-Michael Brown,Engineering,Mechanical Engineering,Type.MAJOR
-John Williams,Arts,Philosophy,Type.MINOR
-Linda Jones,Education,Primary Education,Type.MAJOR
-James Smith,Education,Special Education,Type.MINOR
-James Johnson,Business,Finance,Type.MAJOR
-Linda Smith,Science,Biology,Type.MINOR
-Patricia Williams,Arts,Music,Type.MAJOR
-Robert Williams,Science,Physics,Type.MINOR
-William Smith,Engineering,Civil Engineering,Type.MAJOR
-Mary Williams,Science,Mathematics,Type.MINOR
-Elizabeth Smith,Arts,Literature,Type.MAJOR
-Patricia Williams,Engineering,Mechanical Engineering,Type.MINOR
-Linda Jones,Business,Finance,Type.MAJOR
-Jennifer Smith,Education,Special Education,Type.MINOR
-Patricia Jones,Engineering,Mechanical Engineering,Type.MAJOR
-Robert Williams,Education,Special Education,Type.MINOR
-John Williams,Engineering,Civil Engineering,Type.MAJOR
-Robert Jones,Arts,Literature,Type.MINOR
-Jennifer Johnson,Arts,Literature,Type.MAJOR
-John Johnson,Arts,Music,Type.MINOR
-William Williams,Education,Secondary Education,Type.MAJOR
-John Johnson,Engineering,Civil Engineering,Type.MINOR
-Jennifer Johnson,Arts,Literature,Type.MAJOR
-John Smith,Education,Secondary Education,Type.MINOR
-James Jones,Arts,Music,Type.MAJOR
-John Johnson,Engineering,Computer Science,Type.MINOR
-Jennifer Williams,Education,Primary Education,Type.MAJOR
-Robert Brown,Education,Educational Leadership,Type.MINOR
-Robert Brown,Arts,History,Type.MAJOR
-Patricia Williams,Education,Secondary Education,Type.MINOR
-William Williams,Science,Chemistry,Type.MAJOR
-Mary Smith,Engineering,Electrical Engineering,Type.MINOR
-Linda Johnson,Science,Chemistry,Type.MAJOR
-William Brown,Education,Educational Leadership,Type.MINOR
-Mary Johnson,Engineering,Electrical Engineering,Type.MAJOR
-James Williams,Arts,Music,Type.MINOR
+Michael Smith,Philosophy,Humanities,MAJOR
+James Kim,Pharmacology,Pharmacy,MAJOR
+John Martinez,Oral Surgery,Dentistry,MAJOR
+Michael Smith,Biology,Science,MAJOR
+Sophia Patel,Media Studies,Communication,MAJOR
+Alex Johnson,Divinity Studies,Theology,MAJOR
+David Lee,Education Psychology,Education,MAJOR
+Lisa Ray,Computer Science,Computing,MAJOR
+John Martinez,Media Studies,Communication,MAJOR
+Sophia Patel,Philosophy,Humanities,MAJOR
+Maria Garcia,Computer Science,Computing,MAJOR
+Sophia Patel,Pharmacology,Pharmacy,MAJOR
+Maria Garcia,Music Performance,Music,MAJOR
+Michael Smith,Computer Science,Computing,MAJOR
+Emma Rodriguez,Divinity Studies,Theology,MAJOR
+Alex Johnson,Software Development,Computing,MAJOR
+Emma Rodriguez,Biology,Science,MAJOR
+Lisa Ray,Anthropology,Social Sciences,MAJOR
+Emma Rodriguez,Music Performance,Music,MAJOR
+Alex Johnson,Oral Surgery,Dentistry,MAJOR
+Alex Johnson,Computer Science,Computing,MAJOR
+Maria Garcia,Oral Surgery,Dentistry,MAJOR
+Alex Johnson,Computer Science,Computing,MAJOR
+Emma Rodriguez,Software Development,Computing,MAJOR
+Alex Johnson,Computer Science,Computing,MAJOR
+Lisa Ray,Agronomy,Agriculture,MAJOR
+James Kim,Sports Science,Physical Education,MAJOR
+John Martinez,Divinity Studies,Theology,MAJOR
+John Martinez,Architectural Design,Architecture,MAJOR
+Michael Smith,Constitutional Law,Law,MAJOR
+John Martinez,Pharmaceutical Sciences,Pharmacy,MAJOR
+Maria Garcia,Architectural Design,Architecture,MAJOR
+Michael Smith,Marketing,Business,MAJOR
+Olivia Brown,Education Psychology,Education,MAJOR
+Lisa Ray,Environmental Policy,Environmental Sciences,MAJOR
+Olivia Brown,Philosophy,Humanities,MAJOR
+Emma Rodriguez,Pharmacology,Pharmacy,MAJOR
+John Martinez,Software Development,Computing,MAJOR
+Alex Johnson,Pharmacology,Pharmacy,MAJOR
+Michael Smith,Media Studies,Communication,MAJOR
+James Kim,Oral Surgery,Dentistry,MAJOR
+Sophia Patel,Pharmaceutical Sciences,Pharmacy,MAJOR
+John Martinez,Biology,Science,MAJOR
+Alex Johnson,Agronomy,Agriculture,MAJOR
+Olivia Brown,Marketing,Business,MAJOR
+James Kim,Pharmacology,Pharmacy,MAJOR
+Maria Garcia,Philosophy,Humanities,MAJOR
+David Lee,Veterinary Medicine,Veterinary Medicine,MAJOR
+James Kim,Veterinary Medicine,Veterinary Medicine,MAJOR
+Olivia Brown,Agronomy,Agriculture,MAJOR
+Maria Garcia,Architectural Design,Architecture,MAJOR
+Alex Johnson,Music Performance,Music,MAJOR
+Maria Garcia,Anthropology,Social Sciences,MAJOR
+Michael Smith,Education Psychology,Education,MAJOR
+Lisa Ray,Oral Surgery,Dentistry,MAJOR
+David Lee,Veterinary Medicine,Veterinary Medicine,MAJOR
+John Martinez,Oral Surgery,Dentistry,MAJOR
+Michael Smith,Divinity Studies,Theology,MAJOR
+Lisa Ray,Education Psychology,Education,MAJOR
+John Martinez,Sports Science,Physical Education,MAJOR
+Lisa Ray,Computer Science,Computing,MAJOR
+James Kim,Education Psychology,Education,MAJOR
+John Martinez,Computer Science,Computing,MAJOR
+Michael Smith,Veterinary Medicine,Veterinary Medicine,MAJOR
+James Kim,Pharmaceutical Sciences,Pharmacy,MAJOR
+Lisa Ray,Computer Science,Computing,MAJOR
+Sophia Patel,Software Development,Computing,MAJOR
+David Lee,Computer Science,Computing,MAJOR
+Lisa Ray,Sports Science,Physical Education,MAJOR
+Lisa Ray,Pharmacology,Pharmacy,MAJOR
+John Martinez,Constitutional Law,Law,MAJOR
+Lisa Ray,Marketing,Business,MAJOR
+Alex Johnson,Environmental Policy,Environmental Sciences,MAJOR
+James Kim,Agronomy,Agriculture,MAJOR
+Sophia Patel,Music Performance,Music,MAJOR
+John Martinez,Sports Science,Physical Education,MAJOR
+David Lee,Philosophy,Humanities,MAJOR
+Sophia Patel,Environmental Policy,Environmental Sciences,MAJOR
+Olivia Brown,Constitutional Law,Law,MAJOR
+Olivia Brown,Computer Science,Computing,MAJOR
+Lisa Ray,Agronomy,Agriculture,MAJOR
+James Kim,Biology,Science,MAJOR
+Michael Smith,Constitutional Law,Law,MAJOR
+James Kim,Philosophy,Humanities,MAJOR
+David Lee,Oral Surgery,Dentistry,MAJOR
+Lisa Ray,Software Development,Computing,MAJOR
+Michael Smith,Sports Science,Physical Education,MAJOR
+James Kim,Marketing,Business,MAJOR
+Emma Rodriguez,Pharmacology,Pharmacy,MAJOR
+Lisa Ray,Anthropology,Social Sciences,MAJOR
+Olivia Brown,Architectural Design,Architecture,MAJOR
+Olivia Brown,Media Studies,Communication,MAJOR
+Maria Garcia,Pharmaceutical Sciences,Pharmacy,MAJOR
+Alex Johnson,Environmental Policy,Environmental Sciences,MAJOR
+Emma Rodriguez,Architectural Design,Architecture,MAJOR
+Alex Johnson,Anthropology,Social Sciences,MAJOR
+Emma Rodriguez,Media Studies,Communication,MAJOR
+Maria Garcia,Education Psychology,Education,MAJOR
+Michael Smith,Education Psychology,Education,MAJOR
+James Kim,Pharmaceutical Sciences,Pharmacy,MAJOR
+Emma Rodriguez,Computer Science,Computing,MAJOR
+John Martinez,Constitutional Law,Law,MAJOR
+James Kim,Agronomy,Agriculture,MAJOR
+Emma Rodriguez,Education Psychology,Education,MAJOR
+Sophia Patel,Pharmaceutical Sciences,Pharmacy,MAJOR
+Maria Garcia,Architectural Design,Architecture,MAJOR
+Sophia Patel,Philosophy,Humanities,MAJOR
+Sophia Patel,Constitutional Law,Law,MAJOR
+Michael Smith,Pharmaceutical Sciences,Pharmacy,MAJOR
+David Lee,Philosophy,Humanities,MAJOR
+Michael Smith,Mechanical Engineering,Engineering,MAJOR
+Sophia Patel,Sports Science,Physical Education,MAJOR
+Lisa Ray,Agronomy,Agriculture,MAJOR
+Olivia Brown,Pharmaceutical Sciences,Pharmacy,MAJOR
+Sophia Patel,Anthropology,Social Sciences,MAJOR
+James Kim,Music Performance,Music,MAJOR
+James Kim,Mechanical Engineering,Engineering,MAJOR
+David Lee,Pharmacology,Pharmacy,MAJOR
+Olivia Brown,Environmental Policy,Environmental Sciences,MAJOR
+James Kim,Marketing,Business,MAJOR
+Olivia Brown,Oral Surgery,Dentistry,MAJOR
+David Lee,Marketing,Business,MAJOR
+James Kim,Sports Science,Physical Education,MAJOR
+Sophia Patel,Pharmacology,Pharmacy,MAJOR
+John Martinez,Biology,Science,MAJOR
+Maria Garcia,Mechanical Engineering,Engineering,MAJOR
+James Kim,Computer Science,Computing,MAJOR
+John Martinez,Divinity Studies,Theology,MAJOR
+James Kim,Constitutional Law,Law,MAJOR
+Olivia Brown,Pharmaceutical Sciences,Pharmacy,MAJOR
+Alex Johnson,Biology,Science,MAJOR
+Olivia Brown,Mechanical Engineering,Engineering,MAJOR
+Maria Garcia,Sports Science,Physical Education,MAJOR
+Alex Johnson,Veterinary Medicine,Veterinary Medicine,MAJOR
+Michael Smith,Architectural Design,Architecture,MAJOR
+Lisa Ray,Anthropology,Social Sciences,MAJOR
+Alex Johnson,Sports Science,Physical Education,MAJOR
+David Lee,Computer Science,Computing,MAJOR
+James Kim,Computer Science,Computing,MAJOR
+Sophia Patel,Environmental Policy,Environmental Sciences,MAJOR
+Sophia Patel,Software Development,Computing,MAJOR
+John Martinez,Education Psychology,Education,MAJOR
+Lisa Ray,Software Development,Computing,MAJOR
+Maria Garcia,Veterinary Medicine,Veterinary Medicine,MAJOR
+Alex Johnson,Software Development,Computing,MAJOR
+David Lee,Education Psychology,Education,MAJOR
+Olivia Brown,Divinity Studies,Theology,MAJOR
+Alex Johnson,Anthropology,Social Sciences,MAJOR
+Michael Smith,Philosophy,Humanities,MAJOR
+John Martinez,Philosophy,Humanities,MAJOR
+Sophia Patel,Constitutional Law,Law,MAJOR
+Lisa Ray,Constitutional Law,Law,MAJOR
+Alex Johnson,Architectural Design,Architecture,MAJOR
+Alex Johnson,Pharmacology,Pharmacy,MAJOR
+Emma Rodriguez,Agronomy,Agriculture,MAJOR
+James Kim,Constitutional Law,Law,MAJOR
+Maria Garcia,Biology,Science,MAJOR
+Sophia Patel,Education Psychology,Education,MAJOR
+John Martinez,Veterinary Medicine,Veterinary Medicine,MAJOR
+Alex Johnson,Software Development,Computing,MAJOR
+Sophia Patel,Philosophy,Humanities,MAJOR
+Maria Garcia,Music Performance,Music,MAJOR
+Olivia Brown,Pharmaceutical Sciences,Pharmacy,MAJOR
+Emma Rodriguez,Veterinary Medicine,Veterinary Medicine,MAJOR
+Alex Johnson,Oral Surgery,Dentistry,MAJOR
+Maria Garcia,Mechanical Engineering,Engineering,MAJOR
+David Lee,Pharmacology,Pharmacy,MAJOR
+James Kim,Computer Science,Computing,MAJOR
+Lisa Ray,Sports Science,Physical Education,MAJOR
+Lisa Ray,Oral Surgery,Dentistry,MAJOR
+Michael Smith,Mechanical Engineering,Engineering,MAJOR
+Emma Rodriguez,Education Psychology,Education,MAJOR
+Sophia Patel,Computer Science,Computing,MAJOR
+James Kim,Mechanical Engineering,Engineering,MAJOR
+Olivia Brown,Music Performance,Music,MAJOR
+Olivia Brown,Veterinary Medicine,Veterinary Medicine,MAJOR
+Alex Johnson,Software Development,Computing,MAJOR
+Emma Rodriguez,Philosophy,Humanities,MAJOR
+John Martinez,Pharmaceutical Sciences,Pharmacy,MAJOR
+David Lee,Pharmaceutical Sciences,Pharmacy,MAJOR
+Michael Smith,Music Performance,Music,MAJOR
+James Kim,Veterinary Medicine,Veterinary Medicine,MAJOR
+James Kim,Mechanical Engineering,Engineering,MAJOR
+Olivia Brown,Constitutional Law,Law,MAJOR
+Sophia Patel,Music Performance,Music,MAJOR
+John Martinez,Media Studies,Communication,MAJOR
+David Lee,Philosophy,Humanities,MAJOR
+Michael Smith,Sports Science,Physical Education,MAJOR
+Lisa Ray,Media Studies,Communication,MAJOR
+James Kim,Anthropology,Social Sciences,MAJOR
+Sophia Patel,Media Studies,Communication,MAJOR
+Maria Garcia,Pharmaceutical Sciences,Pharmacy,MAJOR
+John Martinez,Music Performance,Music,MAJOR
+Sophia Patel,Education Psychology,Education,MAJOR
+David Lee,Biology,Science,MAJOR
+John Martinez,Architectural Design,Architecture,MAJOR
+Olivia Brown,Music Performance,Music,MAJOR
+Lisa Ray,Pharmaceutical Sciences,Pharmacy,MAJOR
+Maria Garcia,Education Psychology,Education,MAJOR
+Sophia Patel,Sports Science,Physical Education,MAJOR
