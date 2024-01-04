@@ -395,8 +395,7 @@ public class TaskSwitcher {
 
         String sName = semesterName;
         Semester semester = RegistrarDriver.semesters.values().stream().filter(s -> s.getSemesterName().trim().toLowerCase().equals(sName.trim().toLowerCase()))
-                .findFirst()
-                .orElse(createSemester());
+                .findAny().orElseGet(TaskSwitcher::createSemester);
 
         System.out.println("Enter Course Code: (Enter 'show' to view available courses) ");
         String courseID = null;
