@@ -1,11 +1,13 @@
 package object_orienters;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Faculty {
     private String name;
-    private List<Teacher> teachers;
+    private Set<Teacher> teachers;
     private List<Student> students;
     private List<Course> majorsCourses;
     private List<Course> minorsCourses;
@@ -22,7 +24,7 @@ public class Faculty {
      */
     public Faculty(String name) {
         this.name = name;
-        this.teachers = new ArrayList<>();
+        this.teachers = new HashSet<>();
         this.students = new ArrayList<>();
         this.majorsCourses = new ArrayList<>();
         this.minorsCourses = new ArrayList<>();
@@ -64,7 +66,7 @@ public class Faculty {
      *
      * @return A list of teachers.
      */
-    public List<Teacher> getTeachers() {
+    public Set<Teacher> getTeachers() {
         return teachers;
     }
     /**

@@ -104,10 +104,6 @@ public abstract class Person {
      * It may include validation checks such as ensuring courses are not full or
      * checking for scheduling conflicts.
      *
-     * @param list A list of courses to be added to the Student's registered
-     *             courses.
-     *             Each course in the list should be an instance of the Course
-     *             class.
      */
     // public void addListOfRegisteredCourses(List<Course> list) {
     //     list.stream().forEach(course -> {
