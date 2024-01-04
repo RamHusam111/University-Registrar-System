@@ -48,7 +48,7 @@ public class SemesterTest {
 
     @Test
     public void testGiveName() {
-        Class clazz = semester.getClass();
+        Class<?> clazz = semester.getClass();
         Arrays.stream(clazz.getDeclaredMethods()).filter(m -> m.getName().equals("giveName")).forEach(m -> {
             try {
                 m.setAccessible(true);
@@ -347,9 +347,6 @@ public class SemesterTest {
         Student student3 = new Student("Husam", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
         Student student4 = new Student("Yousef", new Specialization("Computer Science", new Faculty("Engineering"), Specialization.Type.MAJOR));
         Teacher teacher = new Teacher("Angela", spec);
-        Teacher teacher2 = new Teacher("hhhhh", spec);
-
-
         semester44.registerInACourse(course, Arrays.asList(student1, student2), teacher);
         semester44.registerInACourse(course, Arrays.asList(student3, student4), teacher);
         // Unregister specific student(s) from the course

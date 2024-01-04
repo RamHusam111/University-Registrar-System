@@ -32,7 +32,7 @@ public class TaskSwitcher {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String facultyName = null;
         try {
-            System.out.println("Enter Major's Faculty Name: ");
+            System.out.println("\nEnter Major's Faculty Name: ");
             facultyName = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -51,7 +51,7 @@ public class TaskSwitcher {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String facultyName = null;
         try {
-            System.out.println("Enter Minor's Faculty Name: ");
+            System.out.println("\nEnter Minor's Faculty Name: ");
             facultyName = br.readLine();
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,23 +77,49 @@ public class TaskSwitcher {
             e.printStackTrace();
         }
 
-        System.out.println("Enter Student Major: ");
         String majorString = null;
-        try {
-            majorString = br.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
+        while (majorString == null) {
+            System.out.println(
+                    "\nEnter Student Major:\n(or type 'show' to check available specializations)\nEnter any string to create a new major");
+
+            try {
+                majorString = br.readLine();
+                if (majorString.trim().toLowerCase().equals("show")) {
+                    System.out.println("Available Specializations: ");
+                    System.out.println(RegistrarDriver.specializations.values().stream()
+                            .filter(s -> s.getType() == Specialization.Type.MAJOR).map(s -> s.getName())
+                            .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
+
+                    majorString = null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
-        System.out.println("Enter Student Minor or Write (null) if not applicable: ");
         String minorString = null;
-        try {
-            minorString = br.readLine();
-            if (minorString.equals("null")) {
-                minorString = null;
+        while (true) {
+            System.out.println(
+                    "\nEnter Student Minor or Write (null) if not applicable:\n(or type 'show' to check available specializations)\nEnter any string to create a new major");
+
+            try {
+                minorString = br.readLine();
+                if (minorString.trim().toLowerCase().equals("null")) {
+                    minorString = null;
+                    break;
+                } else if (minorString.trim().toLowerCase().equals("show")) {
+                    System.out.println("Available Specializations: ");
+                    System.out.println(RegistrarDriver.specializations.values().stream()
+                            .filter(s -> s.getType() == Specialization.Type.MINOR).map(s -> s.getName())
+                            .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2)
+                            .orElse("No Minors Available\n"));
+                    minorString = null;
+                } else {
+                    break;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
         Specialization major = createMajorSpecialization(majorString);
@@ -121,7 +147,7 @@ public class TaskSwitcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("Enter Teacher's Specialization: ");
+        System.out.println("\n\nEnter Teacher's Specialization: ");
         String specString = null;
         try {
             specString = br.readLine();
@@ -168,11 +194,18 @@ public class TaskSwitcher {
             System.out.println("Start Date is after End Date. Please enter valid dates");
             return createSemester();
         }
+
         Semester semester = new Semester(startDate,
                 endDate);
-        RegistrarDriver.semesters.put(semester.getSemesterName(), semester);
-        System.out.println("Semester" + semester + " created successfully");
-        return semester;
+
+        if (RegistrarDriver.semesters.get(semester.getSemesterName()) != null) {
+            System.out.println("Semester already exists");
+            return RegistrarDriver.semesters.get(semester.getSemesterName());
+        } else {
+            RegistrarDriver.semesters.put(semester.getSemesterName(), semester);
+            System.out.println("Semester" + semester + " created successfully");
+            return semester;
+        }
     }
 
     private static List<WeeklyMeeting> createWeeklyMeeting() {
@@ -185,40 +218,40 @@ public class TaskSwitcher {
                 DayOfWeek day = null;
                 while (day == null) {
                     try {
-                        System.out.println("Enter Meeting Day: ");
+                        System.out.println("\n\nEnter Meeting Day: ");
                         day = DayOfWeek.valueOf(br.readLine().toUpperCase());
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (IllegalArgumentException e) {
-                        System.out.println("Invalid day. Please enter a valid day");
+                        System.out.println("\n\nInvalid day. Please enter a valid day");
                     }
                 }
 
                 LocalTime startTime = null;
                 while (startTime == null) {
                     try {
-                        System.out.println("Enter Meeting Start Time (HH:mm): ");
+                        System.out.println("\n\nEnter Meeting Start Time (HH:mm): ");
                         startTime = LocalTime.parse(br.readLine(), DateTimeFormatter.ofPattern("HH:mm"));
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (DateTimeParseException e) {
-                        System.out.println("Invalid time format. Please enter time in HH:mm format");
+                        System.out.println("\n\nInvalid time format. Please enter time in HH:mm format");
                     }
                 }
 
                 Duration duration = null;
                 while (duration == null) {
                     try {
-                        System.out.println("Enter Meeting Duration (in minutes): ");
+                        System.out.println("\n\nEnter Meeting Duration (in minutes): ");
                         duration = Duration.ofMinutes(Long.parseLong(br.readLine()));
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (NumberFormatException e) {
-                        System.out.println("Invalid input. Please enter a number");
+                        System.out.println("\n\nInvalid input. Please enter a number");
                     }
                 }
 
-                System.out.println("Enter Weekly Meeting Room: ");
+                System.out.println("\n\nEnter Weekly Meeting Room: ");
                 String room = null;
                 try {
                     room = br.readLine();
@@ -228,7 +261,7 @@ public class TaskSwitcher {
 
                 wm = new WeeklyMeeting(day, duration, room, startTime);
                 weeklyMeetings.add(wm);
-                System.out.println("Do you want to add another weekly meeting? (y/n)");
+                System.out.println("\n\nDo you want to add another weekly meeting? (y/n)");
 
             } while (wm == null || br.readLine().toLowerCase().equals("y"));
 
@@ -239,7 +272,7 @@ public class TaskSwitcher {
         return weeklyMeetings;
     }
 
-    private static Course creatCourse() {
+    private static Course createCourse() {
         System.out.println("Creating Course Process: ");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter Course Code: ");
@@ -252,11 +285,13 @@ public class TaskSwitcher {
 
         Optional<Course> course = Optional.ofNullable(RegistrarDriver.courses.get(courseID));
         if (course.isPresent()) {
-            System.out.println("Course exists");
+            System.out.println("\nCourse exists\n\n");
+            System.out.println(course.get());
+            System.out.println();
             return course.get();
         }
 
-        System.out.println("Enter Course Name: ");
+        System.out.println("\n\nEnter Course Name:");
         String name = null;
         try {
             name = br.readLine();
@@ -264,7 +299,7 @@ public class TaskSwitcher {
             e.printStackTrace();
         }
 
-        System.out.println("Enter Course Specialization: ");
+        System.out.println("\n\nEnter Course Specialization: ");
         String specString = null;
         try {
             specString = br.readLine();
@@ -276,28 +311,30 @@ public class TaskSwitcher {
         int creditHours = 0;
         while (creditHours == 0) {
             try {
-                System.out.println("Enter Course Credit Hours Num: ");
+                System.out.println("\n\nEnter Course Credit Hours number: ");
                 creditHours = Integer.parseInt(br.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number");
+                System.out.println("\n\nInvalid input. Please enter a number");
             }
         }
 
         int capacity = 0;
         while (capacity == 0) {
             try {
-                System.out.println("Enter Course Student Capacity Num: ");
+                System.out.println("\n\nEnter Course Student Capacity number: ");
                 capacity = Integer.parseInt(br.readLine());
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number");
+                System.out.println("\n\nInvalid input. Please enter a number");
             }
         }
 
         List<WeeklyMeeting> weeklyMeetings = createWeeklyMeeting();
+
+        // TODO: check for conflicts between weekly meetings.
 
         Course c = new Course(courseID, name, specialization, creditHours, weeklyMeetings, capacity);
         RegistrarDriver.courses.put(c.getCourseID(), c);
@@ -308,8 +345,8 @@ public class TaskSwitcher {
 
     ////////////////////////////////////////////////////////////////////////////
 
-    private static Runnable action5 = () -> {
-        System.out.println("Action 5: View Course Prerequisites");
+    private static Runnable action6 = () -> {
+        System.out.println("View Course Prerequisites");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter Course Code: ");
         try {
@@ -320,8 +357,9 @@ public class TaskSwitcher {
             if (course == null) {
                 System.out.println("Course not found");
             } else {
-                System.out.println("Course Prerequisites:");
-                course.getPrerequisites().stream().map(c -> c.toString()).reduce((c1, c2) -> c1 + "\n" + c2);
+                System.out.println("\n\nCourse Prerequisites:");
+                System.out.println(
+                        course.getPrerequisites().stream().map(c -> c.getCourseID()).reduce((c1, c2) -> c1 + "\n" + c2).orElse("No Prerequisites exist for this course"));
             }
 
         } catch (IOException e) {
@@ -330,50 +368,63 @@ public class TaskSwitcher {
     };
 
     private static Runnable action1 = () -> {
-        System.out.println("Action 1: Create New Semester");
+        System.out.println("Create New Semester");
         createSemester();
 
     };
 
     private static Runnable action2 = () -> {
-        System.out.println("Action 2: Create New Student");
+        System.out.println("Create New Student");
         Student student = createStudent(0);
         System.out.println("Student " + student + " created successfully");
     };
 
     private static Runnable action3 = () -> {
-        System.out.println("Action 3: Create New Teacher");
+        System.out.println("Create New Teacher");
         Teacher teacher = createTeacher(0);
         System.out.println("Teacher " + teacher + " created successfully");
     };
 
     private static Runnable action4 = () -> {
-        System.out.println("Action 3: Create New Course");
-    };
+        System.out.println("Create New Course");
+        createCourse();
 
-    private static Runnable action7 = () -> {
-        System.out.println("Action 7: Available Students (Possibliy Not Registered yet)");
-        System.out.println(
-                RegistrarDriver.students.values().stream().map(s -> s.getReport())
-                        .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
     };
 
     private static Runnable action8 = () -> {
-        System.out.println("Action 8: Available Teachers (Possibliy Not Registered yet)");
+        System.out.println("Available Students (Possibliy Not Registered yet)");
         System.out.println(
-                RegistrarDriver.teachers.values().stream().map(t -> t.toString())
-                        .reduce((t1, t2) -> t1 + "\n-----------------------------------\n" + t2).get());
+                RegistrarDriver.students.values().stream().map(s -> s.getReport())
+                        .reduce((s1, s2) -> s1 + "\n--------------------------------------\n" + s2)
+                        .orElse("No Students Records\n"));
     };
 
     private static Runnable action9 = () -> {
-        System.out.println("Action 9: Available Courses (Possibliy Not Registered yet)");
+        System.out.println("Available Teachers (Possibliy Not Registered yet)");
         System.out.println(
-                RegistrarDriver.courses.values().stream().map(c -> c.toString())
-                        .reduce((c1, c2) -> c1 + "\n-----------------------------------\n" + c2).get());
+                RegistrarDriver.teachers.values().stream().map(t -> t.toString())
+                        .reduce((t1, t2) -> t1 + "\n--------------------------------------\n" + t2)
+                        .orElse("No Teachers Records\n"));
     };
 
-    private static Runnable action6 = () -> {
-        System.out.println("Action 6: Register Students and a Teacher in a Course");
+    private static Runnable action10 = () -> {
+        System.out.println("Available Courses (Possibliy Not Registered yet)");
+        System.out.println(
+                RegistrarDriver.courses.values().stream().map(c -> c.toString())
+                        .reduce((c1, c2) -> c1 + "\n-----------------------------------\n" + c2)
+                        .orElse("No Courses Available\n"));
+    };
+
+    private static Runnable action12 = () -> {
+        //TODO: implement eneter Grades
+    };
+
+    private static Runnable action13 = () -> {
+        //TODO: implement calculate GPA
+    };
+
+    private static Runnable action7 = () -> {
+        System.out.println("Register Students and a Teacher in a Course");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println(
                 "Enter Semester Name: \n(Or Enter 'show' to view available semesters, any key to create a new semester)");
@@ -385,7 +436,8 @@ public class TaskSwitcher {
                     System.out.println("Available Semesters: ");
                     System.out.println(
                             RegistrarDriver.semesters.values().stream().map(s -> s.getSemesterName())
-                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
+                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2)
+                                    .orElse("No Semesters Available\n"));
                     System.out.println(
                             "Enter Semester Name: \n(Or Enter 'show' to view available semesters, any key to create a new semester)");
                     semesterName = null;
@@ -406,7 +458,7 @@ public class TaskSwitcher {
             try {
                 courseID = br.readLine();
                 if (courseID.trim().toLowerCase().equals("show")) {
-                    action9.run();
+                    action10.run();
                     System.out.println("Enter Course Code: (Enter 'show' to view available courses) ");
                     courseID = null;
                 }
@@ -417,7 +469,7 @@ public class TaskSwitcher {
 
         Course course = Optional.ofNullable(RegistrarDriver.courses.get(courseID)).orElseGet(() -> {
             System.out.println("Course not found.");
-            return creatCourse();
+            return createCourse();
         });
 
         System.out.println("Enter Teacher ID: (Enter 'show' to view available Teachers) ");
@@ -426,7 +478,7 @@ public class TaskSwitcher {
             try {
                 String ans = br.readLine();
                 if (ans.equals("show")) {
-                    action8.run();
+                    action9.run();
                     System.out.println("Enter Teacher ID: (Enter 'show' to view available Teachers) ");
                     teacherID = 0;
                 } else {
@@ -451,7 +503,7 @@ public class TaskSwitcher {
                 if (ans.equals("done")) {
                     break;
                 } else if (ans.equals("show")) {
-                    action7.run();
+                    action8.run();
                     studentID = 0;
                 } else {
                     studentID = Integer.parseInt(ans);
@@ -474,8 +526,8 @@ public class TaskSwitcher {
 
     };
 
-    private static Runnable action10 = () -> {
-        System.out.println("Action 10: add a prerequisite to a course");
+    private static Runnable action5 = () -> {
+        System.out.println("add a prerequisite to a course");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter Course Code: ");
         String courseID = null;
@@ -498,11 +550,12 @@ public class TaskSwitcher {
             Course prerequisite = Optional.ofNullable(RegistrarDriver.courses.get(prerequisiteID))
                     .orElseGet(() -> {
                         System.out.println("Course not found.");
-                        return creatCourse();
+                        return createCourse();
                     });
 
             course.get().addPrerequisites(prerequisite);
-            System.out.println("\nPREREQUISITE:\n\n" + prerequisite + "\n\nADDED SUCCESSFULLY TO COURSE:\n\n" + course.get()+"\n");
+            System.out.println("\nPREREQUISITE:\n\n" + prerequisite + "\n\nADDED SUCCESSFULLY TO COURSE:\n\n"
+                    + course.get() + "\n");
 
         } else {
             System.out.println("Course not found");
@@ -510,7 +563,7 @@ public class TaskSwitcher {
     };
 
     private static Runnable action11 = () -> {
-        System.out.println("Action 11: View all Semester Deatials");
+        System.out.println("View all Semester Deatials");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println(
                 "Enter Semester Name: \n(Or Enter 'show' to view available semesters)");
@@ -522,7 +575,8 @@ public class TaskSwitcher {
                     System.out.println("Available Semesters: ");
                     System.out.println(
                             RegistrarDriver.semesters.values().stream().map(s -> s.getSemesterName())
-                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
+                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2)
+                                    .orElse("No Semesters Available\n"));
                     System.out.println(
                             "Enter Semester Name: \n(Or Enter 'show' to view available semesters)");
                     semesterName = null;
