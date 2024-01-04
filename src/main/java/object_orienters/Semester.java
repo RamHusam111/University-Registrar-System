@@ -78,7 +78,8 @@ public class Semester {
         if (isNewCourse) {
             // Check for room conflict
             boolean roomConflict = courses.stream()
-                    .flatMap(e -> e.getWeeklyMeetings().stream())
+                    .flatMap(e -> e.getWeeklyMeetings()
+                    .stream())
                     .anyMatch(wm -> course.getWeeklyMeetings().stream().anyMatch(wm2 -> wm2.hasRoomConflict(wm)));
 
             if (roomConflict) {
