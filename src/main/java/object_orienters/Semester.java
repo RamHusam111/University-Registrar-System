@@ -2,6 +2,7 @@ package object_orienters;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -225,7 +226,7 @@ public class Semester {
         return teachers;
     }
 
-    public Set<Course> getCourse() {
+    public Set<Course> getRegisteredCourses() {
         return courses;
     }
 
@@ -273,5 +274,7 @@ public class Semester {
         return "Semester Name: " + this.getSemesterName() + "\nSemester Start Date: " + this.getSemesterStartDate()
                 + "\nSemester End Date: " + this.getSemesterEndDate() + "\nSemester Length: " + this.getWeeksNumber();
     }
+
+   
 
 }

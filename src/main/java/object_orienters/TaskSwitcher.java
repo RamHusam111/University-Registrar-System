@@ -223,7 +223,6 @@ public class TaskSwitcher {
                     e.printStackTrace();
                 }
 
-
                 wm = new WeeklyMeeting(day, duration, room, startTime);
                 weeklyMeetings.add(wm);
                 System.out.println("Do you want to add another weekly meeting? (y/n)");
@@ -236,9 +235,10 @@ public class TaskSwitcher {
 
         return weeklyMeetings;
     }
-   
-    private static Course creatCourse(){
-    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+    private static Course creatCourse() {
+        System.out.println("Creating Course Process: ");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Enter Course Code: ");
         String courseID = null;
         try {
@@ -303,8 +303,6 @@ public class TaskSwitcher {
 
     }
 
-   
-    
     ////////////////////////////////////////////////////////////////////////////
 
     private static Runnable action5 = () -> {
@@ -326,8 +324,7 @@ public class TaskSwitcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-   };
-   
+    };
 
     private static Runnable action1 = () -> {
         System.out.println("Action 1: Create New Semester");
@@ -354,28 +351,29 @@ public class TaskSwitcher {
     private static Runnable action7 = () -> {
         System.out.println("Action 7: Available Students (Possibliy Not Registered yet)");
         System.out.println(
-                RegistrarDriver.students.values().stream().map(s -> s.toString())
-                        .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2));
+                RegistrarDriver.students.values().stream().map(s -> s.getReport())
+                        .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
     };
 
     private static Runnable action8 = () -> {
         System.out.println("Action 8: Available Teachers (Possibliy Not Registered yet)");
         System.out.println(
                 RegistrarDriver.teachers.values().stream().map(t -> t.toString())
-                        .reduce((t1, t2) -> t1 + "\n-----------------------------------\n" + t2));
+                        .reduce((t1, t2) -> t1 + "\n-----------------------------------\n" + t2).get());
     };
 
     private static Runnable action9 = () -> {
         System.out.println("Action 9: Available Courses (Possibliy Not Registered yet)");
-       System.out.println(
+        System.out.println(
                 RegistrarDriver.courses.values().stream().map(c -> c.toString())
-                        .reduce((c1, c2) -> c1 + "\n-----------------------------------\n" + c2));
+                        .reduce((c1, c2) -> c1 + "\n-----------------------------------\n" + c2).get());
     };
 
     private static Runnable action6 = () -> {
         System.out.println("Action 6: Register Students and a Teacher in a Course");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter Semester Name: \\n(Or Enter 'show' to view available semesters, any key to create a new semester)");
+        System.out.println(
+                "Enter Semester Name: \n(Or Enter 'show' to view available semesters, any key to create a new semester)");
         String semesterName = null;
         while (semesterName == null) {
             try {
@@ -384,8 +382,9 @@ public class TaskSwitcher {
                     System.out.println("Available Semesters: ");
                     System.out.println(
                             RegistrarDriver.semesters.values().stream().map(s -> s.getSemesterName())
-                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2));
-                    System.out.println("Enter Semester Name: \n(Or Enter 'show' to view available semesters, any key to create a new semester)");
+                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
+                    System.out.println(
+                            "Enter Semester Name: \n(Or Enter 'show' to view available semesters, any key to create a new semester)");
                     semesterName = null;
                 }
             } catch (IOException e) {
@@ -394,9 +393,9 @@ public class TaskSwitcher {
         }
 
         String sName = semesterName;
-        Semester semester = RegistrarDriver.semesters.values().stream().filter(s -> s.getSemesterName().trim().toLowerCase().equals(sName.trim().toLowerCase()))
-                .findFirst()
-                .orElse(createSemester());
+        Semester semester = RegistrarDriver.semesters.values().stream()
+                .filter(s -> s.getSemesterName().trim().toLowerCase().equals(sName.trim().toLowerCase()))
+                .findAny().orElseGet(TaskSwitcher::createSemester);
 
         System.out.println("Enter Course Code: (Enter 'show' to view available courses) ");
         String courseID = null;
@@ -413,7 +412,10 @@ public class TaskSwitcher {
             }
         }
 
-        Course course = Optional.ofNullable(RegistrarDriver.courses.get(courseID)).orElse(creatCourse());
+        Course course = Optional.ofNullable(RegistrarDriver.courses.get(courseID)).orElseGet(() -> {
+            System.out.println("Course not found.");
+            return creatCourse();
+        });
 
         System.out.println("Enter Teacher ID: (Enter 'show' to view available Teachers) ");
         int teacherID = 0;
@@ -462,7 +464,89 @@ public class TaskSwitcher {
             }
         }
 
+        System.out.println("Registered Students: " + students
+                + "\nWith Teacher: " + teacher
+                + "\nIn Course: " + course);
         semester.registerInACourse(course, students, teacher);
+
+    };
+
+    private static Runnable action10 = () -> {
+        System.out.println("Action 10: add a prerequisite to a course");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Enter Course Code: ");
+        String courseID = null;
+        try {
+            courseID = br.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Optional<Course> course = Optional.ofNullable(RegistrarDriver.courses.get(courseID));
+        if (course.isPresent()) {
+            System.out.println("Enter Prerequisite Course Code: ");
+            String prerequisiteID = null;
+            try {
+                prerequisiteID = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            Course prerequisite = Optional.ofNullable(RegistrarDriver.courses.get(prerequisiteID))
+                    .orElseGet(() -> {
+                        System.out.println("Course not found.");
+                        return creatCourse();
+                    });
+
+            course.get().addPrerequisites(prerequisite);
+            System.out.println("Prerequisite " + prerequisite + " added successfully to " + course.get());
+
+        } else {
+            System.out.println("Course not found");
+        }
+    };
+
+    private static Runnable action11 = () -> {
+        System.out.println("Action 11: View all Semester Deatials");
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println(
+                "Enter Semester Name: \n(Or Enter 'show' to view available semesters)");
+        String semesterName = null;
+        while (semesterName == null) {
+            try {
+                semesterName = br.readLine();
+                if (semesterName.trim().toLowerCase().contains("show")) {
+                    System.out.println("Available Semesters: ");
+                    System.out.println(
+                            RegistrarDriver.semesters.values().stream().map(s -> s.getSemesterName())
+                                    .reduce((s1, s2) -> s1 + "\n-----------------------------------\n" + s2).get());
+                    System.out.println(
+                            "Enter Semester Name: \n(Or Enter 'show' to view available semesters)");
+                    semesterName = null;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        String sName = semesterName;
+        Optional<Semester> semesteropt = RegistrarDriver.semesters.values().stream()
+                .filter(s -> s.getSemesterName().trim().toLowerCase().equals(sName.trim().toLowerCase()))
+                .findAny();
+        if (!semesteropt.isPresent()) {
+
+            System.out.println("Semester not found");
+        } else {
+            Semester semester = semesteropt.get();
+
+            System.out.println(semester);
+
+            System.out.println("Details are as follows: ");
+            System.out.println("Registered Courses: ");
+            semester.getRegisteredCourses().stream()
+                    .forEach((c1) -> System.out.println(c1 + "\n" + c1.getTeacher() + "\n" + c1.getEnrolledStudents()
+                            + "\n-----------------------------------\n"));
+        }
 
     };
 
@@ -494,6 +578,10 @@ public class TaskSwitcher {
 
             case 9:
                 return new Task(input, action9);
+            case 10:
+                return new Task(input, action10);
+            case 11:
+                return new Task(input, action11);
 
             default:
                 return new Task(input);
