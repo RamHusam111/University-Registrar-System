@@ -245,6 +245,86 @@ public class Student extends Person {
         return sum/ch;
     }
 
+    private static class TotalPointsTask extends RecursiveTask<Double> {
+        private final static int THRESHOLD = 3;
+        private Map<Course, Double> map;
+        private int start;
+        private int end;
+
+        public TotalPointsTask(Map<Course, Double> map) {
+            this.map = map;
+            this.start = 0;
+            this.end = map.size();
+        }
+
+        private TotalPointsTask(Map<Course, Double> map, int start, int end) {
+            this.map = map;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        protected Double compute() {
+            int length = end - start;
+            if (length <= THRESHOLD) {
+                return map.entrySet().stream()
+                        .skip(start)
+                        .limit(end - start)
+                        .mapToDouble(entry -> entry.getValue() * entry.getKey().getCreditHours())
+                        .sum();
+            } else {
+                int mid = start + length / 2;
+                TotalPointsTask left = new TotalPointsTask(map, start, mid);
+                TotalPointsTask right = new TotalPointsTask(map, mid, end);
+                left.fork();
+                right.fork();
+                double rightResult = right.join();
+                double leftResult = left.join();
+                return leftResult + rightResult;
+            }
+        }
+    }
+
+    private static class TotalCreditHours extends RecursiveTask<Double> {
+        private final static int THRESHOLD = 3;
+        private Map<Course, Double> map;
+        private int start;
+        private int end;
+
+        public TotalCreditHours(Map<Course, Double> map) {
+            this.map = map;
+            this.start = 0;
+            this.end = map.size();
+        }
+
+        private TotalCreditHours(Map<Course, Double> map, int start, int end) {
+            this.map = map;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        protected Double compute() {
+            int length = end - start;
+            if (length <= THRESHOLD) {
+                return map.entrySet().stream()
+                        .skip(start)
+                        .limit(end - start)
+                        .mapToDouble(entry -> entry.getKey().getCreditHours())
+                        .sum();
+            } else {
+                int mid = start + length / 2;
+                TotalCreditHours left = new TotalCreditHours(map, start, mid);
+                TotalCreditHours right = new TotalCreditHours(map, mid, end);
+                left.fork();
+                right.fork();
+                double rightResult = right.join();
+                double leftResult = left.join();
+                return leftResult + rightResult;
+            }
+        }
+    }
+
     /**
      * Updates the student's GPA status based on the calculated GPA.
      * This method categorizes the GPA into various statuses such as Highest Honors,
