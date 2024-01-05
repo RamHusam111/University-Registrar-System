@@ -110,10 +110,10 @@ public class WeeklyMeeting {
      * @param weeklyMeetings The other weekly meeting.
      * @return True if the weekly meetings have a room conflict, false otherwise.
      */
-    public boolean hasConflict(WeeklyMeeting weeklyMeetings) {
+    public boolean hasRoomConflict(WeeklyMeeting weeklyMeetings) {
         return this.getDay().equals(weeklyMeetings.getDay())
                 && !this.getHour().plus(this.getDuration()).isBefore(weeklyMeetings.getHour())
                 && !weeklyMeetings.getHour().plus(weeklyMeetings.getDuration()).isBefore(this.getHour())
-                || this.getRoom().equals(weeklyMeetings.getRoom());
+                && this.getRoom().equals(weeklyMeetings.getRoom());
     }
 }

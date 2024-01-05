@@ -263,7 +263,7 @@ public class TaskSwitcher {
 
                 wm = new WeeklyMeeting(day, duration, room, startTime);
                 final WeeklyMeeting wm2 = wm; 
-                if (weeklyMeetings.stream().anyMatch(e -> e.hasConflict(wm2))) {
+                if (weeklyMeetings.stream().anyMatch(e -> e.hasTimeConflict(wm2))) {
                     System.out.println(Color.YELLOW.value +"\n\nCannot add a Weekly Meeting that has Conflict with existing weekly meetings" + Color.RESET.value);
                     wm = null;
                     continue;
