@@ -99,6 +99,7 @@ public class StudentTest {
     public void testCalculateGpaMethod() {
         testEnterGradesMethod();
         for (Student stu : students) {
+
             assertEquals(2.1875, stu.calculateGPA());
         }
     }
@@ -107,6 +108,8 @@ public class StudentTest {
     public void testgetGpaStatusMethod() {
         testCalculateGpaMethod();
         for (Student stu : students) {
+            System.out.println(stu);
+
             assertEquals(Student.GPAstatus.NORMAL, stu.getGpaStatus());
         }
     }
