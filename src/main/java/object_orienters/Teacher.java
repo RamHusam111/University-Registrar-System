@@ -23,6 +23,7 @@ public class Teacher extends Person {
     specialization.getFaculty().getTeachers().add(this);
 
   }
+  
   /**
    * Returns the specialization of the teacher.
    *
@@ -31,6 +32,7 @@ public class Teacher extends Person {
   public Specialization getSpecialization() {
     return specialization;
   }
+
 
   /**
    * Returns a string representation of the teacher, including their basic information

@@ -192,10 +192,47 @@ public class Student extends Person {
     public double calculateGPA() {
         ForkJoinPool pool = new ForkJoinPool();
         RecursiveTask<Double> totalPtsTask = new RecursiveTask<Double>() {
+
+            private final static int THRESHOLD = 3;
+            private Double [] list = completedCoursesGrades.values().toArray(new Double[0]);
+            private int sum;
+            private int i;
+
+            /*
+             * 
+             * 
+             * 
+             * public MaxTask(int[] list, int low, int high) {
+             * this.list = list;
+             * this.low = low;
+             * this.high = high;
+             * }
+             * 
+             * public Integer compute() {
+             * if (high - low < THRESHOLD) {
+             * int max = list[0];
+             * for (int i = low; i < high; i++)
+             * if (list[i] > max)
+             * max = list[i];
+             * return new Integer(max);
+             * }
+             * else {
+             * int mid = (low + high) / 2;
+             * RecursiveTask<Integer> left = new MaxTask(list, low, mid);
+             * RecursiveTask<Integer> right = new MaxTask(list, mid, high);
+             * 
+             * right.fork();
+             * left.fork();
+             * return new Integer(Math.max(left.join().intValue(),
+             * right.join().intValue()));
+             * }
+             * }
+             */
             @Override
             protected Double compute() {
-                return completedCoursesGrades.entrySet().stream()
-                        .mapToDouble(entry -> entry.getKey().getCreditHours() * entry.getValue()).sum();
+                if (i< THRESHOLD) {
+                    
+                }
             }
         };
         RecursiveTask<Integer> creditHoursTask = new RecursiveTask<Integer>() {
@@ -205,6 +242,12 @@ public class Student extends Person {
                         .mapToInt(course -> course.getCreditHours()).sum();
             }
         };
+
+        totalPtsTask.fork();
+        creditHoursTask.fork();
+        totalPtsTask.join();
+        creditHoursTask.join();
+
         double totalPts = pool.invoke(totalPtsTask);
         int creditHours = pool.invoke(creditHoursTask);
         pool.shutdown();
@@ -246,7 +289,9 @@ public class Student extends Person {
      * @return A formatted string containing the student's academic report.
      */
     public String getReport() {
-        return super.toString() + "\nMajor:" + this.getMajor().getName() +( minor != null && minor.isPresent() ?  "\nMinor: " + this.getMinor().get().getName() :"") + "\nAdmitted year: "
+        return super.toString() + "\nMajor:" + this.getMajor().getName()
+                + (minor != null && minor.isPresent() ? "\nMinor: " + this.getMinor().get().getName() : "")
+                + "\nAdmitted year: "
                 + this.getDateEnrolled().getYear() + "\nRegistered this semester: "
                 + this.isCurrentlyRegisterd() + "\n Registered Courses: " + this.getRegisteredCourses() + "\nGPA "
                 + this.calculateGPA() + "\nGPA Status: " + this.getGpaStatus();
