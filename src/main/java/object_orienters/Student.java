@@ -191,70 +191,109 @@ public class Student extends Person {
      */
     public double calculateGPA() {
         ForkJoinPool pool = new ForkJoinPool();
-        RecursiveTask<Double> totalPtsTask = new RecursiveTask<Double>() {
 
-            private final static int THRESHOLD = 3;
-            private Double [] list = completedCoursesGrades.values().toArray(new Double[0]);
-            private int sum;
-            private int i;
+        // Recursive task for calculating total points
+        RecursiveTask<Double> totalPtsTask = new TotalPointsTask(completedCoursesGrades);
 
-            /*
-             * 
-             * 
-             * 
-             * public MaxTask(int[] list, int low, int high) {
-             * this.list = list;
-             * this.low = low;
-             * this.high = high;
-             * }
-             * 
-             * public Integer compute() {
-             * if (high - low < THRESHOLD) {
-             * int max = list[0];
-             * for (int i = low; i < high; i++)
-             * if (list[i] > max)
-             * max = list[i];
-             * return new Integer(max);
-             * }
-             * else {
-             * int mid = (low + high) / 2;
-             * RecursiveTask<Integer> left = new MaxTask(list, low, mid);
-             * RecursiveTask<Integer> right = new MaxTask(list, mid, high);
-             * 
-             * right.fork();
-             * left.fork();
-             * return new Integer(Math.max(left.join().intValue(),
-             * right.join().intValue()));
-             * }
-             * }
-             */
-            @Override
-            protected Double compute() {
-                if (i< THRESHOLD) {
-                    
-                }
-            }
-        };
-        RecursiveTask<Integer> creditHoursTask = new RecursiveTask<Integer>() {
-            @Override
-            protected Integer compute() {
-                return completedCoursesGrades.keySet().stream()
-                        .mapToInt(course -> course.getCreditHours()).sum();
-            }
-        };
+        // Recursive task for calculating total credit hours
+        RecursiveTask<Double> totalCreditHours = new TotalCreditHours(completedCoursesGrades);
 
-        totalPtsTask.fork();
-        creditHoursTask.fork();
-        totalPtsTask.join();
-        creditHoursTask.join();
+        // Execute tasks
+        pool.execute(totalPtsTask);
+        pool.execute(totalCreditHours);
 
-        double totalPts = pool.invoke(totalPtsTask);
-        int creditHours = pool.invoke(creditHoursTask);
+        // Gather results
+        double totalPts = totalPtsTask.join();
+        double creditHours = totalCreditHours.join();
+
+        // Shutdown the pool
         pool.shutdown();
-        pool.close();
+
+        // Calculate and return GPA
         double gpa = totalPts / creditHours;
         updateGPAStatus(gpa);
+        System.out.println(gpa);
         return gpa;
+    }
+
+    private static class TotalPointsTask extends RecursiveTask<Double> {
+        private final static int THRESHOLD = 3;
+        private Map<Course, Double> map;
+        private int start;
+        private int end;
+
+        public TotalPointsTask(Map<Course, Double> map) {
+            this.map = map;
+            this.start = 0;
+            this.end = map.size();
+        }
+
+        private TotalPointsTask(Map<Course, Double> map, int start, int end) {
+            this.map = map;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        protected Double compute() {
+            int length = end - start;
+            if (length <= THRESHOLD) {
+                return map.entrySet().stream()
+                        .skip(start)
+                        .limit(end - start)
+                        .mapToDouble(entry -> entry.getValue() * entry.getKey().getCreditHours())
+                        .sum();
+            } else {
+                int mid = start + length / 2;
+                TotalPointsTask left = new TotalPointsTask(map, start, mid);
+                TotalPointsTask right = new TotalPointsTask(map, mid, end);
+                left.fork();
+                right.fork();
+                double rightResult = right.join();
+                double leftResult = left.join();
+                return leftResult + rightResult;
+            }
+        }
+    }
+
+    private static class TotalCreditHours extends RecursiveTask<Double> {
+        private final static int THRESHOLD = 3;
+        private Map<Course, Double> map;
+        private int start;
+        private int end;
+
+        public TotalCreditHours(Map<Course, Double> map) {
+            this.map = map;
+            this.start = 0;
+            this.end = map.size();
+        }
+
+        private TotalCreditHours(Map<Course, Double> map, int start, int end) {
+            this.map = map;
+            this.start = start;
+            this.end = end;
+        }
+
+        @Override
+        protected Double compute() {
+            int length = end - start;
+            if (length <= THRESHOLD) {
+                return map.entrySet().stream()
+                        .skip(start)
+                        .limit(end - start)
+                        .mapToDouble(entry -> entry.getKey().getCreditHours())
+                        .sum();
+            } else {
+                int mid = start + length / 2;
+                TotalCreditHours left = new TotalCreditHours(map, start, mid);
+                TotalCreditHours right = new TotalCreditHours(map, mid, end);
+                left.fork();
+                right.fork();
+                double rightResult = right.join();
+                double leftResult = left.join();
+                return leftResult + rightResult;
+            }
+        }
     }
 
     /**
