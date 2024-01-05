@@ -10,7 +10,7 @@
 This project is a comprehensive academic management system implemented in Java. It is designed to manage various aspects of a university environment, including course scheduling, student and faculty information, and academic records. The system facilitates the organization and tracking of academic activities, making it an essential tool for educational administrators and students alike.
 
 #### Installation
-1. Ensure you have Java installed on your system (Java 11 or above recommended).
+1. Ensure you have Java installed on your system (Java 8 or above recommended).
 2. Clone the repository to your local machine.
 3. Open the project in your preferred Java IDE (e.g., Eclipse, IntelliJ IDEA).
 4. Build the project to resolve any dependencies.
