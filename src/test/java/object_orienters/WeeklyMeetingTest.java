@@ -23,7 +23,7 @@ class WeeklyMeetingTest {
 
     @BeforeEach
     void setUp() throws Exception {
-        Path path = Paths.get("src/test/resources/WeeklyMeetings.csv");
+        Path path = Paths.get("src/test/resources/WeeklyMeetings2.csv");
         meetings = Files.lines(path)
                 .map(line -> line.split(","))
                 .map(parts -> new WeeklyMeeting(
@@ -96,4 +96,3 @@ class WeeklyMeetingTest {
         assertFalse(meeting1.hasRoomConflict(meeting3));
     }
 }
-
