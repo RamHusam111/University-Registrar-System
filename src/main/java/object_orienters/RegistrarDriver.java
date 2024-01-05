@@ -39,19 +39,19 @@ public class RegistrarDriver {
             System.out.println(Color.RED.value + ">>>>>>>>>>>> Choose what you want to do: " + Color.RESET.value);
             System.out.println(
                     Color.PURPLE.value + "\n1 - Create New Semester"
-                            + Color.PURPLE.value + "\n2 - Add New Student"
-                            + Color.PURPLE.value + "\n3 - Add New Teacher"
-                            + Color.PURPLE.value + "\n4 - Add New Course"
-                            + Color.PURPLE.value + "\n5 - add prerequisite to a course"
-                            + Color.PURPLE.value + "\n6 - View Course Prerequisites"
-                            + Color.PURPLE.value + "\n7 - Register"
-                            + Color.PURPLE.value + "\n8 - View Registered Students"
-                            + Color.PURPLE.value + "\n9 - View Registered Teachers"
+                            + Color.PURPLE.value + "\n2  - Add New Student"
+                            + Color.PURPLE.value + "\n3  - Add New Teacher"
+                            + Color.PURPLE.value + "\n4  - Add New Course"
+                            + Color.PURPLE.value + "\n5  - Add Prerequisite to a Course"
+                            + Color.PURPLE.value + "\n6  - View Course Prerequisites"
+                            + Color.PURPLE.value + "\n7  - Register"
+                            + Color.PURPLE.value + "\n8  - View Registered Students"
+                            + Color.PURPLE.value + "\n9  - View Registered Teachers"
                             + Color.PURPLE.value + "\n10 - View Available Courses"
-                            + Color.PURPLE.value + "\n11 - show all details of a semester"
+                            + Color.PURPLE.value + "\n11 - Show All Details of a Semester"
                             + Color.PURPLE.value + "\n12 - Enter Student Grade"
-                            + Color.PURPLE.value + "\n13 - Calculate student GPA"
-                            + Color.PURPLE.value + "\n0 - Exit"
+                            + Color.PURPLE.value + "\n13 - Calculate Student GPA"
+                            + Color.PURPLE.value + "\n0  - Exit"
                             + Color.RESET.value);
 
             try {
