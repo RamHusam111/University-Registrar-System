@@ -1,6 +1,5 @@
 package object_orienters;
 
-import java.lang.reflect.Array;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -191,58 +190,71 @@ public class Student extends Person {
      * @return The calculated GPA.
      */
     public double calculateGPA() {
+        ForkJoinPool pool = new ForkJoinPool();
+        RecursiveTask<Double> totalPtsTask = new RecursiveTask<Double>() {
 
-        class Summation extends RecursiveTask<Double> {
-            final static int THRESHOLD = 3;
-            Double[] list;
-            int low;
-            int high;
+            private final static int THRESHOLD = 3;
+            private Double [] list = completedCoursesGrades.values().toArray(new Double[0]);
+            private int sum;
+            private int i;
 
-            Summation(Double[] list, int low, int high) {
-                this.list = list;
-                this.low = low;
-                this.high = high;
-            }
-
+            /*
+             * 
+             * 
+             * 
+             * public MaxTask(int[] list, int low, int high) {
+             * this.list = list;
+             * this.low = low;
+             * this.high = high;
+             * }
+             * 
+             * public Integer compute() {
+             * if (high - low < THRESHOLD) {
+             * int max = list[0];
+             * for (int i = low; i < high; i++)
+             * if (list[i] > max)
+             * max = list[i];
+             * return new Integer(max);
+             * }
+             * else {
+             * int mid = (low + high) / 2;
+             * RecursiveTask<Integer> left = new MaxTask(list, low, mid);
+             * RecursiveTask<Integer> right = new MaxTask(list, mid, high);
+             * 
+             * right.fork();
+             * left.fork();
+             * return new Integer(Math.max(left.join().intValue(),
+             * right.join().intValue()));
+             * }
+             * }
+             */
             @Override
             protected Double compute() {
-                if (high - low < THRESHOLD) {
-                    double sum = 0;
-                    for (int i = low; i < high; i++)
-                        sum += list[i];
-                    return sum;
-                } else {
-                    int mid = (low + high) / 2;
-                    RecursiveTask<Double> left = new Summation(list, low, mid);
-                    RecursiveTask<Double> right = new Summation(list, mid, high);
-
-                    right.fork();
-                    left.fork();
-
-                    return right.join() + left.join();
+                if (i< THRESHOLD) {
+                    
                 }
             }
+        };
+        RecursiveTask<Integer> creditHoursTask = new RecursiveTask<Integer>() {
+            @Override
+            protected Integer compute() {
+                return completedCoursesGrades.keySet().stream()
+                        .mapToInt(course -> course.getCreditHours()).sum();
+            }
+        };
 
-        }
+        totalPtsTask.fork();
+        creditHoursTask.fork();
+        totalPtsTask.join();
+        creditHoursTask.join();
 
-
-
-        Double[] grades = this.completedCoursesGrades.values().toArray(new Double[0]);
-        RecursiveTask<Double> sumGradesTask = new Summation(grades, 0, grades.length);
-        ForkJoinPool pool = new ForkJoinPool();
-        double sum = pool.invoke(sumGradesTask);
+        double totalPts = pool.invoke(totalPtsTask);
+        int creditHours = pool.invoke(creditHoursTask);
         pool.shutdown();
         pool.close();
-
-        Double[] credits = this.completedCoursesGrades.keySet().toArray(new Double[0]);
-        RecursiveTask<Double> sumCreditsTask = new Summation(credits, 0, credits.length);
-        pool = new ForkJoinPool();
-        double ch = pool.invoke(sumCreditsTask);
-        pool.shutdown();
-        pool.close();
-
-        updateGPAStatus(sum/ch);
-        return sum/ch;
+        double gpa = totalPts / creditHours;
+        updateGPAStatus(gpa);
+        return gpa;
     }
 
     private static class TotalPointsTask extends RecursiveTask<Double> {
