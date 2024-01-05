@@ -190,7 +190,7 @@ public class Student extends Person {
      * @return The calculated GPA.
      */
     public double calculateGPA() {
-        
+
         class Summation extends RecursiveTask<Double> {
             final static int THRESHOLD = 3;
             Double[] list;
@@ -224,24 +224,25 @@ public class Student extends Person {
 
         }
 
-
-
         Double[] grades = this.completedCoursesGrades.values().toArray(new Double[0]);
+        Double[] credits = this.completedCoursesGrades.keySet().stream().map(e -> ((double)e.getCreditHours())).toArray(Double[]::new);
+
         RecursiveTask<Double> sumGradesTask = new Summation(grades, 0, grades.length);
         ForkJoinPool pool = new ForkJoinPool();
         double sum = pool.invoke(sumGradesTask);
         pool.shutdown();
         pool.close();
 
-        Double[] credits = this.completedCoursesGrades.keySet().toArray(new Double[0]);
         RecursiveTask<Double> sumCreditsTask = new Summation(credits, 0, credits.length);
         pool = new ForkJoinPool();
         double ch = pool.invoke(sumCreditsTask);
         pool.shutdown();
         pool.close();
 
-        updateGPAStatus(sum/ch);
-        return sum/ch;
+        double gpa = Double.parseDouble(String.format("%.2f", sum / ch));
+        
+        updateGPAStatus(gpa);
+        return gpa;
     }
 
     /**

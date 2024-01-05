@@ -29,12 +29,12 @@ public class RegistrarDriver {
     public static Map<String, Faculty> faculties = new LinkedHashMap<>();
 
     public static void main(String[] args) throws InterruptedException, IOException {
-
         readFiles();
 
         BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
         int input = 1;
-        System.out.println(Color.RED.value + ">>>>>>>>>>>>> Welcome to the University Registrar <<<<<<<<<<<<<<<\n" + Color.RESET.value);
+        System.out.println(Color.RED.value + ">>>>>>>>>>>>> Welcome to the University Registrar <<<<<<<<<<<<<<<\n"
+                + Color.RESET.value);
         while (input != 0) {
             System.out.println(Color.RED.value + ">>>>>>>>>>>> Choose what you want to do: " + Color.RESET.value);
             System.out.println(
