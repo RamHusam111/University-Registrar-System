@@ -57,7 +57,7 @@ public class RegistrarDriver {
             try {
                 input = Integer.parseInt(in.readLine());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a number between 0 and 11");
+                System.out.println("Invalid input. Please enter a number between 0 and 13");
                 continue;
             }
 
