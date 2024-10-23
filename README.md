@@ -1,10 +1,10 @@
 
-### Academix
+### University Academic Management System
 
 ---
 
 #### Project Title
-**University Academic Management System**
+**Academix**
 
 #### Description
 Academix is a comprehensive academic management system implemented in Java 8 features, Multithreading, and Object-Oriented Programming. It is designed to manage various aspects of a university environment, including course scheduling, student and faculty information, and academic records. The system facilitates the organization and tracking of academic activities, making it an essential tool for educational administrators and students alike.
